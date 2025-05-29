@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: cdb-frontend
+  labels:
+    app.kubernetes.io/name: cdb-frontend
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: cdb-dev.dev-dp-internal.dts-stn.com
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: cdb-frontend
+                port:
+                  name: http
