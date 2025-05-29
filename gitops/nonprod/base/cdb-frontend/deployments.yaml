@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cdb-frontend
+  labels:
+    app.kubernetes.io/name: cdb-frontend
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: cdb-frontend
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: cdb-frontend
+    spec:
+      containers:
+        - name: cdb-frontend
+          # Note: image tag should be pinned to a specific version in overlays
+          image: dtsrhpdevscedacr.azurecr.io/canada-disability-benefits/cdb-frontend
+          ports:
+            - name: http
+              containerPort: 3000
+          livenessProbe:
+            tcpSocket:
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /api/readyz
+              port: http
+          resources:
+            requests:
+              cpu: 100m
+              memory: 128Mi
+            limits:
+              cpu: 200m
+              memory: 256Mi
+          securityContext:
+            allowPrivilegeEscalation: false
+  strategy:
+    rollingUpdate:
+      maxSurge: 100%
+      maxUnavailable: 0%
