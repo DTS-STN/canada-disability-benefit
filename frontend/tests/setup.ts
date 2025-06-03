@@ -2,6 +2,7 @@ import * as TestingLibrary from '@testing-library/react';
 import { afterEach, beforeEach, vi } from 'vitest';
 
 beforeEach(() => {
+  throw new Error('this is intentional');
   vi.mock('react-i18next');
 });
 
