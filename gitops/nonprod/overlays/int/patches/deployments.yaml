@@ -15,3 +15,7 @@ spec:
           envFrom:
             - configMapRef:
                 name: frontend
+            # since we are using external secrets operator
+            # we must manually attach the generated secret
+            - secretRef:
+                name: frontend

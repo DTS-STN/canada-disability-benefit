@@ -7,7 +7,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-    - host: cdb-dev.dev-dp-internal.dts-stn.com
+    - host: cdb-int.dev-dp-internal.dts-stn.com
       http:
         paths:
           - path: /
