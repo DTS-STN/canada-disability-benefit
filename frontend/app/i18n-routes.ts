@@ -112,6 +112,16 @@ export const i18nRoutes = [
         file: 'routes/index.tsx',
         paths: { en: '/en/', fr: '/fr/' },
       },
+      {
+        id: 'PROT-0002',
+        file: 'routes/letters.tsx',
+        paths: { en: '/en/letters', fr: '/fr/lettres' },
+      },
+      {
+        id: 'PROT-0003',
+        file: 'routes/data-unavailable.tsx',
+        paths: { en: '/en/data-unavailable', fr: '/fr/donnees-indisponibles' },
+      },
     ],
   },
 ] as const satisfies I18nRoute[];
