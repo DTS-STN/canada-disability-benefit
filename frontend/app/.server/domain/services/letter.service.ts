@@ -32,7 +32,7 @@ export class DefaultLetterService implements LetterService {
   private readonly letterRepository: LetterRepository;
   private readonly auditService: AuditService;
 
-  constructor(letterDtoMapper: LetterDtoMapper,  letterRepository: LetterRepository, auditService: AuditService) {
+  constructor(letterDtoMapper: LetterDtoMapper, letterRepository: LetterRepository, auditService: AuditService) {
     this.log = LogFactory.getLogger(import.meta.url);
     this.letterDtoMapper = letterDtoMapper;
     this.letterRepository = letterRepository;

@@ -1,14 +1,13 @@
 //import { injectable } from 'inversify';
-
-import type { ServerEnvironment } from '~/.server/environment';
 import type { LetterEntity, PdfEntity } from '~/.server/domain/entities';
+import type { ServerEnvironment } from '~/.server/environment';
+import type { HttpClient } from '~/.server/http/http-client';
 import { LogFactory } from '~/.server/logging';
 // TODO: Update this file?
 import getPdfByLetterIdJson from '~/.server/resources/cct/get-pdf-by-letter-id.json';
 import { HttpStatusCodes } from '~/constants/http-status-codes';
 import { AppError } from '~/errors/app-error';
 import { ErrorCodes } from '~/errors/error-codes';
-import type { HttpClient } from '~/.server/http/http-client';
 
 /**
  * A repository that provides access to letters.
@@ -65,13 +64,13 @@ export class DefaultLetterRepository implements LetterRepository {
   constructor(
     serverConfig: Pick<
       ServerEnvironment,
-    | 'HEALTH_PLACEHOLDER_REQUEST_VALUE'
-    | 'HTTP_PROXY_URL'
-    | 'CCT_API_BASE_URI'
-    | 'CCT_API_SUBSCRIPTION_KEY'
-    | 'CCT_API_COMMUNITY'
-    | 'CCT_API_MAX_RETRIES'
-    | 'CCT_API_BACKOFF_MS'
+      | 'HEALTH_PLACEHOLDER_REQUEST_VALUE'
+      | 'HTTP_PROXY_URL'
+      | 'CCT_API_BASE_URI'
+      | 'CCT_API_SUBSCRIPTION_KEY'
+      | 'CCT_API_COMMUNITY'
+      | 'CCT_API_MAX_RETRIES'
+      | 'CCT_API_BACKOFF_MS'
     >,
     httpClient: HttpClient,
   ) {
@@ -115,7 +114,10 @@ export class DefaultLetterRepository implements LetterRepository {
 
       if (response.status === HttpStatusCodes.TOO_MANY_REQUESTS) {
         // TODO ::: GjB ::: this throw is to facilitate enabling the application kill switch -- it should be removed once the killswitch functionality is removed
-        throw new AppError('Failed to GET /GetDocInfoBySin. Status: 429, Status Text: Too Many Requests', ErrorCodes.XAPI_TOO_MANY_REQUESTS);
+        throw new AppError(
+          'Failed to GET /GetDocInfoBySin. Status: 429, Status Text: Too Many Requests',
+          ErrorCodes.XAPI_TOO_MANY_REQUESTS,
+        );
       }
 
       throw new Error(`Failed to find letters. Status: ${response.status}, Status Text: ${response.statusText}`);
@@ -159,7 +161,10 @@ export class DefaultLetterRepository implements LetterRepository {
 
       if (response.status === HttpStatusCodes.TOO_MANY_REQUESTS) {
         // TODO ::: GjB ::: this throw is to facilitate enabling the application kill switch -- it should be removed once the killswitch functionality is removed
-        throw new AppError('Failed to GET /GetPdfByLetterId. Status: 429, Status Text: Too Many Requests', ErrorCodes.XAPI_TOO_MANY_REQUESTS);
+        throw new AppError(
+          'Failed to GET /GetPdfByLetterId. Status: 429, Status Text: Too Many Requests',
+          ErrorCodes.XAPI_TOO_MANY_REQUESTS,
+        );
       }
 
       throw new Error(`Failed to get PDF. Status: ${response.status}, Status Text: ${response.statusText}`);
