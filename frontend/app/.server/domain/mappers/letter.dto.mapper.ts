@@ -3,7 +3,7 @@ import type { LetterDto } from '~/.server/domain/dtos';
 import type { LetterEntity, PdfEntity } from '~/.server/domain/entities';
 
 export interface LetterDtoMapper {
-  mapLetterEntitiesToLetterDtos( letterEntities: readonly LetterEntity[]): readonly LetterDto[];
+  mapLetterEntitiesToLetterDtos(letterEntities: readonly LetterEntity[]): readonly LetterDto[];
   mapPdfEntityToString(pdfEntity: PdfEntity): string;
 }
 
