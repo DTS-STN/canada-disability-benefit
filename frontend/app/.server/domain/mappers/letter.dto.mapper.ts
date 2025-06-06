@@ -1,5 +1,5 @@
 //import { injectable } from 'inversify';
-import type { LetterDto } from '~/.server/domain/dtos';
+import type { LetterDto } from '~/.server/domain/dtos/letter.dto';
 import type { LetterEntity, PdfEntity } from '~/.server/domain/entities';
 
 export interface LetterDtoMapper {
