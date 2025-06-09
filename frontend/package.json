@@ -59,7 +59,7 @@
     "minimatch": "^10.0.1",
     "moderndash": "^4.0.0",
     "morgan": "^1.10.0",
-    "oauth4webapi": "^3.5.1",
+    "oauth4webapi": "^3.5.2",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-i18next": "^15.5.2",
@@ -70,7 +70,7 @@
     "valibot": "^1.1.0",
     "winston": "^3.17.0",
     "winston-error-format": "^3.0.2",
-    "zod": "^3.25.46"
+    "zod": "^3.25.56"
   },
   "devDependencies": {
     "@eslint/js": "^9.28.0",
