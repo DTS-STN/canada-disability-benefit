@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 
 import { i18nRedirect } from '~/.server/utils/route-utils';
-import { HttpStatusCodes } from '~/errors/http-status-codes';
+import { HttpStatusCodes } from '~/utils/http-status-codes';
 
 describe('route-utils', () => {
   describe('i18nRedirect', () => {

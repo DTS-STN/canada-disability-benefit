@@ -13,8 +13,8 @@ import { I18nextProvider } from 'react-i18next';
 import { LogFactory } from '~/.server/logging';
 import { createCounter, handleSpanException } from '~/.server/utils/telemetry-utils';
 import { isAppError } from '~/errors/app-error';
-import { HttpStatusCodes } from '~/errors/http-status-codes';
 import { initI18next } from '~/i18n-config.server';
+import { HttpStatusCodes } from '~/utils/http-status-codes';
 import { getLanguage } from '~/utils/i18n-utils';
 
 /* eslint-disable no-param-reassign */

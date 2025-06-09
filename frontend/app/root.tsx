@@ -12,10 +12,10 @@ import {
   UnilingualErrorBoundary,
   UnilingualNotFound,
 } from '~/components/error-boundaries';
-import { HttpStatusCodes } from '~/errors/http-status-codes';
 import { useLanguage } from '~/hooks/use-language';
 import indexStyleSheet from '~/index.css?url';
 import tailwindStyleSheet from '~/tailwind.css?url';
+import { HttpStatusCodes } from '~/utils/http-status-codes';
 
 // see: https://docs.fontawesome.com/web/dig-deeper/security#content-security-policy
 fontAwesomeConfig.autoAddCss = false;

@@ -6,7 +6,7 @@
  */
 import type { Route } from './+types/not-found';
 
-import { HttpStatusCodes } from '~/errors/http-status-codes';
+import { HttpStatusCodes } from '~/utils/http-status-codes';
 
 /**
  * This loader functoin throws a 404 response to indicate that the requested resource was not found.

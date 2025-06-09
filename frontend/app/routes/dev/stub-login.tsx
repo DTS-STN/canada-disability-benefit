@@ -11,8 +11,8 @@ import { AppLink } from '~/components/links';
 import { PageDetails } from '~/components/page-details';
 import { PageTitle } from '~/components/page-title';
 import { SkipNavigationLinks } from '~/components/skip-navigation-links';
-import { HttpStatusCodes } from '~/errors/http-status-codes';
 import { loader as loginLoader } from '~/routes/auth/login';
+import { HttpStatusCodes } from '~/utils/http-status-codes';
 
 const log = LogFactory.getLogger(import.meta.url);
 

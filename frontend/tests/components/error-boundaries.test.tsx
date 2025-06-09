@@ -11,7 +11,7 @@ import {
 } from '~/components/error-boundaries';
 import { AppError } from '~/errors/app-error';
 import { ErrorCodes } from '~/errors/error-codes';
-import { HttpStatusCodes } from '~/errors/http-status-codes';
+import { HttpStatusCodes } from '~/utils/http-status-codes';
 
 describe('error-boundaries', () => {
   describe('BilingualErrorBoundary', () => {

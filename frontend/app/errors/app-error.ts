@@ -1,7 +1,7 @@
 import type { ErrorCode } from '~/errors/error-codes';
 import { ErrorCodes } from '~/errors/error-codes';
-import type { HttpStatusCode } from '~/errors/http-status-codes';
-import { HttpStatusCodes } from '~/errors/http-status-codes';
+import type { HttpStatusCode } from '~/utils/http-status-codes';
+import { HttpStatusCodes } from '~/utils/http-status-codes';
 import { randomString } from '~/utils/string-utils';
 
 type AppErrorOptions = {

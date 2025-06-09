@@ -8,8 +8,8 @@ import { AppLink } from '~/components/links';
 import { UnorderedList } from '~/components/lists';
 import { PageTitle } from '~/components/page-title';
 import { isAppError } from '~/errors/app-error';
-import { HttpStatusCodes } from '~/errors/http-status-codes';
 import { useLanguage } from '~/hooks/use-language';
+import { HttpStatusCodes } from '~/utils/http-status-codes';
 
 /**
  * A bilingual error boundary that renders appropriate error messages in both languages.

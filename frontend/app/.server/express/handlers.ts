@@ -6,7 +6,7 @@ import type { ViteDevServer } from 'vite';
 
 import { serverEnvironment } from '~/.server/environment';
 import { LogFactory } from '~/.server/logging';
-import { HttpStatusCodes } from '~/errors/http-status-codes';
+import { HttpStatusCodes } from '~/utils/http-status-codes';
 
 const log = LogFactory.getLogger(import.meta.url);
 

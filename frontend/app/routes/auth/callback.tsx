@@ -5,7 +5,7 @@ import type { Route } from './+types/callback';
 import { getRaoidcClient } from '~/.server/auth/raoidc-client';
 import { serverEnvironment } from '~/.server/environment';
 import { withSpan } from '~/.server/utils/telemetry-utils';
-import { HttpStatusCodes } from '~/errors/http-status-codes';
+import { HttpStatusCodes } from '~/utils/http-status-codes';
 
 /**
  * Allows errors to be handled by root.tsx

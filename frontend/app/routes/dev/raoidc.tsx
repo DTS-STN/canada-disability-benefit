@@ -37,7 +37,7 @@ import type { Route } from './+types/raoidc';
 
 import { serverEnvironment } from '~/.server/environment';
 import { LogFactory } from '~/.server/logging';
-import { HttpStatusCodes } from '~/errors/http-status-codes';
+import { HttpStatusCodes } from '~/utils/http-status-codes';
 import { randomString } from '~/utils/string-utils';
 
 const log = LogFactory.getLogger(import.meta.url);

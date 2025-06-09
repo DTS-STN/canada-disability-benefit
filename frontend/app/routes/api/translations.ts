@@ -1,8 +1,8 @@
 import type { Route } from './+types/translations';
 
 import { serverDefaults } from '~/.server/environment';
-import { HttpStatusCodes } from '~/errors/http-status-codes';
 import { initI18next } from '~/i18n-config.server';
+import { HttpStatusCodes } from '~/utils/http-status-codes';
 
 // we will aggressively cache the requested resource bundle for 1y
 const CACHE_DURATION_SECS = 365 * 24 * 60 * 60;
