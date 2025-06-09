@@ -5,7 +5,7 @@ import type { HttpClient } from '~/.server/http/http-client';
 import { LogFactory } from '~/.server/logging';
 // TODO: Update this file?
 import getPdfByLetterIdJson from '~/.server/resources/cct/get-pdf-by-letter-id.json';
-import { HttpStatusCodes } from '~/constants/http-status-codes';
+import { HttpStatusCodes } from '~/utils/http-status-codes';
 import { AppError } from '~/errors/app-error';
 import { ErrorCodes } from '~/errors/error-codes';
 
