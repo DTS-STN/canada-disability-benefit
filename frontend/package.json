@@ -84,7 +84,7 @@
     "@types/express": "^5.0.3",
     "@types/express-session": "^1.18.2",
     "@types/morgan": "^1.9.10",
-    "@types/node": "^22.15.30",
+    "@types/node": "^24.0.0",
     "@types/react": "^19.1.7",
     "@types/react-dom": "^19.1.6",
     "@typescript-eslint/parser": "^8.34.0",
