@@ -1,7 +1,5 @@
 import { UTCDate } from '@date-fns/utc';
 
-//import { injectable } from 'inversify';
-
 import type { AuditDetails } from '~/.server/domain/dtos/audit.dto';
 import { LogFactory } from '~/.server/logging';
 
@@ -15,7 +13,6 @@ export interface AuditService {
   createAudit(eventId: string, auditDetails?: AuditDetails): void;
 }
 
-//@injectable()
 export class DefaultAuditService implements AuditService {
   private readonly log;
 

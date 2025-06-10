@@ -1,5 +1,4 @@
-//import { injectable } from 'inversify';
-import type { LetterEntity, PdfEntity } from '~/.server/domain/entities';
+import type { LetterEntity, PdfEntity } from '~/.server/domain/entities/letter.entity';
 import type { ServerEnvironment } from '~/.server/environment';
 import type { HttpClient } from '~/.server/http/http-client';
 import { LogFactory } from '~/.server/logging';
@@ -45,7 +44,6 @@ export interface LetterRepository {
   checkHealth(): Promise<void>;
 }
 
-//@injectable()
 export class DefaultLetterRepository implements LetterRepository {
   private readonly log;
   private readonly serverConfig: Pick<
@@ -186,7 +184,6 @@ export class DefaultLetterRepository implements LetterRepository {
   }
 }
 
-//@injectable()
 export class MockLetterRepository implements LetterRepository {
   private readonly log;
 

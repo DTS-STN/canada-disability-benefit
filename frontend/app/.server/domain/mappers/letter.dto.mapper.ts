@@ -1,13 +1,11 @@
-//import { injectable } from 'inversify';
 import type { LetterDto } from '~/.server/domain/dtos/letter.dto';
-import type { LetterEntity, PdfEntity } from '~/.server/domain/entities';
+import type { LetterEntity, PdfEntity } from '~/.server/domain/entities/letter.entity';
 
 export interface LetterDtoMapper {
   mapLetterEntitiesToLetterDtos(letterEntities: readonly LetterEntity[]): readonly LetterDto[];
   mapPdfEntityToString(pdfEntity: PdfEntity): string;
 }
 
-//@injectable()
 export class DefaultLetterDtoMapper implements LetterDtoMapper {
   mapLetterEntitiesToLetterDtos(letterEntities: readonly LetterEntity[]): readonly LetterDto[] {
     return letterEntities.map((letterEntity) => this.mapLetterEntityToLetterDto(letterEntity));

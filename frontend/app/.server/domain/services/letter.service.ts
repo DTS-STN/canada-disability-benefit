@@ -1,4 +1,3 @@
-//import { injectable } from 'inversify';
 import { sort } from 'moderndash';
 
 import type { LetterDto, LettersRequestDto, PdfRequestDto } from '~/.server/domain/dtos/letter.dto';
@@ -25,7 +24,6 @@ export interface LetterService {
   getPdfByLetterId(pdfRequestDto: PdfRequestDto): Promise<string>;
 }
 
-//@injectable()
 export class DefaultLetterService implements LetterService {
   private readonly log;
   private readonly letterDtoMapper: LetterDtoMapper;
