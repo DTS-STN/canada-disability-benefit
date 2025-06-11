@@ -15,7 +15,11 @@ spec:
           envFrom:
             - configMapRef:
                 name: frontend
-            # since we are using external secrets operator
-            # we must manually attach the generated secret
             - secretRef:
                 name: frontend
+          env:
+            - name: REDIS_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: redis-shared
+                  key: REDIS_PASSWORD
