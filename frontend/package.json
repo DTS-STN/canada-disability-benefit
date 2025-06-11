@@ -56,7 +56,7 @@
     "ioredis": "^5.6.1",
     "isbot": "^5.1.28",
     "jose": "^6.0.11",
-    "minimatch": "^10.0.1",
+    "minimatch": "^10.0.2",
     "moderndash": "^4.0.0",
     "morgan": "^1.10.0",
     "oauth4webapi": "^3.5.2",
@@ -70,7 +70,7 @@
     "valibot": "^1.1.0",
     "winston": "^3.17.0",
     "winston-error-format": "^3.0.2",
-    "zod": "^3.25.57"
+    "zod": "^3.25.62"
   },
   "devDependencies": {
     "@eslint/js": "^9.28.0",
