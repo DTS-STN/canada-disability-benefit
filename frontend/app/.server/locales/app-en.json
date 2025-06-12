@@ -3,6 +3,18 @@
     "about": "Canada Disability Benefits!",
     "page-title": "Welcome to CDB"
   },
+  "letters": {
+    "about": "Canada Disability Benefits!",
+    "page-title": "My Canada Disability Benefit letters",
+    "no-letter": "You don't have any letters at this time.",
+    "date": "Date: {{date}}",
+    "filter": "Filter by:",
+    "newest": "Newest first",
+    "oldest": "Oldest first",
+    "button": {
+      "back": "Back to my dashboard"
+    }
+  },
   "input": {
     "required": "required"
   }
