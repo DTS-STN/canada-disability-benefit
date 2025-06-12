@@ -97,6 +97,10 @@ export interface HttpClient {
   instrumentedFetch(metricPrefix: string, input: RequestInfo | URL, options?: InstrumentedFetchOptions): Promise<Response>;
 }
 
+export function getHttpClient(): HttpClient {
+  return new DefaultHttpClient();
+}
+
 export class DefaultHttpClient implements HttpClient {
   private readonly log;
 

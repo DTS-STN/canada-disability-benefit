@@ -6,6 +6,10 @@ export interface LetterDtoMapper {
   mapPdfEntityToString(pdfEntity: PdfEntity): string;
 }
 
+export function getLetterDtoMapper(): LetterDtoMapper {
+  return new DefaultLetterDtoMapper();
+}
+
 export class DefaultLetterDtoMapper implements LetterDtoMapper {
   mapLetterEntitiesToLetterDtos(letterEntities: readonly LetterEntity[]): readonly LetterDto[] {
     return letterEntities.map((letterEntity) => this.mapLetterEntityToLetterDto(letterEntity));

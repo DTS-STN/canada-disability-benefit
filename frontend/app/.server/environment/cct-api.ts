@@ -11,6 +11,7 @@ export const defaults = {
   HTTP_PROXY_URL: '',
   HTTP_PROXY_TLS_TIMEOUT: 30 * 1000,
   HEALTH_PLACEHOLDER_REQUEST_VALUE: 'CDB_HEALTH_CHECK',
+  ENABLE_MOCK_LETTER_SERVICE: true,
 } as const;
 
 export const cctApi = v.object({
@@ -22,4 +23,5 @@ export const cctApi = v.object({
   HTTP_PROXY_URL: v.optional(v.string(), defaults.HTTP_PROXY_URL),
   HTTP_PROXY_TLS_TIMEOUT: v.optional(v.number(), defaults.HTTP_PROXY_TLS_TIMEOUT),
   HEALTH_PLACEHOLDER_REQUEST_VALUE: v.optional(v.string(), defaults.HEALTH_PLACEHOLDER_REQUEST_VALUE),
+  ENABLE_MOCK_LETTER_SERVICE: v.optional(v.boolean(), defaults.ENABLE_MOCK_LETTER_SERVICE),
 });

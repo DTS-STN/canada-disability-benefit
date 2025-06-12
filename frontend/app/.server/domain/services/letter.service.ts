@@ -2,8 +2,11 @@ import { sort } from 'moderndash';
 
 import type { LetterDto, LettersRequestDto, PdfRequestDto } from '~/.server/domain/dtos/letter.dto';
 import type { LetterDtoMapper } from '~/.server/domain/mappers/letter.dto.mapper';
+import { getLetterDtoMapper } from '~/.server/domain/mappers/letter.dto.mapper';
 import type { LetterRepository } from '~/.server/domain/repositories/letter.repository';
+import { getLetterRepository } from '~/.server/domain/repositories/letter.repository';
 import type { AuditService } from '~/.server/domain/services/audit.service';
+import { getAuditService } from '~/.server/domain/services/audit.service';
 import { LogFactory } from '~/.server/logging';
 
 export interface LetterService {
@@ -22,6 +25,13 @@ export interface LetterService {
    * @returns A Promise that resolves to the PDF data as a base64-encoded string representing the bytes.
    */
   getPdfByLetterId(pdfRequestDto: PdfRequestDto): Promise<string>;
+}
+
+export function getLetterService(): LetterService {
+  const mapper = getLetterDtoMapper();
+  const auditService = getAuditService();
+  const repo = getLetterRepository();
+  return new DefaultLetterService(mapper, repo, auditService);
 }
 
 export class DefaultLetterService implements LetterService {
