@@ -13,6 +13,10 @@ export interface AuditService {
   createAudit(eventId: string, auditDetails?: AuditDetails): void;
 }
 
+export function getAuditService(): AuditService {
+  return new DefaultAuditService();
+}
+
 export class DefaultAuditService implements AuditService {
   private readonly log;
 

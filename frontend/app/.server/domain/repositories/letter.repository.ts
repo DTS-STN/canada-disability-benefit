@@ -1,6 +1,8 @@
 import type { LetterEntity, PdfEntity } from '~/.server/domain/entities/letter.entity';
 import type { ServerEnvironment } from '~/.server/environment';
+import { serverEnvironment } from '~/.server/environment';
 import type { HttpClient } from '~/.server/http/http-client';
+import { getHttpClient } from '~/.server/http/http-client';
 import { LogFactory } from '~/.server/logging';
 // TODO: Update this file?
 import getPdfByLetterIdJson from '~/.server/resources/cct/get-pdf-by-letter-id.json';
@@ -44,6 +46,11 @@ export interface LetterRepository {
   checkHealth(): Promise<void>;
 }
 
+export function getLetterRepository(): LetterRepository {
+  return serverEnvironment.ENABLE_MOCK_LETTER_SERVICE
+    ? new MockLetterRepository()
+    : new DefaultLetterRepository(serverEnvironment, getHttpClient());
+}
 export class DefaultLetterRepository implements LetterRepository {
   private readonly log;
   private readonly serverConfig: Pick<
@@ -75,8 +82,7 @@ export class DefaultLetterRepository implements LetterRepository {
     this.log = LogFactory.getLogger(import.meta.url);
     this.serverConfig = serverConfig;
     this.httpClient = httpClient;
-    // TODO: Fix this endpoint
-    this.baseUrl = `${this.serverConfig.CCT_API_BASE_URI}/dental-care/client-letters/cct/v1`;
+    this.baseUrl = `${this.serverConfig.CCT_API_BASE_URI}/client-correspondence/letter-retrieval/cct/v1`;
   }
 
   async findLettersBySin(sin: string): Promise<readonly LetterEntity[]> {
