@@ -6,8 +6,6 @@ import { getHttpClient } from '~/.server/http/http-client';
 import { LogFactory } from '~/.server/logging';
 // TODO: Update this file?
 import getPdfByLetterIdJson from '~/.server/resources/cct/get-pdf-by-letter-id.json';
-import { AppError } from '~/errors/app-error';
-import { ErrorCodes } from '~/errors/error-codes';
 import { HttpStatusCodes } from '~/utils/http-status-codes';
 
 /**
@@ -18,17 +16,19 @@ export interface LetterRepository {
    * Find all letter entities for a given sin.
    *
    * @param sin The sin to find all letter entities for.
+   * @param userId The user that made the request, only used for auditing
    * @returns A Promise that resolves to all letter entities found for a sin.
    */
-  findLettersBySin(sin: string): Promise<readonly LetterEntity[]>;
+  findLettersBySin(sin: string, userId: string): Promise<readonly LetterEntity[]>;
 
   /**
    * Retrieve the PDF entity associated with a specific letter id.
    *
    * @param letterId The letter id of the PDF entity.
+   * @param userId The user that made the request, only used for auditing
    * @returns A Promise that resolves to the PDF entity for a letter id.
    */
-  getPdfByLetterId(letterId: string): Promise<PdfEntity>;
+  getPdfByLetterId(letterId: string, userId: string): Promise<PdfEntity>;
 
   /**
    * Retrieves metadata associated with the letter repository.
@@ -58,10 +58,11 @@ export class DefaultLetterRepository implements LetterRepository {
     | 'HEALTH_PLACEHOLDER_REQUEST_VALUE'
     | 'HTTP_PROXY_URL'
     | 'CCT_API_BASE_URI'
-    | 'CCT_API_SUBSCRIPTION_KEY'
+    | 'CCT_SUBSCRIPTION_KEY'
     | 'CCT_API_COMMUNITY'
     | 'CCT_API_MAX_RETRIES'
     | 'CCT_API_BACKOFF_MS'
+    | 'INTEROP_API_SUBSCRIPTION_KEY'
   >;
   private readonly httpClient: HttpClient;
   private readonly baseUrl: string;
@@ -72,10 +73,11 @@ export class DefaultLetterRepository implements LetterRepository {
       | 'HEALTH_PLACEHOLDER_REQUEST_VALUE'
       | 'HTTP_PROXY_URL'
       | 'CCT_API_BASE_URI'
-      | 'CCT_API_SUBSCRIPTION_KEY'
+      | 'CCT_SUBSCRIPTION_KEY'
       | 'CCT_API_COMMUNITY'
       | 'CCT_API_MAX_RETRIES'
       | 'CCT_API_BACKOFF_MS'
+      | 'INTEROP_API_SUBSCRIPTION_KEY'
     >,
     httpClient: HttpClient,
   ) {
@@ -85,18 +87,21 @@ export class DefaultLetterRepository implements LetterRepository {
     this.baseUrl = `${this.serverConfig.CCT_API_BASE_URI}/client-correspondence/letter-retrieval/cct/v1`;
   }
 
-  async findLettersBySin(sin: string): Promise<readonly LetterEntity[]> {
+  async findLettersBySin(sin: string, userId: string): Promise<readonly LetterEntity[]> {
     this.log.trace('Fetching letters for sin [%s]', sin);
 
-    const url = new URL(`${this.baseUrl}/GetDocInfoBySin`);
-    url.searchParams.set('sin', sin);
+    const url = new URL(`${this.baseUrl}/GetDocInfoByClientId`);
+    url.searchParams.set('clientId', sin);
+    url.searchParams.set('userId', userId);
+    url.searchParams.set('community', `${this.serverConfig.CCT_API_COMMUNITY}`);
+    url.searchParams.set('Exact', 'true');
 
     const response = await this.httpClient.instrumentedFetch('http.client.interop-api.get-doc-info-by-client-id.gets', url, {
       proxyUrl: this.serverConfig.HTTP_PROXY_URL,
       headers: {
         'Content-Type': 'application/json',
-        'Ocp-Apim-Subscription-Key': `${this.serverConfig.CCT_API_SUBSCRIPTION_KEY}`,
-        'cct-community': this.serverConfig.CCT_API_COMMUNITY,
+        'x-api-key': `${this.serverConfig.CCT_SUBSCRIPTION_KEY}`,
+        'Ocp-Apim-Subscription-Key': `${this.serverConfig.INTEROP_API_SUBSCRIPTION_KEY}`,
       },
       retryOptions: {
         retries: this.serverConfig.CCT_API_MAX_RETRIES,
@@ -116,14 +121,6 @@ export class DefaultLetterRepository implements LetterRepository {
         responseBody: await response.text(),
       });
 
-      if (response.status === HttpStatusCodes.TOO_MANY_REQUESTS) {
-        // TODO ::: GjB ::: this throw is to facilitate enabling the application kill switch -- it should be removed once the killswitch functionality is removed
-        throw new AppError(
-          'Failed to GET /GetDocInfoBySin. Status: 429, Status Text: Too Many Requests',
-          ErrorCodes.XAPI_TOO_MANY_REQUESTS,
-        );
-      }
-
       throw new Error(`Failed to find letters. Status: ${response.status}, Status Text: ${response.statusText}`);
     }
 
@@ -132,18 +129,20 @@ export class DefaultLetterRepository implements LetterRepository {
     return letterEntities;
   }
 
-  async getPdfByLetterId(letterId: string): Promise<PdfEntity> {
+  async getPdfByLetterId(letterId: string, userId: string): Promise<PdfEntity> {
     this.log.trace('Fetching PDF for letterId [%s]', letterId);
 
     const url = new URL(`${this.baseUrl}/GetPdfByLetterId`);
     url.searchParams.set('id', letterId);
+    url.searchParams.set('userId', userId);
+    url.searchParams.set('community', `${this.serverConfig.CCT_API_COMMUNITY}`);
 
     const response = await this.httpClient.instrumentedFetch('http.client.interop-api.get-pdf-by-client-id.gets', url, {
       proxyUrl: this.serverConfig.HTTP_PROXY_URL,
       headers: {
         'Content-Type': 'application/json',
-        'Ocp-Apim-Subscription-Key': `${this.serverConfig.CCT_API_SUBSCRIPTION_KEY}`,
-        'cct-community': this.serverConfig.CCT_API_COMMUNITY,
+        'x-api-key': `${this.serverConfig.CCT_SUBSCRIPTION_KEY}`,
+        'Ocp-Apim-Subscription-Key': `${this.serverConfig.INTEROP_API_SUBSCRIPTION_KEY}`,
       },
       retryOptions: {
         retries: this.serverConfig.CCT_API_MAX_RETRIES,
@@ -163,14 +162,6 @@ export class DefaultLetterRepository implements LetterRepository {
         responseBody: await response.text(),
       });
 
-      if (response.status === HttpStatusCodes.TOO_MANY_REQUESTS) {
-        // TODO ::: GjB ::: this throw is to facilitate enabling the application kill switch -- it should be removed once the killswitch functionality is removed
-        throw new AppError(
-          'Failed to GET /GetPdfByLetterId. Status: 429, Status Text: Too Many Requests',
-          ErrorCodes.XAPI_TOO_MANY_REQUESTS,
-        );
-      }
-
       throw new Error(`Failed to get PDF. Status: ${response.status}, Status Text: ${response.statusText}`);
     }
 
@@ -186,7 +177,7 @@ export class DefaultLetterRepository implements LetterRepository {
   }
 
   async checkHealth(): Promise<void> {
-    await this.findLettersBySin(this.serverConfig.HEALTH_PLACEHOLDER_REQUEST_VALUE);
+    await this.findLettersBySin(this.serverConfig.HEALTH_PLACEHOLDER_REQUEST_VALUE, 'MSCA-CDB');
   }
 }
 

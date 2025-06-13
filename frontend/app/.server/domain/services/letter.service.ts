@@ -57,7 +57,7 @@ export class DefaultLetterService implements LetterService {
 
     this.auditService.createAudit('letters.get', { userId });
 
-    const letterEntities = await this.letterRepository.findLettersBySin(sin);
+    const letterEntities = await this.letterRepository.findLettersBySin(sin, userId);
     const letterDtos = this.letterDtoMapper.mapLetterEntitiesToLetterDtos(letterEntities);
     const sortedLetterDtos = sort(letterDtos, {
       order: sortOrder,
@@ -73,7 +73,7 @@ export class DefaultLetterService implements LetterService {
 
     this.auditService.createAudit('pdf.get', { letterId, userId });
 
-    const pdfEntity = await this.letterRepository.getPdfByLetterId(letterId);
+    const pdfEntity = await this.letterRepository.getPdfByLetterId(letterId, userId);
     const pdf = this.letterDtoMapper.mapPdfEntityToString(pdfEntity);
 
     this.log.trace('Returning pdf [%s] for letterId [%s]', pdf, letterId);

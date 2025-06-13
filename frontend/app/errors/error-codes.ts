@@ -36,7 +36,6 @@ export const ErrorCodes = {
   TEST_ERROR_CODE: 'DEV-0001',
 
   // external API error codes
-  XAPI_TOO_MANY_REQUESTS: 'XAPI-0001',
   XAPI_RETRY_NO_CONDITIONS: 'XAPI-0002',
   XAPI_RETRY_CONDITION_MATCHED: 'XAPI-0003',
 } as const;
