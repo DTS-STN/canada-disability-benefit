@@ -93,7 +93,7 @@ export class DefaultLetterRepository implements LetterRepository {
     const url = new URL(`${this.baseUrl}/GetDocInfoByClientId`);
     url.searchParams.set('clientId', sin);
     url.searchParams.set('userId', userId);
-    url.searchParams.set('community', `${this.serverConfig.CCT_SUBSCRIPTION_KEY}`);
+    url.searchParams.set('community', `${this.serverConfig.CCT_API_COMMUNITY}`);
     url.searchParams.set('Exact', 'true');
 
     const response = await this.httpClient.instrumentedFetch('http.client.interop-api.get-doc-info-by-client-id.gets', url, {
@@ -135,7 +135,7 @@ export class DefaultLetterRepository implements LetterRepository {
     const url = new URL(`${this.baseUrl}/GetPdfByLetterId`);
     url.searchParams.set('id', letterId);
     url.searchParams.set('userId', userId);
-    url.searchParams.set('community', `${this.serverConfig.CCT_SUBSCRIPTION_KEY}`);
+    url.searchParams.set('community', `${this.serverConfig.CCT_API_COMMUNITY}`);
 
     const response = await this.httpClient.instrumentedFetch('http.client.interop-api.get-pdf-by-client-id.gets', url, {
       proxyUrl: this.serverConfig.HTTP_PROXY_URL,
