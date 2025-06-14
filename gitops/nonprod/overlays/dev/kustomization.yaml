@@ -15,6 +15,7 @@ labels:
     includeSelectors: true
 resources:
   - ../../base/frontend/
+  - ./external-secrets.yaml
   - ./ingresses.yaml
 patches:
   - path: ./patches/deployments.yaml
@@ -23,3 +24,10 @@ configMapGenerator:
     behavior: create
     envs:
       - ./configs/frontend.conf
+secretGenerator:
+  - name: frontend
+    behavior: create
+    options:
+      # disable suffix hash so it can effectively
+      # be managed by external secrets operator
+      disableNameSuffixHash: true
