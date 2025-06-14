@@ -4,7 +4,7 @@ import type { AddressInfo } from 'node:net';
 
 import { clientEnvironment, serverEnvironment } from '~/.server/environment';
 import { globalErrorHandler, rrRequestHandler } from '~/.server/express/handlers';
-import { logging, security, session, tracing } from '~/.server/express/middleware';
+import { caching, logging, security, session, tracing } from '~/.server/express/middleware';
 import { createViteDevServer } from '~/.server/express/vite';
 import { LogFactory } from '~/.server/logging';
 
@@ -53,6 +53,9 @@ if (serverEnvironment.isProduction) {
   log.info('      ✓ caching remaining static content for 1h');
   app.use(express.static('./public', { maxAge: '1h' }));
 }
+
+log.info('    ✓ cache-busting middleware');
+app.use(caching(serverEnvironment));
 
 log.info('    ✓ session middleware (%s)', serverEnvironment.SESSION_TYPE);
 app.use(session(serverEnvironment));

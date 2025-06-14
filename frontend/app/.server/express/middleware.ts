@@ -24,6 +24,28 @@ function shouldIgnore(ignorePatterns: string[], path: string): boolean {
 }
 
 /**
+ * Sets various caching headers to ensure sensitive user data is not cached by the browser.
+ */
+export function caching(environment: ServerEnvironment): RequestHandler {
+  const ignorePatterns: string[] = [
+    /* intentionally left blank */
+  ];
+
+  return (request, response, next) => {
+    if (shouldIgnore(ignorePatterns, request.path)) {
+      log.trace('Skipping adding cache-busting headers to response: [%s]', request.path);
+      return next();
+    }
+
+    log.trace('Adding cache-busting headers to response');
+    response.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate');
+    response.setHeader('Expires', '0');
+    response.setHeader('Pragma', 'no-cache');
+    next();
+  };
+}
+
+/**
  * Configures a logging middleware with appropriate format and filtering.
  */
 export function logging(environment: ServerEnvironment): RequestHandler {
