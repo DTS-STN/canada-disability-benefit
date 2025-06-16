@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useTranslation } from 'react-i18next';
 
 import { DropdownMenu, DropdownMenuContent, DropdownMenuLabel, DropdownMenuTrigger } from '~/components/dropdown-menu';
+import { AppLink } from '~/components/links';
 import { MenuItem } from '~/components/menu';
 import { useLanguage } from '~/hooks/use-language';
 import { cn } from '~/utils/tailwind-utils';
@@ -15,13 +16,16 @@ type AppBarProps = {
 
 export function AppBar({ name }: AppBarProps): JSX.Element {
   const { t } = useTranslation(['gcweb']);
+  const { MSCA_BASE_URL } = globalThis.__appEnvironment;
 
   return (
     <div className="bg-slate-700">
       <div className="align-center container mx-auto flex flex-wrap justify-between">
         <div className="align-center flex">
           <span id="menu-label" className="my-auto py-2 text-white sm:text-2xl">
-            {t('gcweb:app.title')}
+            <AppLink to={t('gcweb:app.menu-dashboard.href', { baseUri: MSCA_BASE_URL })} className="hover:underline">
+              {t('gcweb:app.title')}
+            </AppLink>
           </span>
         </div>
         <div className="flex items-center space-x-4 text-right">{name && <UserButton name={name} />}</div>

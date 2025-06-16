@@ -1,8 +1,10 @@
 {
   "app": {
+    "account": "Account",
     "logout": "Logout",
     "profile": "Profile",
-    "title": "CDB"
+    "title": "My Service Canada Account",
+    "menu-dashboard.href": "{{baseUri}}/en/my-dashboard"
   },
   "dialog": {
     "close": "Close"

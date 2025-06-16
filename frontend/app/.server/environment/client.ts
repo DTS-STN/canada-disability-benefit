@@ -15,6 +15,7 @@ export const defaults = {
   I18NEXT_DEBUG: 'false',
   SESSION_TIMEOUT_PROMPT_SECONDS: (5 * 60).toString(),
   SESSION_TIMEOUT_SECONDS: (19 * 60).toString(),
+  MSCA_BASE_URL: 'http://localhost:3000',
 } as const;
 
 /**
@@ -31,4 +32,5 @@ export const client = v.object({
   SESSION_TIMEOUT_PROMPT_SECONDS: v.optional(stringToIntegerSchema(), defaults.SESSION_TIMEOUT_PROMPT_SECONDS),
   SESSION_TIMEOUT_SECONDS: v.optional(stringToIntegerSchema(), defaults.SESSION_TIMEOUT_SECONDS),
   isProduction: v.boolean(),
+  MSCA_BASE_URL: v.optional(v.string(), defaults.MSCA_BASE_URL),
 });
