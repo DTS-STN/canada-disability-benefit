@@ -62,7 +62,7 @@ export default function Layout({ loaderData }: Route.ComponentProps) {
             <LanguageSwitcher>{t('gcweb:language-switcher.alt-lang')}</LanguageSwitcher>
           </div>
         </div>
-        <AppBar name={loaderData.name} />
+        <AppBar name={t('gcweb:app.account')} />
       </header>
       <main className="container print:w-full print:max-w-none">
         <Outlet />

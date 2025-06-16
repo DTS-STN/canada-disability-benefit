@@ -1,8 +1,10 @@
 {
   "app": {
+    "account": "Compte",
     "logout": "Déconnexion",
     "profile": "Profil",
-    "title": "CDB"
+    "title": "Mon dossier Service Canada",
+    "menu-dashboard.href": "{{baseUri}}/fr/mon-tableau-de-bord"
   },
   "dialog": {
     "close": "Fermer"

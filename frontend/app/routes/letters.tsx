@@ -26,13 +26,15 @@ const orderEnumSchema = v.picklist(['asc', 'desc']);
 export async function loader({ context, params, request }: Route.LoaderArgs) {
   await requireAuth(context.session, request);
   const { t } = await getTranslation(request, handle.i18nNamespace);
+
+  const { MSCA_BASE_URL } = globalThis.__appEnvironment;
+
   // FIXME ::: sort order
   const sortParam = new URL(request.url).searchParams.get('sort');
   const fallbackOrderEnumSchema = v.fallback(orderEnumSchema, 'desc');
   const sortOrder = v.parse(fallbackOrderEnumSchema, sortParam);
 
   // TODO ::: fetch actual data here
-  const MSCA_BASE_URL = 'http://localhost:3000';
   // const letters = '';
   const letters = [
     { id: '1', date: '2024-12-25', letterTypeId: 'ACC' },
@@ -118,7 +120,12 @@ export default function LettersIndex({ loaderData, params }: Route.ComponentProp
       )}
 
       <div className="my-6 flex flex-wrap items-center gap-3">
-        <ButtonLink id="back-button" to={MSCA_BASE_URL}>
+        <ButtonLink
+          id="back-button"
+          to={t('gcweb:app.menu-dashboard.href', { baseUri: MSCA_BASE_URL })}
+          variant="alternative"
+          className="border-2 border-slate-600"
+        >
           {t('app:letters.button.back')}
         </ButtonLink>
       </div>
