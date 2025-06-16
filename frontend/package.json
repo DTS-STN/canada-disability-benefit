@@ -46,7 +46,7 @@
     "@react-router/serve": "^7.6.2",
     "clsx": "^2.1.1",
     "compression": "^1.8.0",
-    "connect-redis": "^8.1.0",
+    "connect-redis": "^9.0.0",
     "cross-env": "^7.0.3",
     "date-fns": "^4.1.0",
     "express": "^5.1.0",
