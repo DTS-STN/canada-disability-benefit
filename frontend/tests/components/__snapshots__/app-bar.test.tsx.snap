@@ -15,7 +15,13 @@ exports[`AppBar > should correctly render an AppBar with a MenuItem when the fil
           class="my-auto py-2 text-white sm:text-2xl"
           id="menu-label"
         >
-          gcweb:app.title
+          <a
+            class="hover:underline"
+            data-discover="true"
+            href="/fr/{"key":"gcweb:app.menu-dashboard.href","options":{"baseUri":"https://msca.example.com/"}}"
+          >
+            gcweb:app.title
+          </a>
         </span>
       </div>
       <div
@@ -41,7 +47,13 @@ exports[`AppBar > should correctly render an AppBar with a MenuItem when the to 
           class="my-auto py-2 text-white sm:text-2xl"
           id="menu-label"
         >
-          gcweb:app.title
+          <a
+            class="hover:underline"
+            data-discover="true"
+            href="/fr/{"key":"gcweb:app.menu-dashboard.href","options":{"baseUri":"https://msca.example.com/"}}"
+          >
+            gcweb:app.title
+          </a>
         </span>
       </div>
       <div
@@ -67,7 +79,13 @@ exports[`AppBar > should render render an AppBar with a name provided > expected
           class="my-auto py-2 text-white sm:text-2xl"
           id="menu-label"
         >
-          gcweb:app.title
+          <a
+            class="hover:underline"
+            data-discover="true"
+            href="/fr/{"key":"gcweb:app.menu-dashboard.href","options":{"baseUri":"https://msca.example.com/"}}"
+          >
+            gcweb:app.title
+          </a>
         </span>
       </div>
       <div
@@ -93,7 +111,13 @@ exports[`AppBar > should render render an AppBar with a profile item provided > 
           class="my-auto py-2 text-white sm:text-2xl"
           id="menu-label"
         >
-          gcweb:app.title
+          <a
+            class="hover:underline"
+            data-discover="true"
+            href="/fr/{"key":"gcweb:app.menu-dashboard.href","options":{"baseUri":"https://msca.example.com/"}}"
+          >
+            gcweb:app.title
+          </a>
         </span>
       </div>
       <div
