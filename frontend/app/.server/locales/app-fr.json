@@ -8,6 +8,7 @@
     "page-title": "Bienvenue sur CDB",
     "no-letter": "Il n'y a aucune lettre au dossier.",
     "date": "Date\u00a0: {{date}}",
+    "file-type": "(PDF)",
     "filter": "Filtrer\u00a0:",
     "newest": "Plus récent en premier",
     "oldest": "Plus ancien en premier",

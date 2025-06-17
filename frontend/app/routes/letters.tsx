@@ -37,14 +37,13 @@ export async function loader({ context, params, request }: Route.LoaderArgs) {
   const fallbackOrderEnumSchema = v.fallback(orderEnumSchema, 'desc');
   const sortOrder = v.parse(fallbackOrderEnumSchema, sortParam);
 
-  // TODO ::: fetch actual data here
-
-  if (!context.session.authState?.userinfoTokenClaims.sin) {
-    throw new AppError('No SIN found in userinfo token', ErrorCodes.AUTH_USERINFO_FETCH_ERROR);
+  if (!userinfoTokenClaims.sin) {
+    throw new AppError('No SIN found in userinfo token', ErrorCodes.MISSING_SIN);
   }
   const name = userinfoTokenClaims.sin;
   const user = userinfoTokenClaims.sin;
   const letters = await getLetterService().findLettersBySin({ sin: name, userId: user, sortOrder });
+  // TODO ::: fetch actual letter names
   const letterTypes = [
     { id: 'ACC', nameEn: 'Accepted', nameFr: '(FR) Accepted' },
     { id: 'DEN', nameEn: 'Denied', nameFr: '(FR) Denied' },
@@ -105,15 +104,14 @@ export default function LettersIndex({ loaderData, params }: Route.ComponentProp
                 <li key={letter.id} className="my-2 rounded px-12 py-4 outline">
                   <InlineLink
                     reloadDocument
-                    // TODO ::: Set actual letter route
-                    file="routes/index.tsx"
+                    file="routes/$id.download.ts"
                     params={{ ...params, id: letter.id }}
                     className="external-link"
                     newTabIndicator
                     target="_blank"
                     data-gc-analytics-customclick={gcAnalyticsCustomClickValue}
                   >
-                    {letterName}
+                    {letterName} {t('app:letters.file-type')}
                   </InlineLink>
                   <p className="mt-1 text-sm text-gray-500">{t('app:letters.date', { date: letter.date })}</p>
                 </li>

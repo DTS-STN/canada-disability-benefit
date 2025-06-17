@@ -13,6 +13,9 @@ export const ErrorCodes = {
   AUTH_JWKS_FETCH_ERROR: 'AUTH-0007',
   AUTH_METADATA_FETCH_ERROR: 'AUTH-0008',
 
+  // token error codes
+  MISSING_SIN: 'TOK-0001',
+
   // component error codes
   MISSING_LANG_PARAM: 'CMP-0001',
 
