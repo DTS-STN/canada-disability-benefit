@@ -59,7 +59,7 @@
     "minimatch": "^10.0.3",
     "moderndash": "^4.0.0",
     "morgan": "^1.10.0",
-    "oauth4webapi": "^3.5.2",
+    "oauth4webapi": "^3.5.3",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-i18next": "^15.5.3",
