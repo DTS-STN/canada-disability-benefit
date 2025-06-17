@@ -41,8 +41,10 @@ export async function loader({ context, params, request }: Route.LoaderArgs) {
     throw new AppError('No SIN found in userinfo token', ErrorCodes.MISSING_SIN);
   }
   const name = userinfoTokenClaims.sin;
-  const user = userinfoTokenClaims.sin;
+  const user = userinfoTokenClaims.sub;
+  const { session } = context;
   const letters = await getLetterService().findLettersBySin({ sin: name, userId: user, sortOrder });
+  session.letterState = letters;
   // TODO ::: fetch actual letter names
   const letterTypes = [
     { id: 'ACC', nameEn: 'Accepted', nameFr: '(FR) Accepted' },
@@ -94,14 +96,14 @@ export default function LettersIndex({ loaderData, params }: Route.ComponentProp
             />
           </div>
 
-          <ul className="">
+          <ul className="divide-y border-y">
             {letters.map((letter) => {
               const letterType = letterTypes.find(({ id }) => id === letter.letterTypeId);
               const gcAnalyticsCustomClickValue = `ESDC-EDSC:CDCP Letters Click:${letterType?.nameEn ?? letter.letterTypeId}`;
               const letterName = letter.letterTypeId;
 
               return (
-                <li key={letter.id} className="my-2 rounded px-12 py-4 outline">
+                <li key={letter.id} className="px-4 py-4 sm:py-6">
                   <InlineLink
                     reloadDocument
                     file="routes/$id.download.ts"

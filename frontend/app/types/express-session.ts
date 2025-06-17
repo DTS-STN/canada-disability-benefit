@@ -9,6 +9,11 @@ declare module 'express-session' {
       idTokenClaims: RaoidcIdTokenClaims;
       userinfoTokenClaims: RaoidcUserinfoTokenClaims;
     };
+    letterState: readonly Readonly<{
+      id: string;
+      date: string;
+      letterTypeId: string;
+    }>[];
     loginState: {
       codeVerifier: string;
       nonce: string;
