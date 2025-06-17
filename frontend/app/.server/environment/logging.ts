@@ -1,19 +1,47 @@
 import * as v from 'valibot';
 
-import type { LogLevel } from '~/.server/logging';
-import { logLevels } from '~/.server/logging';
+import { singleton } from '../utils/instance-registry';
+
 import { stringToBooleanSchema } from '~/.server/validation/string-to-boolean-schema';
 
 export type Logging = Readonly<v.InferOutput<typeof logging>>;
 
 const isProduction = process.env.NODE_ENV === 'production';
 
+export const logLevels = {
+  none: 0,
+  error: 1,
+  warn: 2,
+  info: 3,
+  audit: 4,
+  debug: 5,
+  trace: 6,
+} as const;
+
+export type LogLevel = keyof typeof logLevels;
+
 export const defaults = {
   LOG_LEVEL: isProduction ? 'info' : 'debug',
   LOG_AUDITING_ENABLED: isProduction ? 'true' : 'false',
+  AUDIT_LOG_DIR_NAME: 'logs',
+  AUDIT_LOG_FILE_NAME: 'audit-%DATE%',
+  AUDIT_LOG_MAX_FILES: '14d',
+  AUDIT_LOG_MAX_SIZE: '20m',
 } as const;
 
 export const logging = v.object({
   LOG_LEVEL: v.optional(v.picklist(Object.keys(logLevels) as LogLevel[]), defaults.LOG_LEVEL),
   LOG_AUDITING_ENABLED: v.optional(stringToBooleanSchema(), defaults.LOG_AUDITING_ENABLED),
+  AUDIT_LOG_DIR_NAME: v.optional(v.pipe(v.string(), v.nonEmpty()), defaults.AUDIT_LOG_DIR_NAME),
+  AUDIT_LOG_FILE_NAME: v.optional(v.pipe(v.string(), v.nonEmpty()), defaults.AUDIT_LOG_FILE_NAME),
+  AUDIT_LOG_MAX_SIZE: v.optional(v.string(), defaults.AUDIT_LOG_MAX_SIZE),
+  AUDIT_LOG_MAX_FILES: v.optional(v.string(), defaults.AUDIT_LOG_MAX_FILES),
 });
+
+export function getLoggingConfig(): Logging {
+  return singleton<Logging>('loggingConfig', () => {
+    // Parse environment variables, applying validation rules
+    // The singleton ensures we only validate once per application instance
+    return v.parse(logging, process.env);
+  });
+}
