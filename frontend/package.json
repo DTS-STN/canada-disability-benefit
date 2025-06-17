@@ -69,8 +69,7 @@
     "undici": "^7.10.0",
     "valibot": "^1.1.0",
     "winston": "^3.17.0",
-    "winston-error-format": "^3.0.2",
-    "zod": "^3.25.64"
+    "winston-error-format": "^3.0.2"
   },
   "devDependencies": {
     "@eslint/js": "^9.28.0",
