@@ -8,6 +8,7 @@
     "page-title": "My Canada Disability Benefit letters",
     "no-letter": "You don't have any letters at this time.",
     "date": "Date: {{date}}",
+    "file-type": "(PDF)",
     "filter": "Filter by:",
     "newest": "Newest first",
     "oldest": "Oldest first",

@@ -8,11 +8,14 @@ import * as v from 'valibot';
 
 import type { Route } from './+types/letters';
 
+import { getLetterService } from '~/.server/domain/services/letter.service';
 import { requireAuth } from '~/.server/utils/auth-utils';
 import { ButtonLink } from '~/components/button-link';
 import { InputSelect } from '~/components/input-select';
 import { InlineLink } from '~/components/links';
 import { PageTitle } from '~/components/page-title';
+import { AppError } from '~/errors/app-error';
+import { ErrorCodes } from '~/errors/error-codes';
 // import { useLanguage } from '~/hooks/use-language';
 import { getTranslation } from '~/i18n-config.server';
 import { handle as parentHandle } from '~/routes/layout';
@@ -24,7 +27,7 @@ export const handle = {
 const orderEnumSchema = v.picklist(['asc', 'desc']);
 
 export async function loader({ context, params, request }: Route.LoaderArgs) {
-  await requireAuth(context.session, request);
+  const { userinfoTokenClaims } = await requireAuth(context.session, request);
   const { t } = await getTranslation(request, handle.i18nNamespace);
 
   const { MSCA_BASE_URL } = globalThis.__appEnvironment;
@@ -34,13 +37,13 @@ export async function loader({ context, params, request }: Route.LoaderArgs) {
   const fallbackOrderEnumSchema = v.fallback(orderEnumSchema, 'desc');
   const sortOrder = v.parse(fallbackOrderEnumSchema, sortParam);
 
-  // TODO ::: fetch actual data here
-  // const letters = '';
-  const letters = [
-    { id: '1', date: '2024-12-25', letterTypeId: 'ACC' },
-    { id: '2', date: '2004-02-29', letterTypeId: 'DEN' },
-    { id: '3', date: '2004-02-29', letterTypeId: 'DEN' },
-  ];
+  if (!userinfoTokenClaims.sin) {
+    throw new AppError('No SIN found in userinfo token', ErrorCodes.MISSING_SIN);
+  }
+  const name = userinfoTokenClaims.sin;
+  const user = userinfoTokenClaims.sin;
+  const letters = await getLetterService().findLettersBySin({ sin: name, userId: user, sortOrder });
+  // TODO ::: fetch actual letter names
   const letterTypes = [
     { id: 'ACC', nameEn: 'Accepted', nameFr: '(FR) Accepted' },
     { id: 'DEN', nameEn: 'Denied', nameFr: '(FR) Denied' },
@@ -101,15 +104,14 @@ export default function LettersIndex({ loaderData, params }: Route.ComponentProp
                 <li key={letter.id} className="my-2 rounded px-12 py-4 outline">
                   <InlineLink
                     reloadDocument
-                    // TODO ::: Set actual letter route
-                    file="routes/index.tsx"
+                    file="routes/$id.download.ts"
                     params={{ ...params, id: letter.id }}
                     className="external-link"
                     newTabIndicator
                     target="_blank"
                     data-gc-analytics-customclick={gcAnalyticsCustomClickValue}
                   >
-                    {letterName}
+                    {letterName} {t('app:letters.file-type')}
                   </InlineLink>
                   <p className="mt-1 text-sm text-gray-500">{t('app:letters.date', { date: letter.date })}</p>
                 </li>

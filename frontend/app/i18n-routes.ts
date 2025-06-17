@@ -122,6 +122,11 @@ export const i18nRoutes = [
         file: 'routes/data-unavailable.tsx',
         paths: { en: '/en/data-unavailable', fr: '/fr/donnees-indisponibles' },
       },
+      {
+        id: 'PROT-0004',
+        file: 'routes/$id.download.ts',
+        paths: { en: '/en/letters/:id/download', fr: '/fr/lettres/:id/telecharger' },
+      },
     ],
   },
 ] as const satisfies I18nRoute[];
