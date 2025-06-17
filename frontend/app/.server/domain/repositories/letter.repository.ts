@@ -58,7 +58,7 @@ export class DefaultLetterRepository implements LetterRepository {
     | 'HEALTH_PLACEHOLDER_REQUEST_VALUE'
     | 'HTTP_PROXY_URL'
     | 'CCT_API_BASE_URI'
-    | 'CCT_SUBSCRIPTION_KEY'
+    | 'CCT_API_KEY'
     | 'CCT_API_COMMUNITY'
     | 'CCT_API_MAX_RETRIES'
     | 'CCT_API_BACKOFF_MS'
@@ -73,7 +73,7 @@ export class DefaultLetterRepository implements LetterRepository {
       | 'HEALTH_PLACEHOLDER_REQUEST_VALUE'
       | 'HTTP_PROXY_URL'
       | 'CCT_API_BASE_URI'
-      | 'CCT_SUBSCRIPTION_KEY'
+      | 'CCT_API_KEY'
       | 'CCT_API_COMMUNITY'
       | 'CCT_API_MAX_RETRIES'
       | 'CCT_API_BACKOFF_MS'
@@ -100,7 +100,7 @@ export class DefaultLetterRepository implements LetterRepository {
       proxyUrl: this.serverConfig.HTTP_PROXY_URL,
       headers: {
         'Content-Type': 'application/json',
-        'x-api-key': `${this.serverConfig.CCT_SUBSCRIPTION_KEY}`,
+        'x-api-key': `${this.serverConfig.CCT_API_KEY}`,
         'Ocp-Apim-Subscription-Key': `${this.serverConfig.INTEROP_API_SUBSCRIPTION_KEY}`,
       },
       retryOptions: {
@@ -141,7 +141,7 @@ export class DefaultLetterRepository implements LetterRepository {
       proxyUrl: this.serverConfig.HTTP_PROXY_URL,
       headers: {
         'Content-Type': 'application/json',
-        'x-api-key': `${this.serverConfig.CCT_SUBSCRIPTION_KEY}`,
+        'x-api-key': `${this.serverConfig.CCT_API_KEY}`,
         'Ocp-Apim-Subscription-Key': `${this.serverConfig.INTEROP_API_SUBSCRIPTION_KEY}`,
       },
       retryOptions: {
@@ -193,9 +193,9 @@ export class MockLetterRepository implements LetterRepository {
 
     const letterEntities: readonly LetterEntity[] = [
       {
-        LetterName: '775170001',
-        LetterId: '038d9d0f-fb35-4d98-8f31-a4b2171e521a',
-        LetterDate: '2024/04/05',
+        LetterName: 'Invitation à presenter une demande - Invitation to apply',
+        LetterId: '12123456-2122-4d95-b63c-353b0cc04070',
+        LetterDate: '2025/06/16',
       },
     ];
 
