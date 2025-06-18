@@ -2,6 +2,7 @@ import { createRoutesStub } from 'react-router';
 
 import { render } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
+import { mock } from 'vitest-mock-extended';
 
 import {
   BilingualErrorBoundary,
@@ -12,7 +13,6 @@ import {
 import { AppError } from '~/errors/app-error';
 import { ErrorCodes } from '~/errors/error-codes';
 import { HttpStatusCodes } from '~/utils/http-status-codes';
-import { mock } from 'vitest-mock-extended';
 
 describe('error-boundaries', () => {
   globalThis.__appEnvironment = mock({
