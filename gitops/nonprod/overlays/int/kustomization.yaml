@@ -15,6 +15,7 @@ labels:
     includeSelectors: true
 resources:
   - ../../base/frontend/
+  - ../../base/fluentd-archiver
   - ./external-secrets.yaml
   - ./ingresses.yaml
 patches:
@@ -24,6 +25,10 @@ configMapGenerator:
     behavior: create
     envs:
       - ./configs/frontend.conf
+  - name: fluentd
+    behavior: create
+    files:
+      - ./configs/fluentd.conf
 secretGenerator:
   - name: frontend
     behavior: create
