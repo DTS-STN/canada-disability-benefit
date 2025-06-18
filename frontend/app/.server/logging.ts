@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unresolved */
 /**
  * This module provides a centralized logging configuration for the application.
  * It uses the `winston` library to create and manage loggers, allowing for
@@ -11,7 +12,7 @@ import os from 'node:os';
 import util from 'node:util';
 import type * as w from 'winston';
 import winston, { format, transports } from 'winston';
-import type DailyRotateFile from 'winston-daily-rotate-file';
+import DailyRotateFile from 'winston-daily-rotate-file';
 import { fullFormat } from 'winston-error-format';
 
 import { getLoggingConfig, logLevels } from './environment/logging';
@@ -54,7 +55,16 @@ export const LogFactory = {
     });
 
     if (getLoggingConfig().LOG_AUDITING_ENABLED) {
-      const dailyRotateFileTransport = createDailyRotateFileTransport();
+      const dailyRotateFileTransport = new DailyRotateFile({
+        level: 'audit',
+        dirname: getLoggingConfig().AUDIT_LOG_DIR_NAME,
+        filename: getLoggingConfig().AUDIT_LOG_FILE_NAME,
+        format: format.printf((info) => `${info.message}`),
+        extension: `_${os.hostname()}.log`,
+        utc: true,
+        maxSize: getLoggingConfig().AUDIT_LOG_MAX_SIZE,
+        maxFiles: getLoggingConfig().AUDIT_LOG_MAX_FILES,
+      });
       logger.add(dailyRotateFileTransport);
     }
 
@@ -63,25 +73,6 @@ export const LogFactory = {
     return logger;
   },
 };
-
-/**
- * Creates and configures a daily rotating file transport for audit logs.
- *
- * @param config - The logging configuration
- * @returns Configured DailyRotateFile transport instance
- */
-function createDailyRotateFileTransport(): DailyRotateFile {
-  return new transports.DailyRotateFile({
-    level: 'audit',
-    dirname: getLoggingConfig().AUDIT_LOG_DIR_NAME,
-    filename: getLoggingConfig().AUDIT_LOG_FILE_NAME,
-    format: format.printf((info) => `${info.message}`),
-    extension: `_${os.hostname()}.log`,
-    utc: true,
-    maxSize: getLoggingConfig().AUDIT_LOG_MAX_SIZE,
-    maxFiles: getLoggingConfig().AUDIT_LOG_MAX_FILES,
-  });
-}
 
 /**
  * Formats a log message for output.
