@@ -42,6 +42,7 @@ type UserButtonProps = {
 function UserButton({ className, name }: UserButtonProps): JSX.Element {
   const { t } = useTranslation(['gcweb']);
   const { currentLanguage } = useLanguage();
+  const { MSCA_BASE_URL } = globalThis.__appEnvironment;
 
   return (
     <DropdownMenu>
@@ -63,6 +64,21 @@ function UserButton({ className, name }: UserButtonProps): JSX.Element {
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-64 bg-slate-700">
         <UserName name={name} />
+        <MenuItem to={t('gcweb:app.menu-dashboard.href', { baseUri: MSCA_BASE_URL })} className="text-md flex justify-between">
+          {t('gcweb:app.menu-dashboard')}
+        </MenuItem>
+        <MenuItem to={t('gcweb:app.profile.href', { baseUri: MSCA_BASE_URL })} className="text-md flex justify-between">
+          {t('gcweb:app.profile')}
+        </MenuItem>
+        <MenuItem
+          to={t('gcweb:app.security-settings.href', { baseUri: MSCA_BASE_URL })}
+          className="text-md flex justify-between"
+        >
+          {t('gcweb:app.security-settings')}
+        </MenuItem>
+        <MenuItem to={t('gcweb:app.contact-us.href', { baseUri: MSCA_BASE_URL })} className="text-md flex justify-between">
+          {t('gcweb:app.contact-us')}
+        </MenuItem>
         <MenuItem to={`/auth/logout?lang=${currentLanguage}`} className="text-md flex justify-between">
           {t('gcweb:app.logout')}
           <FontAwesomeIcon icon={faRightFromBracket} className="my-auto size-8" />
