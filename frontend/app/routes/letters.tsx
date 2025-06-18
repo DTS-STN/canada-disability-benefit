@@ -97,7 +97,7 @@ export default function LettersIndex({ loaderData, params }: Route.ComponentProp
                       letter.letterTypeId.indexOf(t('app:letter-names.delimiter')) + t('app:letter-names.delimiter').length,
                     )
                   : letter.letterTypeId.substring(0, letter.letterTypeId.indexOf(t('app:letter-names.delimiter')));
-              const gcAnalyticsCustomClickValue = `ESDC-EDSC:CDCP Letters Click:${letterName}`;
+              const gcAnalyticsCustomClickValue = `ESDC-EDSC:CDB Letters Click:${letterName}`;
               const date = new Date(letter.date);
               const dateLanguage = currentLanguage + '-CA';
               const formattedDate = date.toLocaleString(dateLanguage, {
