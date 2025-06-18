@@ -32,8 +32,8 @@ export const defaults = {
 export const logging = v.object({
   LOG_LEVEL: v.optional(v.picklist(Object.keys(logLevels) as LogLevel[]), defaults.LOG_LEVEL),
   LOG_AUDITING_ENABLED: v.optional(stringToBooleanSchema(), defaults.LOG_AUDITING_ENABLED),
-  AUDIT_LOG_DIR_NAME: v.optional(v.pipe(v.string()), defaults.AUDIT_LOG_DIR_NAME),
-  AUDIT_LOG_FILE_NAME: v.optional(v.pipe(v.string()), defaults.AUDIT_LOG_FILE_NAME),
+  AUDIT_LOG_DIR_NAME: v.optional(v.pipe(v.string(), v.nonEmpty()), defaults.AUDIT_LOG_DIR_NAME),
+  AUDIT_LOG_FILE_NAME: v.optional(v.pipe(v.string(), v.nonEmpty()), defaults.AUDIT_LOG_FILE_NAME),
   AUDIT_LOG_MAX_SIZE: v.optional(v.string(), defaults.AUDIT_LOG_MAX_SIZE),
   AUDIT_LOG_MAX_FILES: v.optional(v.string(), defaults.AUDIT_LOG_MAX_FILES),
 });
