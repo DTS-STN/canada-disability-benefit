@@ -3,7 +3,13 @@
     "account": "Compte",
     "logout": "Déconnexion",
     "profile": "Profil",
+    "profile.href": "{{baseUri}}/fr/profil",
+    "security-settings": "Paramètres de sécurité",
+    "security-settings.href": "{{baseUri}}/fr/parametres-securite",
+    "contact-us": "Contactez-nous",
+    "contact-us.href": "{{baseUri}}/fr/contactez-nous",
     "title": "Mon dossier Service Canada",
+    "menu-dashboard": "Mon tableau de bord",
     "menu-dashboard.href": "{{baseUri}}/fr/mon-tableau-de-bord"
   },
   "breadcrumbs": {
