@@ -16,7 +16,7 @@ import { InlineLink } from '~/components/links';
 import { PageTitle } from '~/components/page-title';
 import { AppError } from '~/errors/app-error';
 import { ErrorCodes } from '~/errors/error-codes';
-// import { useLanguage } from '~/hooks/use-language';
+import { useLanguage } from '~/hooks/use-language';
 import { getTranslation } from '~/i18n-config.server';
 import { handle as parentHandle } from '~/routes/layout';
 
@@ -32,10 +32,8 @@ export async function loader({ context, params, request }: Route.LoaderArgs) {
 
   const { MSCA_BASE_URL } = globalThis.__appEnvironment;
 
-  // FIXME ::: sort order
   const sortParam = new URL(request.url).searchParams.get('sort');
-  const fallbackOrderEnumSchema = v.fallback(orderEnumSchema, 'desc');
-  const sortOrder = v.parse(fallbackOrderEnumSchema, sortParam);
+  const sortOrder = v.parse(v.fallback(orderEnumSchema, 'desc'), sortParam);
 
   if (!userinfoTokenClaims.sin) {
     throw new AppError('No SIN found in userinfo token', ErrorCodes.MISSING_SIN);
@@ -45,13 +43,8 @@ export async function loader({ context, params, request }: Route.LoaderArgs) {
   const { session } = context;
   const letters = await getLetterService().findLettersBySin({ sin: name, userId: user, sortOrder });
   session.letterState = letters;
-  // TODO ::: fetch actual letter names
-  const letterTypes = [
-    { id: 'ACC', nameEn: 'Accepted', nameFr: '(FR) Accepted' },
-    { id: 'DEN', nameEn: 'Denied', nameFr: '(FR) Denied' },
-  ];
 
-  return { documentTitle: t('app:letters.page-title'), letters, letterTypes, sortOrder, MSCA_BASE_URL };
+  return { documentTitle: t('app:letters.page-title'), letters, sortOrder, MSCA_BASE_URL };
 }
 
 export function meta({ data }: Route.MetaArgs) {
@@ -59,11 +52,11 @@ export function meta({ data }: Route.MetaArgs) {
 }
 
 export default function LettersIndex({ loaderData, params }: Route.ComponentProps) {
-  // const { currentLanguage } = useLanguage();
+  const { currentLanguage } = useLanguage();
   const [, setSearchParams] = useSearchParams();
   const { t } = useTranslation(handle.i18nNamespace);
 
-  const { letters, letterTypes, sortOrder, MSCA_BASE_URL } = loaderData;
+  const { letters, sortOrder, MSCA_BASE_URL } = loaderData;
 
   function handleOnSortOrderChange(e: ChangeEvent<HTMLSelectElement>) {
     setSearchParams((prev) => {
@@ -98,9 +91,18 @@ export default function LettersIndex({ loaderData, params }: Route.ComponentProp
 
           <ul className="divide-y border-y">
             {letters.map((letter) => {
-              const letterType = letterTypes.find(({ id }) => id === letter.letterTypeId);
-              const gcAnalyticsCustomClickValue = `ESDC-EDSC:CDCP Letters Click:${letterType?.nameEn ?? letter.letterTypeId}`;
-              const letterName = letter.letterTypeId;
+              const letterName =
+                currentLanguage === 'en'
+                  ? letter.letterTypeId.substring(
+                      letter.letterTypeId.indexOf(t('app:letter-names.delimiter')) + t('app:letter-names.delimiter').length,
+                    )
+                  : letter.letterTypeId.substring(0, letter.letterTypeId.indexOf(t('app:letter-names.delimiter')));
+              const gcAnalyticsCustomClickValue = `ESDC-EDSC:CDB Letters Click:${letterName}`;
+              const date = new Date(letter.date);
+              const dateLanguage = currentLanguage + '-CA';
+              const formattedDate = date.toLocaleString(dateLanguage, {
+                dateStyle: 'long',
+              });
 
               return (
                 <li key={letter.id} className="px-4 py-4 sm:py-6">
@@ -115,7 +117,7 @@ export default function LettersIndex({ loaderData, params }: Route.ComponentProp
                   >
                     {letterName} {t('app:letters.file-type')}
                   </InlineLink>
-                  <p className="mt-1 text-sm text-gray-500">{t('app:letters.date', { date: letter.date })}</p>
+                  <p className="mt-1 text-sm text-gray-500">{t('app:letters.date', { date: formattedDate })}</p>
                 </li>
               );
             })}

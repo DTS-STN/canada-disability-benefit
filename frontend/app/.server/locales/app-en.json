@@ -16,6 +16,9 @@
       "back": "Back to my dashboard"
     }
   },
+  "letter-names": {
+    "delimiter": " - "
+  },
   "input": {
     "required": "required"
   }

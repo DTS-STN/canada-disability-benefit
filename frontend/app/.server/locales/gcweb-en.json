@@ -6,6 +6,9 @@
     "title": "My Service Canada Account",
     "menu-dashboard.href": "{{baseUri}}/en/my-dashboard"
   },
+  "breadcrumbs": {
+    "dashboard": "My dashboard"
+  },
   "dialog": {
     "close": "Close"
   },

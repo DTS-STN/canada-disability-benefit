@@ -35,6 +35,7 @@ export default function Layout({ loaderData }: Route.ComponentProps) {
     BUILD_VERSION,
     SESSION_TIMEOUT_PROMPT_SECONDS,
     SESSION_TIMEOUT_SECONDS,
+    MSCA_BASE_URL,
   } = globalThis.__appEnvironment;
 
   return (
@@ -64,6 +65,30 @@ export default function Layout({ loaderData }: Route.ComponentProps) {
         </div>
         <AppBar name={t('gcweb:app.account')} />
       </header>
+      <nav id="wb-bc" className="my-4" property="breadcrumb" aria-labelledby="breadcrumbs">
+        <h2 id="breadcrumbs" className="sr-only">
+          {t('gcweb:breadcrumbs.dashboard')}
+        </h2>
+        <div className="container">
+          <ol className="flex flex-wrap items-center gap-x-3 gap-y-1" typeof="BreadcrumbList">
+            <li
+              key={t('gcweb:breadcrumbs.dashboard')}
+              property="itemListElement"
+              typeof="ListItem"
+              className="flex items-center"
+            >
+              <AppLink
+                to={t('gcweb:app.menu-dashboard.href', { baseUri: MSCA_BASE_URL })}
+                property="item"
+                typeof="WebPage"
+                className="text-slate-700 underline hover:text-blue-700 focus:text-blue-700"
+              >
+                <span property="name">{t('gcweb:breadcrumbs.dashboard')}</span>
+              </AppLink>
+            </li>
+          </ol>
+        </div>
+      </nav>
       <main className="container print:w-full print:max-w-none">
         <Outlet />
         <PageDetails buildDate={BUILD_DATE} buildVersion={BUILD_VERSION} pageId={pageId} />
