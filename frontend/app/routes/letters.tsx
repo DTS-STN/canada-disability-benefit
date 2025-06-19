@@ -94,7 +94,7 @@ export default function LettersIndex({ loaderData, params }: Route.ComponentProp
               const parts = letter.letterTypeId.split(/\s*-\s*/);
 
               const frenchLetterName = parts[0] ? parts[0].trim() : '';
-              const englishLetterName = parts[1] ? parts[1].trim() : '';
+              const englishLetterName = parts[1] ? parts[1].trim() : letter.letterTypeId;
               const letterName = currentLanguage === 'en' ? englishLetterName : frenchLetterName;
               const gcAnalyticsCustomClickValue = `ESDC-EDSC:CDB Letters Click:${letterName}`;
               const date = new Date(letter.date);
