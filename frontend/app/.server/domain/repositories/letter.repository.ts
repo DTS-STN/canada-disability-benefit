@@ -193,9 +193,14 @@ export class MockLetterRepository implements LetterRepository {
 
     const letterEntities: readonly LetterEntity[] = [
       {
+        LetterName: 'Détermination positive - Positive determination',
+        LetterId: '123456-b3bc-4332-8b69-172197842b88',
+        LetterDate: '2025/06/13',
+      },
+      {
         LetterName: 'Invitation à presenter une demande - Invitation to apply',
-        LetterId: '12123456-2122-4d95-b63c-353b0cc04070',
-        LetterDate: '2025/06/16',
+        LetterId: '123456-2122-4d95-b63c-353b0cc04070',
+        LetterDate: '2025/06/13',
       },
     ];
 

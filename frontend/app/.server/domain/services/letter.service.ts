@@ -7,6 +7,7 @@ import type { LetterRepository } from '~/.server/domain/repositories/letter.repo
 import { getLetterRepository } from '~/.server/domain/repositories/letter.repository';
 import type { AuditService } from '~/.server/domain/services/audit.service';
 import { getAuditService } from '~/.server/domain/services/audit.service';
+import { serverEnvironment } from '~/.server/environment';
 import { LogFactory } from '~/.server/logging';
 
 export interface LetterService {
@@ -59,7 +60,7 @@ export class DefaultLetterService implements LetterService {
 
     const letterEntities = await this.letterRepository.findLettersBySin(sin, userId);
     const letterDtos = this.letterDtoMapper.mapLetterEntitiesToLetterDtos(letterEntities);
-    const sortedLetterDtos = sort(letterDtos, {
+    const sortedLetterDtos = sort(filterLetters(letterDtos), {
       order: sortOrder,
       by: (letterDto) => letterDto.date,
     });
@@ -79,4 +80,11 @@ export class DefaultLetterService implements LetterService {
     this.log.trace('Returning pdf [%s] for letterId [%s]', pdf, letterId);
     return pdf;
   }
+}
+
+function filterLetters(letters: readonly LetterDto[]): readonly LetterDto[] {
+  const { CCT_LETTER_FILTER: letterRegex } = serverEnvironment;
+  return letters.filter((l) => {
+    return RegExp(letterRegex).exec(l.letterTypeId.toLowerCase());
+  });
 }
