@@ -16,9 +16,6 @@
       "back": "Retour à mon tableau de bord"
     }
   },
-  "letter-names": {
-    "delimiter": " - "
-  },
   "input": {
     "required": "obligatoire"
   }
