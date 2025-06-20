@@ -126,7 +126,7 @@ exports[`AppBar > should render render an AppBar with a profile item provided > 
         <button
           aria-expanded="false"
           aria-haspopup="menu"
-          class="flex h-full flex-nowrap space-x-2 bg-slate-600 px-2 text-sm text-white hover:bg-slate-500 hover:underline focus:ring-2 focus:ring-black focus:ring-offset-2 focus:outline-hidden aria-expanded:bg-slate-800 aria-expanded:text-white sm:space-x-4 sm:px-4"
+          class="flex h-full flex-nowrap space-x-2 bg-slate-200 px-2 text-sm text-slate-700 hover:bg-neutral-300 hover:underline focus:bg-neutral-300 focus:ring-2 focus:ring-black focus:ring-offset-2 focus:outline-hidden aria-expanded:bg-neutral-300 aria-expanded:text-slate-700 sm:space-x-4 sm:px-4"
           data-state="closed"
           id="radix-«r0»"
           type="button"
@@ -135,11 +135,11 @@ exports[`AppBar > should render render an AppBar with a profile item provided > 
             class="text-md my-auto flex flex-nowrap items-center space-x-2 py-2"
           >
             <div
-              class="flex h-8 w-8 items-center justify-center rounded-full bg-white"
+              class="flex h-8 w-8 items-center justify-center rounded-full bg-slate-700"
             >
               <svg
                 aria-hidden="true"
-                class="svg-inline--fa fa-user size-5 text-slate-700"
+                class="svg-inline--fa fa-user size-5 text-slate-200"
                 data-icon="user"
                 data-prefix="fas"
                 focusable="false"
