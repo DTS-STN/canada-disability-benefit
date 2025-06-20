@@ -37,7 +37,10 @@
   },
   "header": {
     "govt-of-canada.text": "Government of Canada",
-    "language-selection": "Language selection"
+    "govt-of-canada.other-lang-text": "Gouvernement du Canada",
+    "language-selection": "Language selection",
+    "other-lang": "fr"
+
   },
   "input-label": {
     "required": "required"
