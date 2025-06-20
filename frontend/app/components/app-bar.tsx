@@ -48,13 +48,13 @@ function UserButton({ className, name }: UserButtonProps): JSX.Element {
     <DropdownMenu>
       <DropdownMenuTrigger
         className={cn(
-          'flex h-full flex-nowrap space-x-2 bg-slate-600 px-2 text-sm text-white hover:bg-slate-500 hover:underline focus:ring-2 focus:ring-black focus:ring-offset-2 focus:outline-hidden aria-expanded:bg-slate-800 aria-expanded:text-white sm:space-x-4 sm:px-4',
+          'flex h-full flex-nowrap space-x-2 bg-slate-200 px-2 text-sm text-slate-700 hover:bg-neutral-300 hover:underline focus:bg-neutral-300 focus:ring-2 focus:ring-black focus:ring-offset-2 focus:outline-hidden aria-expanded:bg-neutral-300 aria-expanded:text-slate-700 sm:space-x-4 sm:px-4',
           className,
         )}
       >
         <div className="text-md my-auto flex flex-nowrap items-center space-x-2 py-2">
-          <div className="flex h-8 w-8 items-center justify-center rounded-full bg-white">
-            <FontAwesomeIcon icon={faUser} className="size-5 text-slate-700" />
+          <div className="flex h-8 w-8 items-center justify-center rounded-full bg-slate-700">
+            <FontAwesomeIcon icon={faUser} className="size-5 text-slate-200" />
           </div>
           <span id="menu-label" className="text-md hidden py-2 font-bold sm:block">
             {name}
@@ -62,24 +62,37 @@ function UserButton({ className, name }: UserButtonProps): JSX.Element {
         </div>
         <FontAwesomeIcon icon={faChevronDown} className="my-auto size-4" />
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" className="w-64 bg-slate-700">
+      <DropdownMenuContent align="end" className="w-64">
         <UserName name={name} />
-        <MenuItem to={t('gcweb:app.menu-dashboard.href', { baseUri: MSCA_BASE_URL })} className="text-md flex justify-between">
+        <MenuItem
+          to={t('gcweb:app.menu-dashboard.href', { baseUri: MSCA_BASE_URL })}
+          className="text-md flex justify-between text-black hover:bg-zinc-100 hover:text-black focus:bg-zinc-100 active:bg-zinc-100"
+        >
           {t('gcweb:app.menu-dashboard')}
         </MenuItem>
-        <MenuItem to={t('gcweb:app.profile.href', { baseUri: MSCA_BASE_URL })} className="text-md flex justify-between">
+        <MenuItem
+          to={t('gcweb:app.profile.href', { baseUri: MSCA_BASE_URL })}
+          className="text-md flex justify-between text-black hover:bg-zinc-100 hover:text-black focus:bg-zinc-100 active:bg-zinc-100"
+        >
           {t('gcweb:app.profile')}
         </MenuItem>
         <MenuItem
           to={t('gcweb:app.security-settings.href', { baseUri: MSCA_BASE_URL })}
-          className="text-md flex justify-between"
+          className="text-md flex justify-between text-black hover:bg-zinc-100 hover:text-black focus:bg-zinc-100 active:bg-zinc-100"
         >
           {t('gcweb:app.security-settings')}
         </MenuItem>
-        <MenuItem to={t('gcweb:app.contact-us.href', { baseUri: MSCA_BASE_URL })} className="text-md flex justify-between">
+        <MenuItem
+          to={t('gcweb:app.contact-us.href', { baseUri: MSCA_BASE_URL })}
+          className="text-md flex justify-between text-black hover:bg-zinc-100 hover:text-black focus:bg-zinc-100 active:bg-zinc-100"
+        >
           {t('gcweb:app.contact-us')}
         </MenuItem>
-        <MenuItem to={`/auth/logout?lang=${currentLanguage}`} className="text-md flex justify-between">
+        <div role="separator" aria-orientation="horizontal" className="-mx-1 my-1 h-px bg-slate-100"></div>
+        <MenuItem
+          to={`/auth/logout?lang=${currentLanguage}`}
+          className="text-md flex justify-between text-black hover:bg-zinc-100 hover:text-black focus:bg-zinc-100 active:bg-zinc-100"
+        >
           {t('gcweb:app.logout')}
           <FontAwesomeIcon icon={faRightFromBracket} className="my-auto size-8" />
         </MenuItem>
