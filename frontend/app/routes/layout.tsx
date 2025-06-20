@@ -60,9 +60,10 @@ export default function Layout({ loaderData }: Route.ComponentProps) {
                 height="28"
                 decoding="async"
               />
-              <span className="sr-only"> /
-								<span lang={t('gcweb:header.other-lang')}>{t('gcweb:header.govt-of-canada.other-lang-text')}</span>
-							</span>
+              <span className="sr-only">
+                {' '}
+                /<span lang={t('gcweb:header.other-lang')}>{t('gcweb:header.govt-of-canada.other-lang-text')}</span>
+              </span>
             </AppLink>
             <LanguageSwitcher>{t('gcweb:language-switcher.alt-lang')}</LanguageSwitcher>
           </div>
