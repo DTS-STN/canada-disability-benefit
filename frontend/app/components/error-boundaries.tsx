@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+
 import { Links, Meta, Scripts } from 'react-router';
 
 import { Trans, useTranslation } from 'react-i18next';
@@ -10,6 +12,7 @@ import { UnorderedList } from '~/components/lists';
 import { PageTitle } from '~/components/page-title';
 import { isAppError } from '~/errors/app-error';
 import { useLanguage } from '~/hooks/use-language';
+import * as adobeAnalytics from '~/utils/adobe-analytics.client';
 import { HttpStatusCodes } from '~/utils/http-status-codes';
 
 /**
@@ -25,6 +28,12 @@ export function BilingualErrorBoundary({ actionData, error, loaderData, params }
   const { i18n } = useTranslation(['gcweb']);
   const en = i18n.getFixedT('en');
   const fr = i18n.getFixedT('fr');
+
+  useEffect(() => {
+    if (adobeAnalytics.isConfigured()) {
+      adobeAnalytics.pushErrorEvent(500);
+    }
+  }, []);
 
   return (
     <html lang="en">
@@ -141,6 +150,12 @@ export function BilingualNotFound({ actionData, error, loaderData, params }: Rou
   const en = i18n.getFixedT('en');
   const fr = i18n.getFixedT('fr');
 
+  useEffect(() => {
+    if (adobeAnalytics.isConfigured()) {
+      adobeAnalytics.pushErrorEvent(404);
+    }
+  }, []);
+
   return (
     <html lang="en">
       <head>
@@ -211,6 +226,12 @@ export function BilingualNotFound({ actionData, error, loaderData, params }: Rou
 export function UnilingualErrorBoundary({ actionData, error, loaderData, params }: Route.ErrorBoundaryProps) {
   const { currentLanguage } = useLanguage();
   const { t } = useTranslation(['gcweb']);
+
+  useEffect(() => {
+    if (adobeAnalytics.isConfigured()) {
+      adobeAnalytics.pushErrorEvent(500);
+    }
+  }, []);
 
   return (
     <html lang={currentLanguage}>
@@ -286,6 +307,12 @@ export function UnilingualErrorBoundary({ actionData, error, loaderData, params 
 export function UnilingualNotFound({ actionData, error, loaderData, params }: Route.ErrorBoundaryProps) {
   const { currentLanguage } = useLanguage();
   const { t } = useTranslation(['gcweb']);
+
+  useEffect(() => {
+    if (adobeAnalytics.isConfigured()) {
+      adobeAnalytics.pushErrorEvent(404);
+    }
+  }, []);
 
   return (
     <html lang={currentLanguage}>

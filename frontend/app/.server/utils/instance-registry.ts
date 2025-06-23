@@ -9,7 +9,7 @@
 import { AppError } from '~/errors/app-error';
 import { ErrorCodes } from '~/errors/error-codes';
 
-export const instanceNames = ['raoidcClient', 'redisClient', 'loggingConfig'] as const;
+export const instanceNames = ['raoidcClient', 'redisClient', 'loggingConfig', 'adobeConfig'] as const;
 export type InstanceName = (typeof instanceNames)[number];
 
 /**
