@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+
 import type { RouteHandle } from 'react-router';
 import { isRouteErrorResponse, Links, Meta, Outlet, Scripts, ScrollRestoration } from 'react-router';
 
@@ -15,6 +17,7 @@ import {
 import { useLanguage } from '~/hooks/use-language';
 import indexStyleSheet from '~/index.css?url';
 import tailwindStyleSheet from '~/tailwind.css?url';
+import * as adobeAnalytics from '~/utils/adobe-analytics.client';
 import { HttpStatusCodes } from '~/utils/http-status-codes';
 
 // see: https://docs.fontawesome.com/web/dig-deeper/security#content-security-policy
@@ -60,6 +63,13 @@ export function loader({ context }: Route.LoaderArgs) {
 
 export default function App({ loaderData }: Route.ComponentProps) {
   const { currentLanguage } = useLanguage();
+
+  useEffect(() => {
+    if (adobeAnalytics.isConfigured()) {
+      const locationUrl = new URL(location.pathname, origin);
+      adobeAnalytics.pushPageviewEvent(locationUrl);
+    }
+  });
 
   return (
     <html lang={currentLanguage}>
