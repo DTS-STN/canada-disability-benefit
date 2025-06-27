@@ -29,7 +29,7 @@ configMapGenerator:
     behavior: merge
     envs:
       - ./configs/frontend.conf
-  - name: fluentd
+  - name: frontend-fluentd
     behavior: create
     files:
       - ./configs/fluentd.conf

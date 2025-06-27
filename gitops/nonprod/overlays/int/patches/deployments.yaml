@@ -44,4 +44,4 @@ spec:
       volumes:
         - name: fluentd-conf
           configMap:
-            name: fluentd
+            name: frontend-fluentd
