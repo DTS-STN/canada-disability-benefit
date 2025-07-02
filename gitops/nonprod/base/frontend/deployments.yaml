@@ -37,8 +37,8 @@ spec:
           securityContext:
             allowPrivilegeEscalation: false
           volumeMounts:
-            - name: audit-logs
-              mountPath: /home/node/logs
+          - name: audit-logs
+            mountPath: /home/node/logs
       volumes:
         - name: audit-logs
           emptyDir: {}

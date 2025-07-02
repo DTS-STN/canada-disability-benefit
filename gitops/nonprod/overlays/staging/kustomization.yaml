@@ -25,7 +25,7 @@ configMapGenerator:
     behavior: create
     envs:
       - ./configs/frontend.conf
-  - name: frontend-fluentd
+  - name: fluentd
     behavior: create
     files:
       - ./configs/fluentd.conf
