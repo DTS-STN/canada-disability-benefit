@@ -45,3 +45,6 @@ spec:
         - name: fluentd-conf
           configMap:
             name: frontend-fluentd
+        - name: oauth-proxy-conf
+          configMap:
+            name: oauth-proxy

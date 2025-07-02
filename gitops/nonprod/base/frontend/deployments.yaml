@@ -36,10 +36,6 @@ spec:
               memory: 256Mi
           securityContext:
             allowPrivilegeEscalation: false
-      volumes:
-        - name: audit-logs
-          persistentVolumeClaim:
-            claimName: audit-logs
   strategy:
     rollingUpdate:
       maxSurge: 100%
