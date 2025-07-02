@@ -36,12 +36,10 @@ spec:
               memory: 256Mi
           securityContext:
             allowPrivilegeEscalation: false
-          volumeMounts:
-          - name: audit-logs
-            mountPath: /home/node/logs
       volumes:
         - name: audit-logs
-          emptyDir: {}
+          persistentVolumeClaim:
+            claimName: audit-logs
   strategy:
     rollingUpdate:
       maxSurge: 100%
