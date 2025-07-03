@@ -8,6 +8,7 @@ import { config as fontAwesomeConfig } from '@fortawesome/fontawesome-svg-core';
 import type { Route } from './+types/root';
 
 import { clientEnvironment } from '~/.server/environment';
+import { ClientEnv } from '~/components/client-env';
 import {
   BilingualErrorBoundary,
   BilingualNotFound,
@@ -18,6 +19,7 @@ import { useLanguage } from '~/hooks/use-language';
 import indexStyleSheet from '~/index.css?url';
 import tailwindStyleSheet from '~/tailwind.css?url';
 import * as adobeAnalytics from '~/utils/adobe-analytics.client';
+import { getClientEnv } from '~/utils/client-env';
 import { HttpStatusCodes } from '~/utils/http-status-codes';
 
 // see: https://docs.fontawesome.com/web/dig-deeper/security#content-security-policy
@@ -64,6 +66,7 @@ export function loader({ context }: Route.LoaderArgs) {
 export default function App({ loaderData }: Route.ComponentProps) {
   const { currentLanguage } = useLanguage();
 
+  const env = getClientEnv();
   useEffect(() => {
     if (adobeAnalytics.isConfigured()) {
       const locationUrl = new URL(location.pathname, origin);
@@ -78,6 +81,12 @@ export default function App({ loaderData }: Route.ComponentProps) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
         <Links />
+        {env.ADOBE_ANALYTICS_SRC && (
+          <>
+            <script src={env.ADOBE_ANALYTICS_JQUERY_SRC} nonce={loaderData.nonce} suppressHydrationWarning={true} />
+            <script src={env.ADOBE_ANALYTICS_SRC} nonce={loaderData.nonce} suppressHydrationWarning={true} />
+          </>
+        )}
       </head>
       <body vocab="http://schema.org/" typeof="WebPage">
         <Outlet />
@@ -88,6 +97,7 @@ export default function App({ loaderData }: Route.ComponentProps) {
           src={`/api/client-env?v=${loaderData.clientEnvRevision}`}
           suppressHydrationWarning={true}
         />
+        <ClientEnv env={env} nonce={loaderData.nonce} />
       </body>
     </html>
   );
