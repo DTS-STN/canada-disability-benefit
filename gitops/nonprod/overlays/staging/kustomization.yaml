@@ -11,7 +11,7 @@ labels:
   # It is essential for this label (or at least one unique label per environment)
   # to be part of selectors to ensure they are applied correctly.
   - pairs:
-      app.kubernetes.io/instance: int
+      app.kubernetes.io/instance: staging
     includeSelectors: true
 resources:
   - ../../base/frontend/
