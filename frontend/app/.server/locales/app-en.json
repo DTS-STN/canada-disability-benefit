@@ -5,8 +5,12 @@
   },
   "letters": {
     "about": "Canada Disability Benefits!",
-    "page-title": "My Canada Disability Benefit letters",
+    "page-title": "Canada Disability Benefit letters",
     "no-letter": "You don't have any letters at this time.",
+    "service-eligible": "To find out if you are eligible and how to apply, visit <canadadisabilitybenefit>Canada Disability Benefit</canadadisabilitybenefit>.",
+    "canada-disability-benefit.href": "https://www.canada.ca/en/services/benefits/disability/canada-disability-benefit.html",
+    "application-status": "To check your application status or for general enquiries, <canadadisabilitybenefitcontact>contact the Canada Disability Benefit</canadadisabilitybenefitcontact>.",
+    "canada-disability-benefit-contact.href": "https://www.canada.ca/en/services/benefits/disability/canada-disability-benefit/contact.html",
     "date": "Date: {{date}}",
     "file-type": "(PDF)",
     "filter": "Filter by:",

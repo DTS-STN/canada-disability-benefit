@@ -3,7 +3,7 @@ import type { ChangeEvent } from 'react';
 import type { RouteHandle } from 'react-router';
 import { useSearchParams } from 'react-router';
 
-import { useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 import * as v from 'valibot';
 
 import type { Route } from './+types/letters';
@@ -65,13 +65,48 @@ export default function LettersIndex({ loaderData, params }: Route.ComponentProp
     });
   }
 
+  const canadadisabilitybenefit = (
+    <InlineLink
+      to={t('app:letters.canada-disability-benefit.href')}
+      className="external-link"
+      newTabIndicator
+      target="_blank"
+    />
+  );
+  const canadadisabilitybenefitcontact = (
+    <InlineLink
+      to={t('app:letters.canada-disability-benefit-contact.href')}
+      className="external-link"
+      newTabIndicator
+      target="_blank"
+    />
+  );
+
   return (
     <>
       <div className="mb-8">
         <PageTitle className="after:w-14">{t('app:letters.page-title')}</PageTitle>
       </div>
       {letters.length === 0 ? (
-        <p>{t('app:letters.no-letter')}</p>
+        <>
+          <div className="space-y-4">
+            <p className="font-bold">{t('app:letters.no-letter')}</p>
+            <p>
+              <Trans
+                ns={handle.i18nNamespace}
+                i18nKey="app:letters.service-eligible"
+                components={{ canadadisabilitybenefit }}
+              />
+            </p>
+            <p>
+              <Trans
+                ns={handle.i18nNamespace}
+                i18nKey="app:letters.application-status"
+                components={{ canadadisabilitybenefitcontact }}
+              />
+            </p>
+          </div>
+        </>
       ) : (
         <>
           <div className="my-6">
