@@ -3,8 +3,6 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 import { pushErrorEvent, pushPageviewEvent, isConfigured } from '~/utils/adobe-analytics.client';
 import { getClientEnv } from '~/utils/client-env';
 
-// import { parsedClientEnv } from '~/utils/client-env';
-
 /*
  * @vitest-environment jsdom
  */

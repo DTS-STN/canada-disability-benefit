@@ -1,3 +1,4 @@
+// For retrieval of client-safe configuration. Note: No sensitive config should be added here
 import * as v from 'valibot';
 
 import { validUrlSchema } from '~/validation/valid-url-schema';
