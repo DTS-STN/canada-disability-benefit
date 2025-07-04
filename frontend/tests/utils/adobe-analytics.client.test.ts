@@ -1,91 +1,102 @@
-// import { afterEach, describe, expect, it, vi } from 'vitest';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 
-// import { pushErrorEvent, pushPageviewEvent, isConfigured } from '~/utils/adobe-analytics.client';
+import { pushErrorEvent, pushPageviewEvent, isConfigured } from '~/utils/adobe-analytics.client';
+import { getClientEnv } from '~/utils/client-env';
 
-// /*
-//  * @vitest-environment jsdom
-//  */
+// import { parsedClientEnv } from '~/utils/client-env';
 
-// vi.mock('~/environment/adobe');
+/*
+ * @vitest-environment jsdom
+ */
 
-// // describe('isConfigured + pushPageViewEvent + pushErrorEvent', () => {
-// //   afterEach(() => {
-// //     vi.restoreAllMocks();
-// //   });
+vi.mock('~/utils/client-env');
 
-// //   it('should return true if all necessary environment variables are present and are valid URLs', () => {
-// //     vi.mocked(getClientEnv()).ADOBE_ANALYTICS_JQUERY_SRC = 'http://example.com/jquery.min.js';
-// //     vi.mocked(parsedClientEnv).ADOBE_ANALYTICS_SRC = 'http://example.com/adobe-analytics.min.js';
+describe('isConfigured + pushPageViewEvent + pushErrorEvent', () => {
+  afterEach(() => {
+    vi.restoreAllMocks();
+  });
 
-// //     const result = isConfigured();
-// //     expect(result).toBe(true);
-// //   });
+  it('should return true if all necessary environment variables are present and are valid URLs', () => {
+    vi.mocked(getClientEnv).mockImplementation(() => {
+      return {
+        ADOBE_ANALYTICS_SRC: 'http://example.com/adobe-analytics.min.js',
+        ADOBE_ANALYTICS_JQUERY_SRC: 'http://example.com/jquery.min.js',
+      };
+    });
 
-// //   it('should return false if ADOBE_ANALYTICS_SRC is missing', () => {
-// //     vi.mocked(parsedClientEnv).ADOBE_ANALYTICS_JQUERY_SRC = 'http://example.com/jquery.min.js';
-// //     vi.mocked(parsedClientEnv).ADOBE_ANALYTICS_SRC = undefined;
+    const result = isConfigured();
+    expect(result).toBe(true);
+  });
 
-// //     const result = isConfigured();
-// //     expect(result).toBe(false);
-// //   });
+  it('should return false if ADOBE_ANALYTICS_SRC is missing', () => {
+    vi.mocked(getClientEnv).mockImplementation(() => {
+      return {
+        ADOBE_ANALYTICS_SRC: undefined,
+        ADOBE_ANALYTICS_JQUERY_SRC: 'http://example.com/jquery.min.js',
+      };
+    });
 
-//   describe('pushErrorEvent', () => {
-//     const originalAdobeDataLayer = window.adobeDataLayer;
+    const result = isConfigured();
+    expect(result).toBe(false);
+  });
 
-//     afterEach(() => {
-//       window.adobeDataLayer = originalAdobeDataLayer;
-//       vi.restoreAllMocks();
-//     });
+  describe('pushErrorEvent', () => {
+    const originalAdobeDataLayer = window.adobeDataLayer;
 
-//     it('does not send an event if window.adobeDataLayer is not defined', () => {
-//       const spyConsoleWarnSpy = vi.spyOn(console, 'warn').mockImplementationOnce(() => {});
+    afterEach(() => {
+      window.adobeDataLayer = originalAdobeDataLayer;
+      vi.restoreAllMocks();
+    });
 
-//       pushErrorEvent(404);
+    it('does not send an event if window.adobeDataLayer is not defined', () => {
+      const spyConsoleWarnSpy = vi.spyOn(console, 'warn').mockImplementationOnce(() => {});
 
-//       expect(spyConsoleWarnSpy).toHaveBeenCalledWith(
-//         'window.adobeDataLayer is not defined. This could mean your adobe analytics script has not loaded on the page yet.',
-//       );
-//     });
+      pushErrorEvent(404);
 
-//     it('sends a pushErrorEvent event with the correct pushErrorEvent status code', () => {
-//       window.adobeDataLayer = { push: vi.fn() };
+      expect(spyConsoleWarnSpy).toHaveBeenCalledWith(
+        'window.adobeDataLayer is not defined. This could mean your adobe analytics script has not loaded on the page yet.',
+      );
+    });
 
-//       pushErrorEvent(404);
+    it('sends a pushErrorEvent event with the correct pushErrorEvent status code', () => {
+      window.adobeDataLayer = { push: vi.fn() };
 
-//       expect(window.adobeDataLayer.push).toHaveBeenCalledWith({
-//         event: 'error',
-//         error: { name: '404' },
-//       });
-//     });
-//   });
+      pushErrorEvent(404);
 
-//   describe('pushPageviewEvent', () => {
-//     const originalAdobeDataLayer = window.adobeDataLayer;
+      expect(window.adobeDataLayer.push).toHaveBeenCalledWith({
+        event: 'error',
+        error: { name: '404' },
+      });
+    });
+  });
 
-//     afterEach(() => {
-//       window.adobeDataLayer = originalAdobeDataLayer;
-//       vi.restoreAllMocks();
-//     });
+  describe('pushPageviewEvent', () => {
+    const originalAdobeDataLayer = window.adobeDataLayer;
 
-//     it('does not send an event if window.adobeDataLayer is not defined', () => {
-//       const spyConsoleWarnSpy = vi.spyOn(console, 'warn').mockImplementationOnce(() => {});
+    afterEach(() => {
+      window.adobeDataLayer = originalAdobeDataLayer;
+      vi.restoreAllMocks();
+    });
 
-//       pushPageviewEvent('https://www.example.com');
+    it('does not send an event if window.adobeDataLayer is not defined', () => {
+      const spyConsoleWarnSpy = vi.spyOn(console, 'warn').mockImplementationOnce(() => {});
 
-//       expect(spyConsoleWarnSpy).toHaveBeenCalledWith(
-//         'window.adobeDataLayer is not defined. This could mean your adobe analytics script has not loaded on the page yet.',
-//       );
-//     });
+      pushPageviewEvent('https://www.example.com');
 
-//     it('sends a pageLoad event with the correct URL', () => {
-//       window.adobeDataLayer = { push: vi.fn() };
+      expect(spyConsoleWarnSpy).toHaveBeenCalledWith(
+        'window.adobeDataLayer is not defined. This could mean your adobe analytics script has not loaded on the page yet.',
+      );
+    });
 
-//       pushPageviewEvent('https://www.example.com/about-us');
+    it('sends a pageLoad event with the correct URL', () => {
+      window.adobeDataLayer = { push: vi.fn() };
 
-//       expect(window.adobeDataLayer.push).toHaveBeenCalledWith({
-//         event: 'pageLoad',
-//         page: { url: 'www.example.com/about-us' },
-//       });
-//     });
-//   });
-// });
+      pushPageviewEvent('https://www.example.com/about-us');
+
+      expect(window.adobeDataLayer.push).toHaveBeenCalledWith({
+        event: 'pageLoad',
+        page: { url: 'www.example.com/about-us' },
+      });
+    });
+  });
+});

@@ -12,7 +12,14 @@ import {
 } from '~/components/error-boundaries';
 import { AppError } from '~/errors/app-error';
 import { ErrorCodes } from '~/errors/error-codes';
+import { isConfigured } from '~/utils/adobe-analytics.client';
 import { HttpStatusCodes } from '~/utils/http-status-codes';
+
+vi.mock('~/utils/adobe-analytics.client');
+
+vi.mocked(isConfigured).mockImplementation(() => {
+  return true;
+});
 
 describe('error-boundaries', () => {
   globalThis.__appEnvironment = mock({

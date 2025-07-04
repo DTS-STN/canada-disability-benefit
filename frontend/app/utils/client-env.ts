@@ -26,5 +26,3 @@ export function getClientEnv(): ClientEnv {
   }
   return result.output;
 }
-
-export const parsedClientEnv = getClientEnv();
