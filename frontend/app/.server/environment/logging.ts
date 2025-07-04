@@ -2,6 +2,8 @@ import * as v from 'valibot';
 
 import { singleton } from '../utils/instance-registry';
 
+import { maxFilesRegexSchema } from '~/.server/validation/max-files-regex-schema';
+import { maxSizeRegexSchema } from '~/.server/validation/max-size-regex-schema';
 import { stringToBooleanSchema } from '~/.server/validation/string-to-boolean-schema';
 
 export type Logging = Readonly<v.InferOutput<typeof logging>>;
@@ -34,8 +36,8 @@ export const logging = v.object({
   LOG_AUDITING_ENABLED: v.optional(stringToBooleanSchema(), defaults.LOG_AUDITING_ENABLED),
   AUDIT_LOG_DIR_NAME: v.optional(v.pipe(v.string(), v.nonEmpty()), defaults.AUDIT_LOG_DIR_NAME),
   AUDIT_LOG_FILE_NAME: v.optional(v.pipe(v.string(), v.nonEmpty()), defaults.AUDIT_LOG_FILE_NAME),
-  AUDIT_LOG_MAX_SIZE: v.optional(v.string(), defaults.AUDIT_LOG_MAX_SIZE),
-  AUDIT_LOG_MAX_FILES: v.optional(v.string(), defaults.AUDIT_LOG_MAX_FILES),
+  AUDIT_LOG_MAX_SIZE: v.optional(maxSizeRegexSchema(), defaults.AUDIT_LOG_MAX_SIZE),
+  AUDIT_LOG_MAX_FILES: v.optional(maxFilesRegexSchema(), defaults.AUDIT_LOG_MAX_FILES),
 });
 
 export function getLoggingConfig(): Logging {
