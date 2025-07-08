@@ -91,25 +91,6 @@ export function security(environment: ServerEnvironment): RequestHandler {
       return next();
     }
 
-    response.locals.nonce = randomUUID();
-    log.trace('Adding nonce [%s] to response', response.locals.nonce);
-
-    const contentSecurityPolicy = [
-      `base-uri 'none'`,
-      `default-src 'none'`,
-      `connect-src 'self'` + (environment.isProduction ? '' : ' ws://localhost:3001'),
-      `font-src 'self' fonts.gstatic.com use.fontawesome.com www.canada.ca`,
-      `form-action 'self'`,
-      `frame-ancestors 'self'`,
-      `frame-src 'self'`,
-      `img-src 'self' data: www.canada.ca`,
-      `object-src data:`,
-      `script-src 'self' 'nonce-${response.locals.nonce}'`,
-      // NOTE: unsafe-inline is required by Radix Primitives 💩
-      // see https://github.com/radix-ui/primitives/discussions/3130
-      `style-src 'self' 'unsafe-inline' fonts.googleapis.com use.fontawesome.com www.canada.ca`,
-    ].join('; ');
-
     const permissionsPolicy = [
       'camera=()',
       'display-capture=()',
@@ -123,7 +104,6 @@ export function security(environment: ServerEnvironment): RequestHandler {
 
     log.trace('Adding security headers to response');
     response.setHeader('Permissions-Policy', permissionsPolicy);
-    response.setHeader('Content-Security-Policy', contentSecurityPolicy);
     response.setHeader('Cross-Origin-Opener-Policy', 'same-origin');
     response.setHeader('Cross-Origin-Resource-Policy', 'same-origin');
     response.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
