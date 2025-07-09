@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useContext } from 'react';
 
 import type { RouteHandle } from 'react-router';
 import { isRouteErrorResponse, Links, Meta, Outlet, Scripts, ScrollRestoration } from 'react-router';
@@ -15,6 +15,7 @@ import {
   UnilingualErrorBoundary,
   UnilingualNotFound,
 } from '~/components/error-boundaries';
+import { NonceContext } from '~/components/nonce-context';
 import { useLanguage } from '~/hooks/use-language';
 import indexStyleSheet from '~/index.css?url';
 import tailwindStyleSheet from '~/tailwind.css?url';
@@ -65,6 +66,7 @@ export function loader({ context }: Route.LoaderArgs) {
 
 export default function App({ loaderData }: Route.ComponentProps) {
   const { currentLanguage } = useLanguage();
+  const { nonce } = useContext(NonceContext);
 
   const env = getClientEnv();
   useEffect(() => {
@@ -83,21 +85,21 @@ export default function App({ loaderData }: Route.ComponentProps) {
         <Links />
         {env.ADOBE_ANALYTICS_SRC && (
           <>
-            <script src={env.ADOBE_ANALYTICS_JQUERY_SRC} nonce={loaderData.nonce} suppressHydrationWarning={true} />
-            <script src={env.ADOBE_ANALYTICS_SRC} nonce={loaderData.nonce} suppressHydrationWarning={true} />
+            <script src={env.ADOBE_ANALYTICS_JQUERY_SRC} nonce={nonce} suppressHydrationWarning={true} />
+            <script src={env.ADOBE_ANALYTICS_SRC} nonce={nonce} suppressHydrationWarning={true} />
           </>
         )}
       </head>
       <body vocab="http://schema.org/" typeof="WebPage">
         <Outlet />
-        <ScrollRestoration nonce={loaderData.nonce} />
-        <Scripts nonce={loaderData.nonce} />
+        <ScrollRestoration nonce={nonce} />
+        <Scripts nonce={nonce} />
         <script //
-          nonce={loaderData.nonce}
+          nonce={nonce}
           src={`/api/client-env?v=${loaderData.clientEnvRevision}`}
           suppressHydrationWarning={true}
         />
-        <ClientEnv env={env} nonce={loaderData.nonce} />
+        <ClientEnv env={env} nonce={nonce} />
       </body>
     </html>
   );
