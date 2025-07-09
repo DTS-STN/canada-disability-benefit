@@ -109,21 +109,11 @@ export const i18nRoutes = [
     children: [
       {
         id: 'PROT-0001',
-        file: 'routes/index.tsx',
-        paths: { en: '/en/', fr: '/fr/' },
-      },
-      {
-        id: 'PROT-0002',
         file: 'routes/letters.tsx',
         paths: { en: '/en/letters', fr: '/fr/lettres' },
       },
       {
-        id: 'PROT-0003',
-        file: 'routes/data-unavailable.tsx',
-        paths: { en: '/en/data-unavailable', fr: '/fr/donnees-indisponibles' },
-      },
-      {
-        id: 'PROT-0004',
+        id: 'PROT-0002',
         file: 'routes/$id.download.ts',
         paths: { en: '/en/letters/:id/download', fr: '/fr/lettres/:id/telecharger' },
       },

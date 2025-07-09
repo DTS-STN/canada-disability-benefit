@@ -12,7 +12,7 @@ describe('Menu', () => {
         path: '/fr/public',
         Component: () => (
           <Menu>
-            <MenuItem file="routes/index.tsx">This is a test</MenuItem>
+            <MenuItem file="routes/letters.tsx">This is a test</MenuItem>
           </Menu>
         ),
       },
