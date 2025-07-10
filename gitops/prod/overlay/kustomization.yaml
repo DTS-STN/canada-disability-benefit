@@ -22,8 +22,8 @@ resources:
   #   2. for full application maintenance, uncomment ./ingresses-maintenance.yaml
   #
   #
-  # ./ingresses.yaml
-  - ./ingresses-maintenance.yaml
+   ./ingresses.yaml
+  # ./ingresses-maintenance.yaml
   # Note: for the maintenance page, see the maintenance configMapGenerator below
 patches:
   - path: ./patches/deployments-frontend.yaml
