@@ -524,7 +524,7 @@ class RaoidcClient {
         redirect_uri: redirectUri,
       }).toString(),
     });
-    console.trace(
+    log.trace(
       'endpoint' +
         this.serverMetadata.token_endpoint +
         'client id' +
