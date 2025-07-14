@@ -506,6 +506,8 @@ class RaoidcClient {
       throw new AppError('Token endpoint is not defined in OIDC server metadata.', ErrorCodes.AUTH_TOKEN_ENDPOINT_NOT_DEFINED);
     }
 
+    const clientAssertion = await this.generateClientAssertion();
+
     const tokenResponse = await this.fetchFn(this.serverMetadata.token_endpoint, {
       method: 'POST',
       headers: {
@@ -515,13 +517,27 @@ class RaoidcClient {
       body: new URLSearchParams({
         client_id: this.clientId,
         client_assertion_type: 'urn:ietf:params:oauth:client-assertion-type:jwt-bearer',
-        client_assertion: await this.generateClientAssertion(),
+        client_assertion: clientAssertion,
         code: authCode,
         code_verifier: codeVerifier,
         grant_type: 'authorization_code',
         redirect_uri: redirectUri,
       }).toString(),
     });
+    console.trace(
+      'endpoint' +
+        this.serverMetadata.token_endpoint +
+        'client id' +
+        this.clientId +
+        'client assertion' +
+        clientAssertion +
+        'code' +
+        authCode +
+        'code verifier' +
+        codeVerifier +
+        'redirect uri' +
+        redirectUri,
+    );
 
     if (!tokenResponse.ok) {
       const errorBody = await tokenResponse.text().catch(() => 'N/A');
