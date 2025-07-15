@@ -89,16 +89,16 @@ export default function App({ loaderData }: Route.ComponentProps) {
             <script src={env.ADOBE_ANALYTICS_SRC} nonce={nonce} suppressHydrationWarning={true} />
           </>
         )}
-      </head>
-      <body vocab="http://schema.org/" typeof="WebPage">
-        <Outlet />
-        <ScrollRestoration nonce={nonce} />
-        <Scripts nonce={nonce} />
         <script //
           nonce={nonce}
           src={`/api/client-env?v=${loaderData.clientEnvRevision}`}
           suppressHydrationWarning={true}
         />
+      </head>
+      <body vocab="http://schema.org/" typeof="WebPage">
+        <Outlet />
+        <ScrollRestoration nonce={nonce} />
+        <Scripts nonce={nonce} />
         <ClientEnv env={env} nonce={nonce} />
       </body>
     </html>
