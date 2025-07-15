@@ -1,4 +1,4 @@
-import { getClientEnv } from '~/utils/client-env';
+import { clientEnvironment } from '~/.server/environment';
 
 type AdobeDataLayer = { push?: (object: Record<string, string | Record<string, string>>) => void };
 
@@ -9,8 +9,7 @@ declare global {
 }
 
 export function isConfigured() {
-  const env = getClientEnv();
-  return env.ADOBE_ANALYTICS_SRC !== undefined;
+  return clientEnvironment.ADOBE_ANALYTICS_SRC !== undefined;
 }
 
 export function pushErrorEvent(errorStatusCode: 404 | 500) {
