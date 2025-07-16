@@ -1,4 +1,4 @@
-import { useEffect, useContext } from 'react';
+import { useContext, useEffect } from 'react';
 
 import type { RouteHandle } from 'react-router';
 import { isRouteErrorResponse, Links, Meta, Outlet, Scripts, ScrollRestoration } from 'react-router';
@@ -68,10 +68,9 @@ export default function App({ loaderData }: Route.ComponentProps) {
 
   useEffect(() => {
     if (adobeAnalytics.isConfigured()) {
-      const locationUrl = new URL(location.pathname, origin);
-      adobeAnalytics.pushPageviewEvent(locationUrl);
+      adobeAnalytics.pushPageviewEvent(new URL(location.pathname, origin));
     }
-  });
+  }, [adobeAnalytics, location.pathname, origin]);
 
   return (
     <html lang={currentLanguage}>
@@ -80,10 +79,18 @@ export default function App({ loaderData }: Route.ComponentProps) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
         <Links />
-        {clientEnvironment.ADOBE_ANALYTICS_SRC && (
+        {adobeAnalytics.isConfigured() && (
           <>
-            <script src={clientEnvironment.ADOBE_ANALYTICS_JQUERY_SRC} nonce={nonce} suppressHydrationWarning={true} />
-            <script src={clientEnvironment.ADOBE_ANALYTICS_SRC} nonce={nonce} suppressHydrationWarning={true} />
+            <script //
+              nonce={nonce}
+              src={globalThis.__appEnvironment.ADOBE_ANALYTICS_JQUERY_SRC}
+              suppressHydrationWarning={true}
+            />
+            <script //
+              nonce={nonce}
+              src={globalThis.__appEnvironment.ADOBE_ANALYTICS_SRC}
+              suppressHydrationWarning={true}
+            />
           </>
         )}
         <script //

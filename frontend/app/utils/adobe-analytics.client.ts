@@ -1,5 +1,3 @@
-import { clientEnvironment } from '~/.server/environment';
-
 type AdobeDataLayer = { push?: (object: Record<string, string | Record<string, string>>) => void };
 
 declare global {
@@ -9,7 +7,7 @@ declare global {
 }
 
 export function isConfigured() {
-  return clientEnvironment.ADOBE_ANALYTICS_SRC !== undefined;
+  return globalThis.__appEnvironment.ADOBE_ANALYTICS_SRC !== undefined;
 }
 
 export function pushErrorEvent(errorStatusCode: 404 | 500) {

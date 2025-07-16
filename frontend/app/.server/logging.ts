@@ -9,17 +9,23 @@
  */
 import os from 'node:os';
 import util from 'node:util';
+import * as v from 'valibot';
 import type * as w from 'winston';
 import winston, { format, transports } from 'winston';
 import DailyRotateFile from 'winston-daily-rotate-file';
 import { fullFormat } from 'winston-error-format';
 
-import { getLoggingConfig, logLevels } from './environment/logging';
+import { logging, logLevels } from './environment/logging';
+
+import { preprocess } from '~/utils/validation-utils';
 
 const consoleTransport = new transports.Console({
   handleExceptions: true,
   handleRejections: true,
 });
+
+// Note: the logging config is not read from `serverEnvironment` because it needs to be available before the serverEnvironment is parsed.
+const loggingConfig = v.parse(logging, preprocess(process.env));
 
 export const LogFactory = {
   /**
@@ -41,7 +47,7 @@ export const LogFactory = {
     process.setMaxListeners(maxListeners + 2);
 
     const logger = winston.loggers.add(category, {
-      level: getLoggingConfig().LOG_LEVEL,
+      level: loggingConfig.LOG_LEVEL,
       levels: logLevels,
       format: format.combine(
         format.label({ label: category }),
@@ -53,16 +59,16 @@ export const LogFactory = {
       transports: [consoleTransport],
     });
 
-    if (getLoggingConfig().LOG_AUDITING_ENABLED) {
+    if (loggingConfig.LOG_AUDITING_ENABLED) {
       const dailyRotateFileTransport = new DailyRotateFile({
         level: 'audit',
-        dirname: getLoggingConfig().AUDIT_LOG_DIR_NAME,
-        filename: getLoggingConfig().AUDIT_LOG_FILE_NAME,
+        dirname: loggingConfig.AUDIT_LOG_DIR_NAME,
+        filename: loggingConfig.AUDIT_LOG_FILE_NAME,
         format: format.printf((info) => `${info.message}`),
         extension: `_${os.hostname()}.log`,
         utc: true,
-        maxSize: getLoggingConfig().AUDIT_LOG_MAX_SIZE,
-        maxFiles: getLoggingConfig().AUDIT_LOG_MAX_FILES,
+        maxSize: loggingConfig.AUDIT_LOG_MAX_SIZE,
+        maxFiles: loggingConfig.AUDIT_LOG_MAX_FILES,
       });
       logger.add(dailyRotateFileTransport);
     }

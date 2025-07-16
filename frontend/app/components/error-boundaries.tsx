@@ -30,10 +30,10 @@ export function BilingualErrorBoundary({ actionData, error, loaderData, params }
   const fr = i18n.getFixedT('fr');
 
   useEffect(() => {
-    if (adobeAnalytics.isConfigured()) {
+    if (globalThis.__appEnvironment.ADOBE_ANALYTICS_SRC) {
       adobeAnalytics.pushErrorEvent(500);
     }
-  }, []);
+  }, [adobeAnalytics, globalThis.__appEnvironment.ADOBE_ANALYTICS_SRC]);
 
   return (
     <html lang="en">
@@ -42,6 +42,11 @@ export function BilingualErrorBoundary({ actionData, error, loaderData, params }
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
         <Links />
+        <script //
+          nonce={loaderData?.nonce}
+          src={`/api/client-env?v=${loaderData?.clientEnvRevision}`}
+          suppressHydrationWarning={true}
+        />
       </head>
       <body>
         <header className="border-b-[3px] border-slate-700 print:hidden">
@@ -132,11 +137,6 @@ export function BilingualErrorBoundary({ actionData, error, loaderData, params }
         </main>
         <Footer bilingual={true} />
         <Scripts nonce={loaderData?.nonce} />
-        <script //
-          nonce={loaderData?.nonce}
-          src={`/api/client-env?v=${loaderData?.clientEnvRevision}`}
-          suppressHydrationWarning={true}
-        />
       </body>
     </html>
   );
@@ -151,10 +151,10 @@ export function BilingualNotFound({ actionData, error, loaderData, params }: Rou
   const fr = i18n.getFixedT('fr');
 
   useEffect(() => {
-    if (adobeAnalytics.isConfigured()) {
+    if (globalThis.__appEnvironment.ADOBE_ANALYTICS_SRC) {
       adobeAnalytics.pushErrorEvent(404);
     }
-  }, []);
+  }, [adobeAnalytics, globalThis.__appEnvironment.ADOBE_ANALYTICS_SRC]);
 
   return (
     <html lang="en">
@@ -163,6 +163,11 @@ export function BilingualNotFound({ actionData, error, loaderData, params }: Rou
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
         <Links />
+        <script //
+          nonce={loaderData?.nonce}
+          src={`/api/client-env?v=${loaderData?.clientEnvRevision}`}
+          suppressHydrationWarning={true}
+        />
       </head>
       <body>
         <header className="border-b-[3px] border-slate-700 print:hidden">
@@ -204,11 +209,6 @@ export function BilingualNotFound({ actionData, error, loaderData, params }: Rou
         </main>
         <Footer bilingual={true} />
         <Scripts nonce={loaderData?.nonce} />
-        <script //
-          nonce={loaderData?.nonce}
-          src={`/api/client-env?v=${loaderData?.clientEnvRevision}`}
-          suppressHydrationWarning={true}
-        />
       </body>
     </html>
   );
@@ -228,10 +228,10 @@ export function UnilingualErrorBoundary({ actionData, error, loaderData, params 
   const { t } = useTranslation(['gcweb']);
 
   useEffect(() => {
-    if (adobeAnalytics.isConfigured()) {
+    if (globalThis.__appEnvironment.ADOBE_ANALYTICS_SRC) {
       adobeAnalytics.pushErrorEvent(500);
     }
-  }, []);
+  }, [adobeAnalytics, globalThis.__appEnvironment.ADOBE_ANALYTICS_SRC]);
 
   return (
     <html lang={currentLanguage}>
@@ -240,6 +240,11 @@ export function UnilingualErrorBoundary({ actionData, error, loaderData, params 
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
         <Links />
+        <script //
+          nonce={loaderData?.nonce}
+          src={`/api/client-env?v=${loaderData?.clientEnvRevision}`}
+          suppressHydrationWarning={true}
+        />
       </head>
       <body>
         <header className="border-b-[3px] border-slate-700 print:hidden">
@@ -291,11 +296,6 @@ export function UnilingualErrorBoundary({ actionData, error, loaderData, params 
         </main>
         <Footer bilingual={false} />
         <Scripts nonce={loaderData?.nonce} />
-        <script //
-          nonce={loaderData?.nonce}
-          src={`/api/client-env?v=${loaderData?.clientEnvRevision}`}
-          suppressHydrationWarning={true}
-        />
       </body>
     </html>
   );
@@ -309,10 +309,10 @@ export function UnilingualNotFound({ actionData, error, loaderData, params }: Ro
   const { t } = useTranslation(['gcweb']);
 
   useEffect(() => {
-    if (adobeAnalytics.isConfigured()) {
+    if (globalThis.__appEnvironment.ADOBE_ANALYTICS_SRC) {
       adobeAnalytics.pushErrorEvent(404);
     }
-  }, []);
+  }, [adobeAnalytics, globalThis.__appEnvironment.ADOBE_ANALYTICS_SRC]);
 
   return (
     <html lang={currentLanguage}>
@@ -321,6 +321,11 @@ export function UnilingualNotFound({ actionData, error, loaderData, params }: Ro
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
         <Links />
+        <script //
+          nonce={loaderData?.nonce}
+          src={`/api/client-env?v=${loaderData?.clientEnvRevision}`}
+          suppressHydrationWarning={true}
+        />
       </head>
       <body>
         <header className="border-b-[3px] border-slate-700 print:hidden">
@@ -348,11 +353,6 @@ export function UnilingualNotFound({ actionData, error, loaderData, params }: Ro
         </main>
         <Footer bilingual={false} />
         <Scripts nonce={loaderData?.nonce} />
-        <script //
-          nonce={loaderData?.nonce}
-          src={`/api/client-env?v=${loaderData?.clientEnvRevision}`}
-          suppressHydrationWarning={true}
-        />
       </body>
     </html>
   );
