@@ -3,6 +3,8 @@ import * as v from 'valibot';
 import { stringToBooleanSchema } from '../validation/string-to-boolean-schema';
 import { stringToIntegerSchema } from '../validation/string-to-integer-schema';
 
+const isProduction = process.env.NODE_ENV === 'production';
+
 export type CctApi = Readonly<v.InferOutput<typeof cctApi>>;
 
 export const defaults = {
@@ -15,7 +17,7 @@ export const defaults = {
   HTTP_PROXY_TLS_TIMEOUT: '30000',
   HEALTH_PLACEHOLDER_REQUEST_VALUE: 'CDB_HEALTH_CHECK',
   INTEROP_API_SUBSCRIPTION_KEY: '',
-  ENABLE_MOCK_LETTER_SERVICE: 'false',
+  ENABLE_MOCK_LETTER_SERVICE: isProduction ? 'false' : 'true',
   CCT_LETTER_FILTER: '.*invitation.*',
 } as const;
 
