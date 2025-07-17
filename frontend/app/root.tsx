@@ -1,4 +1,4 @@
-import { useEffect, useContext } from 'react';
+import { useContext, useEffect } from 'react';
 
 import type { RouteHandle } from 'react-router';
 import { isRouteErrorResponse, Links, Meta, Outlet, Scripts, ScrollRestoration } from 'react-router';
@@ -8,7 +8,6 @@ import { config as fontAwesomeConfig } from '@fortawesome/fontawesome-svg-core';
 import type { Route } from './+types/root';
 
 import { clientEnvironment } from '~/.server/environment';
-import { ClientEnv } from '~/components/client-env';
 import {
   BilingualErrorBoundary,
   BilingualNotFound,
@@ -20,7 +19,6 @@ import { useLanguage } from '~/hooks/use-language';
 import indexStyleSheet from '~/index.css?url';
 import tailwindStyleSheet from '~/tailwind.css?url';
 import * as adobeAnalytics from '~/utils/adobe-analytics.client';
-import { getClientEnv } from '~/utils/client-env';
 import { HttpStatusCodes } from '~/utils/http-status-codes';
 
 // see: https://docs.fontawesome.com/web/dig-deeper/security#content-security-policy
@@ -68,13 +66,11 @@ export default function App({ loaderData }: Route.ComponentProps) {
   const { currentLanguage } = useLanguage();
   const { nonce } = useContext(NonceContext);
 
-  const env = getClientEnv();
   useEffect(() => {
-    if (adobeAnalytics.isConfigured()) {
-      const locationUrl = new URL(location.pathname, origin);
-      adobeAnalytics.pushPageviewEvent(locationUrl);
+    if (globalThis.__appEnvironment.ADOBE_ANALYTICS_SRC) {
+      adobeAnalytics.pushPageviewEvent(new URL(location.pathname, origin));
     }
-  });
+  }, []);
 
   return (
     <html lang={currentLanguage}>
@@ -83,23 +79,30 @@ export default function App({ loaderData }: Route.ComponentProps) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
         <Links />
-        {env.ADOBE_ANALYTICS_SRC && (
+        {globalThis.__appEnvironment.ADOBE_ANALYTICS_SRC && (
           <>
-            <script src={env.ADOBE_ANALYTICS_JQUERY_SRC} nonce={nonce} suppressHydrationWarning={true} />
-            <script src={env.ADOBE_ANALYTICS_SRC} nonce={nonce} suppressHydrationWarning={true} />
+            <script //
+              nonce={nonce}
+              src={globalThis.__appEnvironment.ADOBE_ANALYTICS_JQUERY_SRC}
+              suppressHydrationWarning={true}
+            />
+            <script //
+              nonce={nonce}
+              src={globalThis.__appEnvironment.ADOBE_ANALYTICS_SRC}
+              suppressHydrationWarning={true}
+            />
           </>
         )}
-      </head>
-      <body vocab="http://schema.org/" typeof="WebPage">
-        <Outlet />
-        <ScrollRestoration nonce={nonce} />
-        <Scripts nonce={nonce} />
         <script //
           nonce={nonce}
           src={`/api/client-env?v=${loaderData.clientEnvRevision}`}
           suppressHydrationWarning={true}
         />
-        <ClientEnv env={env} nonce={nonce} />
+      </head>
+      <body vocab="http://schema.org/" typeof="WebPage">
+        <Outlet />
+        <ScrollRestoration nonce={nonce} />
+        <Scripts nonce={nonce} />
       </body>
     </html>
   );

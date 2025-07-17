@@ -1,7 +1,5 @@
 import * as v from 'valibot';
 
-import { singleton } from '../utils/instance-registry';
-
 import { maxFilesRegexSchema } from '~/.server/validation/max-files-regex-schema';
 import { maxSizeRegexSchema } from '~/.server/validation/max-size-regex-schema';
 import { stringToBooleanSchema } from '~/.server/validation/string-to-boolean-schema';
@@ -39,11 +37,3 @@ export const logging = v.object({
   AUDIT_LOG_MAX_SIZE: v.optional(maxSizeRegexSchema(), defaults.AUDIT_LOG_MAX_SIZE),
   AUDIT_LOG_MAX_FILES: v.optional(maxFilesRegexSchema(), defaults.AUDIT_LOG_MAX_FILES),
 });
-
-export function getLoggingConfig(): Logging {
-  return singleton<Logging>('loggingConfig', () => {
-    // Parse environment variables, applying validation rules
-    // The singleton ensures we only validate once per application instance
-    return v.parse(logging, process.env);
-  });
-}

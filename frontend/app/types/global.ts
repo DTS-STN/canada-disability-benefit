@@ -6,6 +6,12 @@ import type { ClientEnvironment } from '~/.server/environment';
 import type { InstanceName } from '~/.server/utils/instance-registry';
 
 declare global {
+  interface Window {
+    adobeDataLayer?: {
+      push?: (object: Record<string, string | Record<string, string>>) => void;
+    };
+  }
+
   /**
    * The application's session type.
    */

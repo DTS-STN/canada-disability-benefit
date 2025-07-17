@@ -16,6 +16,9 @@ exports[`error-boundaries > BilingualErrorBoundary > should correctly render the
       href="build/stub-path-to-module.js"
       rel="modulepreload"
     />
+    <script
+      src="/api/client-env?v=undefined"
+    />
   </head>
   <body>
     <div>
@@ -180,9 +183,6 @@ exports[`error-boundaries > BilingualErrorBoundary > should correctly render the
       >
          
       </script>
-      <script
-        src="/api/client-env?v=undefined"
-      />
     </div>
   </body>
 </html>
@@ -199,6 +199,9 @@ exports[`error-boundaries > BilingualErrorBoundary > should correctly render the
     <meta
       content="width=device-width, initial-scale=1"
       name="viewport"
+    />
+    <script
+      src="/api/client-env?v=undefined"
     />
   </head>
   <body>
@@ -369,9 +372,6 @@ exports[`error-boundaries > BilingualErrorBoundary > should correctly render the
           </div>
         </div>
       </footer>
-      <script
-        src="/api/client-env?v=undefined"
-      />
     </div>
   </body>
 </html>
@@ -388,6 +388,9 @@ exports[`error-boundaries > BilingualNotFound > should correctly render the bili
     <meta
       content="width=device-width, initial-scale=1"
       name="viewport"
+    />
+    <script
+      src="/api/client-env?v=undefined"
     />
   </head>
   <body>
@@ -548,9 +551,6 @@ exports[`error-boundaries > BilingualNotFound > should correctly render the bili
           </div>
         </div>
       </footer>
-      <script
-        src="/api/client-env?v=undefined"
-      />
     </div>
   </body>
 </html>
@@ -567,6 +567,9 @@ exports[`error-boundaries > UnilingualErrorBoundary > should correctly render th
     <meta
       content="width=device-width, initial-scale=1"
       name="viewport"
+    />
+    <script
+      src="/api/client-env?v=undefined"
     />
   </head>
   <body>
@@ -701,9 +704,6 @@ exports[`error-boundaries > UnilingualErrorBoundary > should correctly render th
           </div>
         </div>
       </footer>
-      <script
-        src="/api/client-env?v=undefined"
-      />
     </div>
   </body>
 </html>
@@ -720,6 +720,9 @@ exports[`error-boundaries > UnilingualErrorBoundary > should correctly render th
     <meta
       content="width=device-width, initial-scale=1"
       name="viewport"
+    />
+    <script
+      src="/api/client-env?v=undefined"
     />
   </head>
   <body>
@@ -864,9 +867,6 @@ exports[`error-boundaries > UnilingualErrorBoundary > should correctly render th
           </div>
         </div>
       </footer>
-      <script
-        src="/api/client-env?v=undefined"
-      />
     </div>
   </body>
 </html>
@@ -881,6 +881,9 @@ exports[`error-boundaries > UnilingualNotFound > should correctly render the uni
     <meta
       content="width=device-width, initial-scale=1"
       name="viewport"
+    />
+    <script
+      src="/api/client-env?v=undefined"
     />
   </head>
   <body>
@@ -1015,9 +1018,6 @@ exports[`error-boundaries > UnilingualNotFound > should correctly render the uni
           </div>
         </div>
       </footer>
-      <script
-        src="/api/client-env?v=undefined"
-      />
     </div>
   </body>
 </html>

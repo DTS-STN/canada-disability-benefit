@@ -1,41 +1,14 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
-import { pushErrorEvent, pushPageviewEvent, isConfigured } from '~/utils/adobe-analytics.client';
-import { getClientEnv } from '~/utils/client-env';
+import { pushErrorEvent, pushPageviewEvent } from '~/utils/adobe-analytics.client';
 
 /*
  * @vitest-environment jsdom
  */
 
-vi.mock('~/utils/client-env');
-
-describe('isConfigured + pushPageViewEvent + pushErrorEvent', () => {
+describe('adobe-analytics', () => {
   afterEach(() => {
     vi.restoreAllMocks();
-  });
-
-  it('should return true if all necessary environment variables are present and are valid URLs', () => {
-    vi.mocked(getClientEnv).mockImplementation(() => {
-      return {
-        ADOBE_ANALYTICS_SRC: 'http://example.com/adobe-analytics.min.js',
-        ADOBE_ANALYTICS_JQUERY_SRC: 'http://example.com/jquery.min.js',
-      };
-    });
-
-    const result = isConfigured();
-    expect(result).toBe(true);
-  });
-
-  it('should return false if ADOBE_ANALYTICS_SRC is missing', () => {
-    vi.mocked(getClientEnv).mockImplementation(() => {
-      return {
-        ADOBE_ANALYTICS_SRC: undefined,
-        ADOBE_ANALYTICS_JQUERY_SRC: 'http://example.com/jquery.min.js',
-      };
-    });
-
-    const result = isConfigured();
-    expect(result).toBe(false);
   });
 
   describe('pushErrorEvent', () => {

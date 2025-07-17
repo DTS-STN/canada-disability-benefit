@@ -12,19 +12,15 @@ import {
 } from '~/components/error-boundaries';
 import { AppError } from '~/errors/app-error';
 import { ErrorCodes } from '~/errors/error-codes';
-import { isConfigured } from '~/utils/adobe-analytics.client';
 import { HttpStatusCodes } from '~/utils/http-status-codes';
 
 vi.mock('~/utils/adobe-analytics.client');
-
-vi.mocked(isConfigured).mockImplementation(() => {
-  return true;
-});
 
 describe('error-boundaries', () => {
   globalThis.__appEnvironment = mock({
     MSCA_BASE_URL: 'https://msca.example.com/',
   });
+
   describe('BilingualErrorBoundary', () => {
     it('should correctly render the bilingual error boundary when it catches a generic error', () => {
       vi.spyOn(console, 'error').mockImplementation(() => {});
@@ -66,6 +62,7 @@ describe('error-boundaries', () => {
     globalThis.__appEnvironment = mock({
       MSCA_BASE_URL: 'https://msca.example.com/',
     });
+
     it('should correctly render the bilingual 404 when it catches a 404 error', () => {
       vi.spyOn(console, 'error').mockImplementation(() => {});
 
@@ -88,6 +85,7 @@ describe('error-boundaries', () => {
     globalThis.__appEnvironment = mock({
       MSCA_BASE_URL: 'https://msca.example.com/',
     });
+
     it('should correctly render the unilingual error boundary when it catches a generic error', () => {
       vi.spyOn(console, 'error').mockImplementation(() => {});
 
@@ -128,6 +126,7 @@ describe('error-boundaries', () => {
     globalThis.__appEnvironment = mock({
       MSCA_BASE_URL: 'https://msca.example.com/',
     });
+
     it('should correctly render the unilingual 404 when it catches a 404 error', () => {
       vi.spyOn(console, 'error').mockImplementation(() => {});
 
