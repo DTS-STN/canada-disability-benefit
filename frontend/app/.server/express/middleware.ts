@@ -28,7 +28,8 @@ function shouldIgnore(ignorePatterns: string[], path: string): boolean {
  */
 export function caching(environment: ServerEnvironment): RequestHandler {
   const ignorePatterns: string[] = [
-    /* intentionally left blank */
+    '/api/client-env', //
+    '/api/translations',
   ];
 
   return (request, response, next) => {
