@@ -1,15 +1,3 @@
-type AdobeDataLayer = { push?: (object: Record<string, string | Record<string, string>>) => void };
-
-declare global {
-  interface Window {
-    adobeDataLayer?: AdobeDataLayer;
-  }
-}
-
-export function isConfigured() {
-  return globalThis.__appEnvironment.ADOBE_ANALYTICS_SRC !== undefined;
-}
-
 export function pushErrorEvent(errorStatusCode: 404 | 500) {
   if (!window.adobeDataLayer) {
     console.warn(

@@ -67,7 +67,7 @@ export default function App({ loaderData }: Route.ComponentProps) {
   const { nonce } = useContext(NonceContext);
 
   useEffect(() => {
-    if (adobeAnalytics.isConfigured()) {
+    if (globalThis.__appEnvironment.ADOBE_ANALYTICS_SRC) {
       adobeAnalytics.pushPageviewEvent(new URL(location.pathname, origin));
     }
   }, []);
@@ -79,7 +79,7 @@ export default function App({ loaderData }: Route.ComponentProps) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
         <Links />
-        {adobeAnalytics.isConfigured() && (
+        {globalThis.__appEnvironment.ADOBE_ANALYTICS_SRC && (
           <>
             <script //
               nonce={nonce}

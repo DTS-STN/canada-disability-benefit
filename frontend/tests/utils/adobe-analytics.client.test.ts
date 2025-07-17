@@ -1,7 +1,6 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { mock } from 'vitest-mock-extended';
 
-import { isConfigured, pushErrorEvent, pushPageviewEvent } from '~/utils/adobe-analytics.client';
+import { pushErrorEvent, pushPageviewEvent } from '~/utils/adobe-analytics.client';
 
 /*
  * @vitest-environment jsdom
@@ -10,48 +9,6 @@ import { isConfigured, pushErrorEvent, pushPageviewEvent } from '~/utils/adobe-a
 describe('adobe-analytics', () => {
   afterEach(() => {
     vi.restoreAllMocks();
-  });
-
-  it('should return true if all necessary environment variables are present and are valid URLs', () => {
-    globalThis.__appEnvironment = mock({
-      isProduction: false,
-      ADOBE_ANALYTICS_SRC: 'http://example.com/adobe-analytics.min.js',
-      ADOBE_ANALYTICS_JQUERY_SRC: 'http://example.com/jquery.min.js',
-      BASE_TIMEZONE: 'Canada/Eastern',
-      BUILD_DATE: '1970-01-01T00:00:00.000Z',
-      BUILD_ID: '000000',
-      BUILD_REVISION: '00000000',
-      BUILD_VERSION: '0.0.0-000000-00000000',
-      I18NEXT_DEBUG: false,
-      SESSION_TIMEOUT_PROMPT_SECONDS: 5 * 60,
-      SESSION_TIMEOUT_SECONDS: 19 * 60,
-      MSCA_BASE_URL: 'http://localhost:3000',
-      ECAS_BASE_URL: 'http://localhost:3000',
-    });
-
-    const result = isConfigured();
-    expect(result).toBe(true);
-  });
-
-  it('should return false if ADOBE_ANALYTICS_SRC is missing', () => {
-    globalThis.__appEnvironment = mock({
-      isProduction: false,
-      ADOBE_ANALYTICS_SRC: undefined,
-      ADOBE_ANALYTICS_JQUERY_SRC: 'http://example.com/jquery.min.js',
-      BASE_TIMEZONE: 'Canada/Eastern',
-      BUILD_DATE: '1970-01-01T00:00:00.000Z',
-      BUILD_ID: '000000',
-      BUILD_REVISION: '00000000',
-      BUILD_VERSION: '0.0.0-000000-00000000',
-      I18NEXT_DEBUG: false,
-      SESSION_TIMEOUT_PROMPT_SECONDS: 5 * 60,
-      SESSION_TIMEOUT_SECONDS: 19 * 60,
-      MSCA_BASE_URL: 'http://localhost:3000',
-      ECAS_BASE_URL: 'http://localhost:3000',
-    });
-
-    const result = isConfigured();
-    expect(result).toBe(false);
   });
 
   describe('pushErrorEvent', () => {
