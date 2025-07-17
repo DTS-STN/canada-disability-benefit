@@ -70,7 +70,7 @@ export default function App({ loaderData }: Route.ComponentProps) {
     if (adobeAnalytics.isConfigured()) {
       adobeAnalytics.pushPageviewEvent(new URL(location.pathname, origin));
     }
-  }, [adobeAnalytics, location.pathname, origin]);
+  }, []);
 
   return (
     <html lang={currentLanguage}>

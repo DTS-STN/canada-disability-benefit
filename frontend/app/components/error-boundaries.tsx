@@ -33,7 +33,7 @@ export function BilingualErrorBoundary({ actionData, error, loaderData, params }
     if (globalThis.__appEnvironment.ADOBE_ANALYTICS_SRC) {
       adobeAnalytics.pushErrorEvent(500);
     }
-  }, [adobeAnalytics, globalThis.__appEnvironment.ADOBE_ANALYTICS_SRC]);
+  }, []);
 
   return (
     <html lang="en">
@@ -154,7 +154,7 @@ export function BilingualNotFound({ actionData, error, loaderData, params }: Rou
     if (globalThis.__appEnvironment.ADOBE_ANALYTICS_SRC) {
       adobeAnalytics.pushErrorEvent(404);
     }
-  }, [adobeAnalytics, globalThis.__appEnvironment.ADOBE_ANALYTICS_SRC]);
+  }, []);
 
   return (
     <html lang="en">
@@ -231,7 +231,7 @@ export function UnilingualErrorBoundary({ actionData, error, loaderData, params 
     if (globalThis.__appEnvironment.ADOBE_ANALYTICS_SRC) {
       adobeAnalytics.pushErrorEvent(500);
     }
-  }, [adobeAnalytics, globalThis.__appEnvironment.ADOBE_ANALYTICS_SRC]);
+  }, []);
 
   return (
     <html lang={currentLanguage}>
@@ -312,7 +312,7 @@ export function UnilingualNotFound({ actionData, error, loaderData, params }: Ro
     if (globalThis.__appEnvironment.ADOBE_ANALYTICS_SRC) {
       adobeAnalytics.pushErrorEvent(404);
     }
-  }, [adobeAnalytics, globalThis.__appEnvironment.ADOBE_ANALYTICS_SRC]);
+  }, []);
 
   return (
     <html lang={currentLanguage}>
