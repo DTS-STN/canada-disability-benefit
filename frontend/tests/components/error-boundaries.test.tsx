@@ -34,7 +34,7 @@ describe('error-boundaries', () => {
 
       render(<RoutesStub />);
 
-      expect(document.documentElement).toMatchSnapshot('expected html');
+      expect(document.documentElement).toMatchSnapshot('expected html 1');
     });
 
     it('should correctly render the bilingual error boundary when it catches an AppError', () => {
@@ -54,7 +54,7 @@ describe('error-boundaries', () => {
 
       render(<RoutesStub />);
 
-      expect(document.documentElement).toMatchSnapshot('expected html');
+      expect(document.documentElement).toMatchSnapshot('expected html 1');
     });
   });
 
@@ -77,7 +77,7 @@ describe('error-boundaries', () => {
 
       render(<RoutesStub />);
 
-      expect(document.documentElement).toMatchSnapshot('expected html');
+      expect(document.documentElement).toMatchSnapshot('expected html 1');
     });
   });
 
@@ -98,7 +98,7 @@ describe('error-boundaries', () => {
 
       render(<RoutesStub initialEntries={['/en']} />);
 
-      expect(document.documentElement).toMatchSnapshot('expected html');
+      expect(document.documentElement).toMatchSnapshot('expected html 1');
     });
 
     it('should correctly render the unilingual error boundary when it catches an AppError', () => {
@@ -118,7 +118,7 @@ describe('error-boundaries', () => {
 
       render(<RoutesStub initialEntries={['/en']} />);
 
-      expect(document.documentElement).toMatchSnapshot('expected html');
+      expect(document.documentElement).toMatchSnapshot('expected html 1');
     });
   });
 
@@ -141,7 +141,7 @@ describe('error-boundaries', () => {
 
       render(<RoutesStub />);
 
-      expect(document.documentElement).toMatchSnapshot('expected html');
+      expect(document.documentElement).toMatchSnapshot('expected html 1');
     });
   });
 });
