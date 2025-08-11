@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useContext } from 'react';
 
 import { Links, Meta, Scripts } from 'react-router';
 
@@ -9,6 +9,7 @@ import { Footer } from './footer';
 
 import { AppLink } from '~/components/links';
 import { UnorderedList } from '~/components/lists';
+import { NonceContext } from '~/components/nonce-context';
 import { PageTitle } from '~/components/page-title';
 import { isAppError } from '~/errors/app-error';
 import { useLanguage } from '~/hooks/use-language';
@@ -28,6 +29,7 @@ export function BilingualErrorBoundary({ actionData, error, loaderData, params }
   const { i18n } = useTranslation(['gcweb']);
   const en = i18n.getFixedT('en');
   const fr = i18n.getFixedT('fr');
+  const { nonce } = useContext(NonceContext);
 
   useEffect(() => {
     if (globalThis.__appEnvironment.ADOBE_ANALYTICS_SRC) {
@@ -42,6 +44,20 @@ export function BilingualErrorBoundary({ actionData, error, loaderData, params }
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
         <Links />
+        {globalThis.__appEnvironment.ADOBE_ANALYTICS_SRC && (
+          <>
+            <script //
+              nonce={nonce}
+              src={globalThis.__appEnvironment.ADOBE_ANALYTICS_JQUERY_SRC}
+              suppressHydrationWarning={true}
+            />
+            <script //
+              nonce={nonce}
+              src={globalThis.__appEnvironment.ADOBE_ANALYTICS_SRC}
+              suppressHydrationWarning={true}
+            />
+          </>
+        )}
         <script //
           nonce={loaderData?.nonce}
           src={`/api/client-env?v=${loaderData?.clientEnvRevision}`}
@@ -149,6 +165,7 @@ export function BilingualNotFound({ actionData, error, loaderData, params }: Rou
   const { i18n } = useTranslation(['gcweb']);
   const en = i18n.getFixedT('en');
   const fr = i18n.getFixedT('fr');
+  const { nonce } = useContext(NonceContext);
 
   useEffect(() => {
     if (globalThis.__appEnvironment.ADOBE_ANALYTICS_SRC) {
@@ -163,6 +180,20 @@ export function BilingualNotFound({ actionData, error, loaderData, params }: Rou
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
         <Links />
+        {globalThis.__appEnvironment.ADOBE_ANALYTICS_SRC && (
+          <>
+            <script //
+              nonce={nonce}
+              src={globalThis.__appEnvironment.ADOBE_ANALYTICS_JQUERY_SRC}
+              suppressHydrationWarning={true}
+            />
+            <script //
+              nonce={nonce}
+              src={globalThis.__appEnvironment.ADOBE_ANALYTICS_SRC}
+              suppressHydrationWarning={true}
+            />
+          </>
+        )}
         <script //
           nonce={loaderData?.nonce}
           src={`/api/client-env?v=${loaderData?.clientEnvRevision}`}
@@ -226,6 +257,7 @@ export function BilingualNotFound({ actionData, error, loaderData, params }: Rou
 export function UnilingualErrorBoundary({ actionData, error, loaderData, params }: Route.ErrorBoundaryProps) {
   const { currentLanguage } = useLanguage();
   const { t } = useTranslation(['gcweb']);
+  const { nonce } = useContext(NonceContext);
 
   useEffect(() => {
     if (globalThis.__appEnvironment.ADOBE_ANALYTICS_SRC) {
@@ -240,6 +272,20 @@ export function UnilingualErrorBoundary({ actionData, error, loaderData, params 
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
         <Links />
+        {globalThis.__appEnvironment.ADOBE_ANALYTICS_SRC && (
+          <>
+            <script //
+              nonce={nonce}
+              src={globalThis.__appEnvironment.ADOBE_ANALYTICS_JQUERY_SRC}
+              suppressHydrationWarning={true}
+            />
+            <script //
+              nonce={nonce}
+              src={globalThis.__appEnvironment.ADOBE_ANALYTICS_SRC}
+              suppressHydrationWarning={true}
+            />
+          </>
+        )}
         <script //
           nonce={loaderData?.nonce}
           src={`/api/client-env?v=${loaderData?.clientEnvRevision}`}
@@ -307,6 +353,7 @@ export function UnilingualErrorBoundary({ actionData, error, loaderData, params 
 export function UnilingualNotFound({ actionData, error, loaderData, params }: Route.ErrorBoundaryProps) {
   const { currentLanguage } = useLanguage();
   const { t } = useTranslation(['gcweb']);
+  const { nonce } = useContext(NonceContext);
 
   useEffect(() => {
     if (globalThis.__appEnvironment.ADOBE_ANALYTICS_SRC) {
@@ -321,6 +368,20 @@ export function UnilingualNotFound({ actionData, error, loaderData, params }: Ro
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
         <Links />
+        {globalThis.__appEnvironment.ADOBE_ANALYTICS_SRC && (
+          <>
+            <script //
+              nonce={nonce}
+              src={globalThis.__appEnvironment.ADOBE_ANALYTICS_JQUERY_SRC}
+              suppressHydrationWarning={true}
+            />
+            <script //
+              nonce={nonce}
+              src={globalThis.__appEnvironment.ADOBE_ANALYTICS_SRC}
+              suppressHydrationWarning={true}
+            />
+          </>
+        )}
         <script //
           nonce={loaderData?.nonce}
           src={`/api/client-env?v=${loaderData?.clientEnvRevision}`}

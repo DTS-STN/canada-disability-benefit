@@ -68,7 +68,11 @@ export default function App({ loaderData }: Route.ComponentProps) {
 
   useEffect(() => {
     if (globalThis.__appEnvironment.ADOBE_ANALYTICS_SRC) {
-      adobeAnalytics.pushPageviewEvent(new URL(location.pathname, origin));
+      const urlParams = new URLSearchParams(location.search);
+      const sort = urlParams.get('sort');
+      if (isNotAuthOrDropdownRequest(sort)) {
+        adobeAnalytics.pushPageviewEvent(new URL(location.pathname, origin));
+      }
     }
   }, []);
 
@@ -77,6 +81,11 @@ export default function App({ loaderData }: Route.ComponentProps) {
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="dcterms.title" content="My Canada Disability Benefit letters" />
+        <meta name="dcterms.language" content="eng" />
+        <meta name="dcterms.creator" content="Employment and Social Development Canada" />
+        <meta name="dcterms.accessRights" content="1" />
+        <meta name="gcaaterms.sitename" content="ESDC-EDSC_MSCA-MDSC_CDBLetters-LettresPCPH" />
         <Meta />
         <Links />
         {globalThis.__appEnvironment.ADOBE_ANALYTICS_SRC && (
@@ -126,4 +135,8 @@ export function ErrorBoundary(props: Route.ErrorBoundaryProps) {
 
 function isNotFoundError(error: Route.ErrorBoundaryProps['error']) {
   return isRouteErrorResponse(error) && error.status === HttpStatusCodes.NOT_FOUND;
+}
+
+function isNotAuthOrDropdownRequest(sort: string | null) {
+  return !sort && !location.pathname.includes('auth/login') && !location.pathname.includes('auth/callback');
 }
