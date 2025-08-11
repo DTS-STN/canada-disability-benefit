@@ -70,7 +70,7 @@ export default function App({ loaderData }: Route.ComponentProps) {
     if (globalThis.__appEnvironment.ADOBE_ANALYTICS_SRC) {
       const urlParams = new URLSearchParams(location.search);
       const sort = urlParams.get('sort');
-      if (!sort && !location.pathname.includes('auth/login') && !location.pathname.includes('auth/callback')) {
+      if (isNotAuthOrDropdownRequest(sort)) {
         adobeAnalytics.pushPageviewEvent(new URL(location.pathname, origin));
       }
     }
@@ -135,4 +135,8 @@ export function ErrorBoundary(props: Route.ErrorBoundaryProps) {
 
 function isNotFoundError(error: Route.ErrorBoundaryProps['error']) {
   return isRouteErrorResponse(error) && error.status === HttpStatusCodes.NOT_FOUND;
+}
+
+function isNotAuthOrDropdownRequest(sort: string | null) {
+  return !sort && !location.pathname.includes('auth/login') && !location.pathname.includes('auth/callback');
 }
