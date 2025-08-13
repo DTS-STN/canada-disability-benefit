@@ -12,8 +12,8 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: dtsrhpdevscedacr.azurecr.io/canada-disability-benefit/cdb-frontend:0.0.0-d1e247fb-00058
-          imagePullPolicy: Always
+          image: dtsrhpdevscedacr.azurecr.io/canada-disability-benefit/cdb-frontend:latest
+
           envFrom:
             - configMapRef:
                 name: frontend
