@@ -76,16 +76,25 @@ export default function App({ loaderData }: Route.ComponentProps) {
     }
   }, []);
 
+  const englishTitle = 'My Canada Disability Benefit letters';
+  const frenchTitle = 'Mes lettres de la Prestation canadienne pour les personnes handicapées';
+  const dcTermsTitle = currentLanguage === 'en' ? englishTitle : frenchTitle;
+  const dcTermsLanguage = currentLanguage === 'en' ? 'eng' : 'fra';
+  const englishCreator = 'Employment and Social Development Canada';
+  const frenchCreator = 'Emploi et Développement social Canada';
+  const dcTermsCreator = currentLanguage === 'en' ? englishCreator : frenchCreator;
+  const dcSiteNameBilingual = 'ESDC-EDSC_MSCA-MDSC_CDBLetters-LettresPCPH';
+
   return (
     <html lang={currentLanguage}>
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="dcterms.title" content="My Canada Disability Benefit letters" />
-        <meta name="dcterms.language" content="eng" />
-        <meta name="dcterms.creator" content="Employment and Social Development Canada" />
+        <meta name="dcterms.title" content={dcTermsTitle} />
+        <meta name="dcterms.language" content={dcTermsLanguage} />
+        <meta name="dcterms.creator" content={dcTermsCreator} />
         <meta name="dcterms.accessRights" content="1" />
-        <meta name="gcaaterms.sitename" content="ESDC-EDSC_MSCA-MDSC_CDBLetters-LettresPCPH" />
+        <meta name="gcaaterms.sitename" content={dcSiteNameBilingual} />
         <Meta />
         <Links />
         {globalThis.__appEnvironment.ADOBE_ANALYTICS_SRC && (
