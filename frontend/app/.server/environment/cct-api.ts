@@ -17,6 +17,7 @@ export const defaults = {
   HTTP_PROXY_TLS_TIMEOUT: '30000',
   HEALTH_PLACEHOLDER_REQUEST_VALUE: 'CDB_HEALTH_CHECK',
   INTEROP_API_SUBSCRIPTION_KEY: '',
+  ENABLE_MOCK_LETTER_SERVICE: isProduction ? 'false' : 'true',
   CCT_LETTER_FILTER: '.*invitation.*',
 } as const;
 
