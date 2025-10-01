@@ -3,7 +3,7 @@ import * as v from 'valibot';
 import { stringToBooleanSchema } from '../validation/string-to-boolean-schema';
 import { stringToIntegerSchema } from '../validation/string-to-integer-schema';
 
-const isProduction = process.env.NODE_ENV === 'production';
+// const isProduction = process.env.NODE_ENV === 'production';
 
 export type CctApi = Readonly<v.InferOutput<typeof cctApi>>;
 
