@@ -61,8 +61,8 @@ export const LogFactory = {
 
     const auditFilter = format((info) => {
       // only match items from the audit service with a level of audit
-      return category.match(/.*audit.service.*/g) && info.level === 'audit' ? info : false
-    })
+      return category.match(/.*audit.service.*/g) && info.level === 'audit' ? info : false;
+    });
 
     if (loggingConfig.LOG_AUDITING_ENABLED) {
       const dailyRotateFileTransport = new DailyRotateFile({
