@@ -59,12 +59,20 @@ export const LogFactory = {
       transports: [consoleTransport],
     });
 
+    const auditFilter = format((info) => {
+      // only match items from the audit service with a level of audit
+      return category.match(/.*audit.service.*/) && info.level === 'audit' ? info : false
+    })
+
     if (loggingConfig.LOG_AUDITING_ENABLED) {
       const dailyRotateFileTransport = new DailyRotateFile({
         level: 'audit',
         dirname: loggingConfig.AUDIT_LOG_DIR_NAME,
         filename: loggingConfig.AUDIT_LOG_FILE_NAME,
-        format: format.printf((info) => `${info.message}`),
+        format: format.combine(
+          auditFilter(),
+          format.printf((info) => `${info.message}`),
+        ),
         extension: `_${os.hostname()}.log`,
         utc: true,
         maxSize: loggingConfig.AUDIT_LOG_MAX_SIZE,
