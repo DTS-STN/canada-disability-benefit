@@ -45,7 +45,7 @@ export default async function handleRequest(
 
     const { pipe, abort } = renderToPipeableStream(
       <I18nextProvider i18n={i18n}>
-          <ServerRouter context={routerContext} url={request.url} nonce={loadContext.nonce} />
+        <ServerRouter context={routerContext} url={request.url} nonce={loadContext.nonce} />
       </I18nextProvider>,
       {
         [readyOption]() {
