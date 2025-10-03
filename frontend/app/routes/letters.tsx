@@ -127,7 +127,7 @@ export default function LettersIndex({ loaderData, params }: Route.ComponentProp
           <ul className="divide-y border-y">
             {letters.map((letter) => {
               const parts = letter.letterTypeId.split(/\s*(-|\u2013|\u2014)\s*/);
-              
+
               const frenchLetterName = parts[0] ? parts[0].trim() : '';
               const englishLetterName = parts[2] ? parts[2].trim() : letter.letterTypeId;
               const letterName = currentLanguage === 'en' ? englishLetterName : frenchLetterName;
