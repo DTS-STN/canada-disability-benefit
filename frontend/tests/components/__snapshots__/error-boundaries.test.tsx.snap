@@ -1,5 +1,6 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
+
 exports[`error-boundaries > BilingualErrorBoundary > should correctly render the bilingual error boundary when it catches a generic error > expected html 1`] = `
 <html
   lang="en"
@@ -11,6 +12,26 @@ exports[`error-boundaries > BilingualErrorBoundary > should correctly render the
     <meta
       content="width=device-width, initial-scale=1"
       name="viewport"
+    />
+    <meta
+      content="My Canada Disability Benefit letters-Mes lettres de la Prestation canadienne pour les personnes handicapées"
+      name="dcterms.title"
+    />
+    <meta
+      content="eng-fra"
+      name="dcterms.language"
+    />
+    <meta
+      content="Employment and Social Development Canada-Emploi et Développement social Canada"
+      name="dcterms.creator"
+    />
+    <meta
+      content="1"
+      name="dcterms.accessRights"
+    />
+    <meta
+      content="ESDC-EDSC_MSCA-MDSC_CDBLetters-LettresPCPH"
+      name="gcaaterms.sitename"
     />
     <link
       href="build/stub-path-to-module.js"
@@ -199,6 +220,26 @@ exports[`error-boundaries > BilingualErrorBoundary > should correctly render the
     <meta
       content="width=device-width, initial-scale=1"
       name="viewport"
+    />
+    <meta
+      content="My Canada Disability Benefit letters-Mes lettres de la Prestation canadienne pour les personnes handicapées"
+      name="dcterms.title"
+    />
+    <meta
+      content="eng-fra"
+      name="dcterms.language"
+    />
+    <meta
+      content="Employment and Social Development Canada-Emploi et Développement social Canada"
+      name="dcterms.creator"
+    />
+    <meta
+      content="1"
+      name="dcterms.accessRights"
+    />
+    <meta
+      content="ESDC-EDSC_MSCA-MDSC_CDBLetters-LettresPCPH"
+      name="gcaaterms.sitename"
     />
     <link
       href="build/stub-path-to-module.js"
@@ -390,6 +431,26 @@ exports[`error-boundaries > BilingualErrorBoundary > should correctly render the
       content="width=device-width, initial-scale=1"
       name="viewport"
     />
+    <meta
+      content="My Canada Disability Benefit letters-Mes lettres de la Prestation canadienne pour les personnes handicapées"
+      name="dcterms.title"
+    />
+    <meta
+      content="eng-fra"
+      name="dcterms.language"
+    />
+    <meta
+      content="Employment and Social Development Canada-Emploi et Développement social Canada"
+      name="dcterms.creator"
+    />
+    <meta
+      content="1"
+      name="dcterms.accessRights"
+    />
+    <meta
+      content="ESDC-EDSC_MSCA-MDSC_CDBLetters-LettresPCPH"
+      name="gcaaterms.sitename"
+    />
     <script
       src="/api/client-env?v=undefined"
     />
@@ -578,6 +639,26 @@ exports[`error-boundaries > BilingualErrorBoundary > should correctly render the
     <meta
       content="width=device-width, initial-scale=1"
       name="viewport"
+    />
+    <meta
+      content="My Canada Disability Benefit letters-Mes lettres de la Prestation canadienne pour les personnes handicapées"
+      name="dcterms.title"
+    />
+    <meta
+      content="eng-fra"
+      name="dcterms.language"
+    />
+    <meta
+      content="Employment and Social Development Canada-Emploi et Développement social Canada"
+      name="dcterms.creator"
+    />
+    <meta
+      content="1"
+      name="dcterms.accessRights"
+    />
+    <meta
+      content="ESDC-EDSC_MSCA-MDSC_CDBLetters-LettresPCPH"
+      name="gcaaterms.sitename"
     />
     <script />
     <script />
@@ -770,6 +851,26 @@ exports[`error-boundaries > BilingualNotFound > should correctly render the bili
       content="width=device-width, initial-scale=1"
       name="viewport"
     />
+    <meta
+      content="My Canada Disability Benefit letters-Mes lettres de la Prestation canadienne pour les personnes handicapées"
+      name="dcterms.title"
+    />
+    <meta
+      content="eng-fra"
+      name="dcterms.language"
+    />
+    <meta
+      content="Employment and Social Development Canada-Emploi et Développement social Canada"
+      name="dcterms.creator"
+    />
+    <meta
+      content="1"
+      name="dcterms.accessRights"
+    />
+    <meta
+      content="ESDC-EDSC_MSCA-MDSC_CDBLetters-LettresPCPH"
+      name="gcaaterms.sitename"
+    />
     <script
       src="/api/client-env?v=undefined"
     />
@@ -948,6 +1049,26 @@ exports[`error-boundaries > BilingualNotFound > should correctly render the bili
     <meta
       content="width=device-width, initial-scale=1"
       name="viewport"
+    />
+    <meta
+      content="My Canada Disability Benefit letters-Mes lettres de la Prestation canadienne pour les personnes handicapées"
+      name="dcterms.title"
+    />
+    <meta
+      content="eng-fra"
+      name="dcterms.language"
+    />
+    <meta
+      content="Employment and Social Development Canada-Emploi et Développement social Canada"
+      name="dcterms.creator"
+    />
+    <meta
+      content="1"
+      name="dcterms.accessRights"
+    />
+    <meta
+      content="ESDC-EDSC_MSCA-MDSC_CDBLetters-LettresPCPH"
+      name="gcaaterms.sitename"
     />
     <script />
     <script />
@@ -1130,6 +1251,26 @@ exports[`error-boundaries > UnilingualErrorBoundary > should correctly render th
       content="width=device-width, initial-scale=1"
       name="viewport"
     />
+    <meta
+      content="My Canada Disability Benefit letters"
+      name="dcterms.title"
+    />
+    <meta
+      content="eng"
+      name="dcterms.language"
+    />
+    <meta
+      content="Employment and Social Development Canada"
+      name="dcterms.creator"
+    />
+    <meta
+      "content=""1"
+      name="dcterms.accessRights"
+    />
+    <meta
+      content="ESDC-EDSC_MSCA-MDSC_CDBLetters-LettresPCPH"
+      name="gcaaterms.sitename"
+    />
     <script
       src="/api/client-env?v=undefined"
     />
@@ -1282,6 +1423,26 @@ exports[`error-boundaries > UnilingualErrorBoundary > should correctly render th
     <meta
       content="width=device-width, initial-scale=1"
       name="viewport"
+    />
+    <meta
+      content="My Canada Disability Benefit letters"
+      name="dcterms.title"
+    />
+    <meta
+      content="eng"
+      name="dcterms.language"
+    />
+    <meta
+      content="Employment and Social Development Canada"
+      name="dcterms.creator"
+    />
+    <meta
+      content="1"
+      name="dcterms.accessRights"
+    />
+    <meta
+      content="ESDC-EDSC_MSCA-MDSC_CDBLetters-LettresPCPH"
+      name="gcaaterms.sitename"
     />
     <script />
     <script />
@@ -1437,6 +1598,26 @@ exports[`error-boundaries > UnilingualErrorBoundary > should correctly render th
     <meta
       content="width=device-width, initial-scale=1"
       name="viewport"
+    />
+    <meta
+      content="My Canada Disability Benefit letters"
+      name="dcterms.title"
+    />
+    <meta
+      content="eng"
+      name="dcterms.language"
+    />
+    <meta
+      content="Employment and Social Development Canada"
+      name="dcterms.creator"
+    />
+    <meta
+      content="1"
+      name="dcterms.accessRights"
+    />
+    <meta
+      content="ESDC-EDSC_MSCA-MDSC_CDBLetters-LettresPCPH"
+      name="gcaaterms.sitename"
     />
     <script
       src="/api/client-env?v=undefined"
@@ -1601,6 +1782,26 @@ exports[`error-boundaries > UnilingualErrorBoundary > should correctly render th
       content="width=device-width, initial-scale=1"
       name="viewport"
     />
+    <meta
+      content="My Canada Disability Benefit letters"
+      name="dcterms.title"
+    />
+    <meta
+      content="eng"
+      name="dcterms.language"
+    />
+    <meta
+      content="Employment and Social Development Canada"
+      name="dcterms.creator"
+    />
+    <meta
+      content="1"
+      name="dcterms.accessRights"
+    />
+    <meta
+      content="ESDC-EDSC_MSCA-MDSC_CDBLetters-LettresPCPH"
+      name="gcaaterms.sitename"
+    />
     <script />
     <script />
     <script
@@ -1764,6 +1965,26 @@ exports[`error-boundaries > UnilingualNotFound > should correctly render the uni
       content="width=device-width, initial-scale=1"
       name="viewport"
     />
+    <meta
+      content="Mes lettres de la Prestation canadienne pour les personnes handicapées"
+      name="dcterms.title"
+    />
+    <meta
+      content="fra"
+      name="dcterms.language"
+    />
+    <meta
+      content="Emploi et Développement social Canada"
+      name="dcterms.creator"
+    />
+    <meta
+      content="1"
+      name="dcterms.accessRights"
+    />
+    <meta
+      content="ESDC-EDSC_MSCA-MDSC_CDBLetters-LettresPCPH"
+      name="gcaaterms.sitename"
+    />
     <script
       src="/api/client-env?v=undefined"
     />
@@ -1914,6 +2135,26 @@ exports[`error-boundaries > UnilingualNotFound > should correctly render the uni
     <meta
       content="width=device-width, initial-scale=1"
       name="viewport"
+    />
+    <meta
+      content="Mes lettres de la Prestation canadienne pour les personnes handicapées"
+      name="dcterms.title"
+    />
+    <meta
+      content="fra"
+      name="dcterms.language"
+    />
+    <meta
+      content="Emploi et Développement social Canada"
+      name="dcterms.creator"
+    />
+    <meta
+      content="1"
+      name="dcterms.accessRights"
+    />
+    <meta
+      content="ESDC-EDSC_MSCA-MDSC_CDBLetters-LettresPCPH"
+      name="gcaaterms.sitename"
     />
     <script />
     <script />

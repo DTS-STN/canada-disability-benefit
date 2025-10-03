@@ -9,12 +9,17 @@ import { Footer } from './footer';
 
 import { AppLink } from '~/components/links';
 import { UnorderedList } from '~/components/lists';
-import { NonceContext } from '~/components/nonce-context';
 import { PageTitle } from '~/components/page-title';
 import { isAppError } from '~/errors/app-error';
 import { useLanguage } from '~/hooks/use-language';
 import * as adobeAnalytics from '~/utils/adobe-analytics.client';
 import { HttpStatusCodes } from '~/utils/http-status-codes';
+
+const englishTitle = 'My Canada Disability Benefit letters';
+const frenchTitle = 'Mes lettres de la Prestation canadienne pour les personnes handicapées';
+const englishCreator = 'Employment and Social Development Canada';
+const frenchCreator = 'Emploi et Développement social Canada';
+const dcSiteNameBilingual = 'ESDC-EDSC_MSCA-MDSC_CDBLetters-LettresPCPH';
 
 /**
  * A bilingual error boundary that renders appropriate error messages in both languages.
@@ -29,7 +34,6 @@ export function BilingualErrorBoundary({ actionData, error, loaderData, params }
   const { i18n } = useTranslation(['gcweb']);
   const en = i18n.getFixedT('en');
   const fr = i18n.getFixedT('fr');
-  const { nonce } = useContext(NonceContext);
 
   useEffect(() => {
     if (globalThis.__appEnvironment.ADOBE_ANALYTICS_SRC) {
@@ -42,17 +46,22 @@ export function BilingualErrorBoundary({ actionData, error, loaderData, params }
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="dcterms.title" content={englishTitle + '-' + frenchTitle} />
+        <meta name="dcterms.language" content="eng-fra" />
+        <meta name="dcterms.creator" content={englishCreator + '-' + frenchCreator} />
+        <meta name="dcterms.accessRights" content="1" />
+        <meta name="gcaaterms.sitename" content={dcSiteNameBilingual} />
         <Meta />
         <Links />
         {globalThis.__appEnvironment.ADOBE_ANALYTICS_SRC && (
           <>
             <script //
-              nonce={nonce}
+              nonce={loaderData?.nonce}
               src={globalThis.__appEnvironment.ADOBE_ANALYTICS_JQUERY_SRC}
               suppressHydrationWarning={true}
             />
             <script //
-              nonce={nonce}
+              nonce={loaderData?.nonce}
               src={globalThis.__appEnvironment.ADOBE_ANALYTICS_SRC}
               suppressHydrationWarning={true}
             />
@@ -165,7 +174,6 @@ export function BilingualNotFound({ actionData, error, loaderData, params }: Rou
   const { i18n } = useTranslation(['gcweb']);
   const en = i18n.getFixedT('en');
   const fr = i18n.getFixedT('fr');
-  const { nonce } = useContext(NonceContext);
 
   useEffect(() => {
     if (globalThis.__appEnvironment.ADOBE_ANALYTICS_SRC) {
@@ -178,17 +186,22 @@ export function BilingualNotFound({ actionData, error, loaderData, params }: Rou
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="dcterms.title" content={englishTitle + '-' + frenchTitle} />
+        <meta name="dcterms.language" content="eng-fra" />
+        <meta name="dcterms.creator" content={englishCreator + '-' + frenchCreator} />
+        <meta name="dcterms.accessRights" content="1" />
+        <meta name="gcaaterms.sitename" content={dcSiteNameBilingual} />
         <Meta />
         <Links />
         {globalThis.__appEnvironment.ADOBE_ANALYTICS_SRC && (
           <>
             <script //
-              nonce={nonce}
+              nonce={loaderData?.nonce}
               src={globalThis.__appEnvironment.ADOBE_ANALYTICS_JQUERY_SRC}
               suppressHydrationWarning={true}
             />
             <script //
-              nonce={nonce}
+              nonce={loaderData?.nonce}
               src={globalThis.__appEnvironment.ADOBE_ANALYTICS_SRC}
               suppressHydrationWarning={true}
             />
@@ -257,7 +270,9 @@ export function BilingualNotFound({ actionData, error, loaderData, params }: Rou
 export function UnilingualErrorBoundary({ actionData, error, loaderData, params }: Route.ErrorBoundaryProps) {
   const { currentLanguage } = useLanguage();
   const { t } = useTranslation(['gcweb']);
-  const { nonce } = useContext(NonceContext);
+  const dcTermsTitle = currentLanguage === 'en' ? englishTitle : frenchTitle;
+  const dcTermsLanguage = currentLanguage === 'en' ? 'eng' : 'fra';
+  const dcTermsCreator = currentLanguage === 'en' ? englishCreator : frenchCreator;
 
   useEffect(() => {
     if (globalThis.__appEnvironment.ADOBE_ANALYTICS_SRC) {
@@ -270,17 +285,22 @@ export function UnilingualErrorBoundary({ actionData, error, loaderData, params 
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="dcterms.title" content={dcTermsTitle} />
+        <meta name="dcterms.language" content={dcTermsLanguage} />
+        <meta name="dcterms.creator" content={dcTermsCreator} />
+        <meta name="dcterms.accessRights" content="1" />
+        <meta name="gcaaterms.sitename" content={dcSiteNameBilingual} />
         <Meta />
         <Links />
         {globalThis.__appEnvironment.ADOBE_ANALYTICS_SRC && (
           <>
             <script //
-              nonce={nonce}
+              nonce={loaderData?.nonce}
               src={globalThis.__appEnvironment.ADOBE_ANALYTICS_JQUERY_SRC}
               suppressHydrationWarning={true}
             />
             <script //
-              nonce={nonce}
+              nonce={loaderData?.nonce}
               src={globalThis.__appEnvironment.ADOBE_ANALYTICS_SRC}
               suppressHydrationWarning={true}
             />
@@ -353,7 +373,9 @@ export function UnilingualErrorBoundary({ actionData, error, loaderData, params 
 export function UnilingualNotFound({ actionData, error, loaderData, params }: Route.ErrorBoundaryProps) {
   const { currentLanguage } = useLanguage();
   const { t } = useTranslation(['gcweb']);
-  const { nonce } = useContext(NonceContext);
+  const dcTermsTitle = currentLanguage === 'en' ? englishTitle : frenchTitle;
+  const dcTermsLanguage = currentLanguage === 'en' ? 'eng' : 'fra';
+  const dcTermsCreator = currentLanguage === 'en' ? englishCreator : frenchCreator;
 
   useEffect(() => {
     if (globalThis.__appEnvironment.ADOBE_ANALYTICS_SRC) {
@@ -366,17 +388,22 @@ export function UnilingualNotFound({ actionData, error, loaderData, params }: Ro
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="dcterms.title" content={dcTermsTitle} />
+        <meta name="dcterms.language" content={dcTermsLanguage} />
+        <meta name="dcterms.creator" content={dcTermsCreator} />
+        <meta name="dcterms.accessRights" content="1" />
+        <meta name="gcaaterms.sitename" content={dcSiteNameBilingual} />
         <Meta />
         <Links />
         {globalThis.__appEnvironment.ADOBE_ANALYTICS_SRC && (
           <>
             <script //
-              nonce={nonce}
+              nonce={loaderData?.nonce}
               src={globalThis.__appEnvironment.ADOBE_ANALYTICS_JQUERY_SRC}
               suppressHydrationWarning={true}
             />
             <script //
-              nonce={nonce}
+              nonce={loaderData?.nonce}
               src={globalThis.__appEnvironment.ADOBE_ANALYTICS_SRC}
               suppressHydrationWarning={true}
             />

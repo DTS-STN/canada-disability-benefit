@@ -7,14 +7,11 @@ import { ServerRouter } from 'react-router';
 
 import { trace } from '@opentelemetry/api';
 import { isbot } from 'isbot';
-import { randomUUID } from 'node:crypto';
 import { PassThrough } from 'node:stream';
 import { I18nextProvider } from 'react-i18next';
 
 import { LogFactory } from '~/.server/logging';
-import { generateContentSecurityPolicy } from '~/.server/utils/csp.utils';
 import { createCounter, handleSpanException } from '~/.server/utils/telemetry-utils';
-import { NonceProvider } from '~/components/nonce-context';
 import { isAppError } from '~/errors/app-error';
 import { initI18next } from '~/i18n-config.server';
 import { HttpStatusCodes } from '~/utils/http-status-codes';
@@ -36,7 +33,6 @@ export default async function handleRequest(
 
   return new Promise((resolve, reject) => {
     const userAgent = request.headers.get('user-agent');
-    const nonce = randomUUID();
 
     // Ensure requests from bots and SPA Mode renders wait for all content to load before responding
     // https://react.dev/reference/react-dom/server/renderToPipeableStream#waiting-for-all-content-to-load-for-crawlers-and-static-generation
@@ -49,15 +45,12 @@ export default async function handleRequest(
 
     const { pipe, abort } = renderToPipeableStream(
       <I18nextProvider i18n={i18n}>
-        <NonceProvider nonce={`nonce-${nonce}`}>
-          <ServerRouter context={routerContext} url={request.url} nonce={`nonce-${nonce}`} />
-        </NonceProvider>
+          <ServerRouter context={routerContext} url={request.url} nonce={loadContext.nonce} />
       </I18nextProvider>,
       {
         [readyOption]() {
           shellRendered = true;
           responseHeaders.set('Content-Type', 'text/html');
-          responseHeaders.set('Content-Security-Policy', generateContentSecurityPolicy(`nonce-${nonce}`));
 
           const body = new PassThrough();
           const stream = createReadableStreamFromReadable(body);
