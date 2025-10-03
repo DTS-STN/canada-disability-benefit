@@ -1,4 +1,4 @@
-import { useEffect, useContext } from 'react';
+import { useEffect } from 'react';
 
 import { Links, Meta, Scripts } from 'react-router';
 
