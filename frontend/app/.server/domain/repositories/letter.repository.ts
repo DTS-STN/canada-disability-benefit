@@ -193,7 +193,7 @@ export class MockLetterRepository implements LetterRepository {
 
     const letterEntities: readonly LetterEntity[] = [
       {
-        LetterName: 'Détermination positive - Positive determination',
+        LetterName: 'Renseignements manquants – Missing information',
         LetterId: '123456-b3bc-4332-8b69-172197842b88',
         LetterDate: '2025/06/13',
       },
