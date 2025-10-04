@@ -1,6 +1,6 @@
 import { useEffect, useContext } from 'react';
 
-import { Links, Meta, Scripts } from 'react-router';
+import { Links, Meta, Scripts, useRouteLoaderData } from 'react-router';
 
 import { Trans, useTranslation } from 'react-i18next';
 
@@ -25,17 +25,19 @@ import { HttpStatusCodes } from '~/utils/http-status-codes';
  * If an error boundary itself throws an error, there's no subsequent error
  * boundary to catch and render it, potentially leading to infinite error loops.
  */
-export function BilingualErrorBoundary({ actionData, error, loaderData, params }: Route.ErrorBoundaryProps) {
+export function BilingualErrorBoundary({ actionData, error, params }: Route.ErrorBoundaryProps) {
   const { i18n } = useTranslation(['gcweb']);
   const en = i18n.getFixedT('en');
   const fr = i18n.getFixedT('fr');
   const { nonce } = useContext(NonceContext);
 
+  const loaderData = useRouteLoaderData('root');
+
   useEffect(() => {
-    if (globalThis.__appEnvironment.ADOBE_ANALYTICS_SRC) {
+    if (loaderData?.ADOBE_ANALYTICS_SRC) {
       adobeAnalytics.pushErrorEvent(500);
     }
-  }, []);
+  }, [loaderData?.ADOBE_ANALYTICS_SRC]);
 
   return (
     <html lang="en">
@@ -44,25 +46,25 @@ export function BilingualErrorBoundary({ actionData, error, loaderData, params }
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
         <Links />
-        {globalThis.__appEnvironment.ADOBE_ANALYTICS_SRC && (
-          <>
-            <script //
-              nonce={nonce}
-              src={globalThis.__appEnvironment.ADOBE_ANALYTICS_JQUERY_SRC}
-              suppressHydrationWarning={true}
-            />
-            <script //
-              nonce={nonce}
-              src={globalThis.__appEnvironment.ADOBE_ANALYTICS_SRC}
-              suppressHydrationWarning={true}
-            />
-          </>
-        )}
         <script //
           nonce={loaderData?.nonce}
           src={`/api/client-env?v=${loaderData?.clientEnvRevision}`}
           suppressHydrationWarning={true}
         />
+        {loaderData?.ADOBE_ANALYTICS_SRC && (
+          <>
+            <script //
+              nonce={nonce}
+              src={loaderData.ADOBE_ANALYTICS_JQUERY_SRC}
+              suppressHydrationWarning={true}
+            />
+            <script //
+              nonce={nonce}
+              src={loaderData.ADOBE_ANALYTICS_SRC}
+              suppressHydrationWarning={true}
+            />
+          </>
+        )}
       </head>
       <body>
         <header className="border-b-[3px] border-slate-700 print:hidden">
@@ -161,17 +163,19 @@ export function BilingualErrorBoundary({ actionData, error, loaderData, params }
 /**
  * A bilingual 404 page that renders appropriate error messages in both languages.
  */
-export function BilingualNotFound({ actionData, error, loaderData, params }: Route.ErrorBoundaryProps) {
+export function BilingualNotFound({ actionData, error, params }: Route.ErrorBoundaryProps) {
   const { i18n } = useTranslation(['gcweb']);
   const en = i18n.getFixedT('en');
   const fr = i18n.getFixedT('fr');
   const { nonce } = useContext(NonceContext);
 
+  const loaderData = useRouteLoaderData('root');
+
   useEffect(() => {
-    if (globalThis.__appEnvironment.ADOBE_ANALYTICS_SRC) {
+    if (loaderData?.ADOBE_ANALYTICS_SRC) {
       adobeAnalytics.pushErrorEvent(404);
     }
-  }, []);
+  }, [loaderData?.ADOBE_ANALYTICS_SRC]);
 
   return (
     <html lang="en">
@@ -180,25 +184,25 @@ export function BilingualNotFound({ actionData, error, loaderData, params }: Rou
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
         <Links />
-        {globalThis.__appEnvironment.ADOBE_ANALYTICS_SRC && (
-          <>
-            <script //
-              nonce={nonce}
-              src={globalThis.__appEnvironment.ADOBE_ANALYTICS_JQUERY_SRC}
-              suppressHydrationWarning={true}
-            />
-            <script //
-              nonce={nonce}
-              src={globalThis.__appEnvironment.ADOBE_ANALYTICS_SRC}
-              suppressHydrationWarning={true}
-            />
-          </>
-        )}
         <script //
           nonce={loaderData?.nonce}
           src={`/api/client-env?v=${loaderData?.clientEnvRevision}`}
           suppressHydrationWarning={true}
         />
+        {loaderData?.ADOBE_ANALYTICS_SRC && (
+          <>
+            <script //
+              nonce={nonce}
+              src={loaderData.ADOBE_ANALYTICS_JQUERY_SRC}
+              suppressHydrationWarning={true}
+            />
+            <script //
+              nonce={nonce}
+              src={loaderData.ADOBE_ANALYTICS_SRC}
+              suppressHydrationWarning={true}
+            />
+          </>
+        )}
       </head>
       <body>
         <header className="border-b-[3px] border-slate-700 print:hidden">
@@ -254,16 +258,18 @@ export function BilingualNotFound({ actionData, error, loaderData, params }: Rou
  * If an error boundary itself throws an error, there's no subsequent error
  * boundary to catch and render it, potentially leading to infinite error loops.
  */
-export function UnilingualErrorBoundary({ actionData, error, loaderData, params }: Route.ErrorBoundaryProps) {
+export function UnilingualErrorBoundary({ actionData, error, params }: Route.ErrorBoundaryProps) {
   const { currentLanguage } = useLanguage();
   const { t } = useTranslation(['gcweb']);
   const { nonce } = useContext(NonceContext);
 
+  const loaderData = useRouteLoaderData('root');
+
   useEffect(() => {
-    if (globalThis.__appEnvironment.ADOBE_ANALYTICS_SRC) {
+    if (loaderData?.ADOBE_ANALYTICS_SRC) {
       adobeAnalytics.pushErrorEvent(500);
     }
-  }, []);
+  }, [loaderData?.ADOBE_ANALYTICS_SRC]);
 
   return (
     <html lang={currentLanguage}>
@@ -272,25 +278,25 @@ export function UnilingualErrorBoundary({ actionData, error, loaderData, params 
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
         <Links />
-        {globalThis.__appEnvironment.ADOBE_ANALYTICS_SRC && (
-          <>
-            <script //
-              nonce={nonce}
-              src={globalThis.__appEnvironment.ADOBE_ANALYTICS_JQUERY_SRC}
-              suppressHydrationWarning={true}
-            />
-            <script //
-              nonce={nonce}
-              src={globalThis.__appEnvironment.ADOBE_ANALYTICS_SRC}
-              suppressHydrationWarning={true}
-            />
-          </>
-        )}
         <script //
           nonce={loaderData?.nonce}
           src={`/api/client-env?v=${loaderData?.clientEnvRevision}`}
           suppressHydrationWarning={true}
         />
+        {loaderData?.ADOBE_ANALYTICS_SRC && (
+          <>
+            <script //
+              nonce={nonce}
+              src={loaderData.ADOBE_ANALYTICS_JQUERY_SRC}
+              suppressHydrationWarning={true}
+            />
+            <script //
+              nonce={nonce}
+              src={loaderData.ADOBE_ANALYTICS_SRC}
+              suppressHydrationWarning={true}
+            />
+          </>
+        )}
       </head>
       <body>
         <header className="border-b-[3px] border-slate-700 print:hidden">
@@ -350,16 +356,18 @@ export function UnilingualErrorBoundary({ actionData, error, loaderData, params 
 /**
  * A unilingual 404 page that renders appropriate error messages in the current language.
  */
-export function UnilingualNotFound({ actionData, error, loaderData, params }: Route.ErrorBoundaryProps) {
+export function UnilingualNotFound({ actionData, error, params }: Route.ErrorBoundaryProps) {
   const { currentLanguage } = useLanguage();
   const { t } = useTranslation(['gcweb']);
   const { nonce } = useContext(NonceContext);
 
+  const loaderData = useRouteLoaderData('root');
+
   useEffect(() => {
-    if (globalThis.__appEnvironment.ADOBE_ANALYTICS_SRC) {
+    if (loaderData?.ADOBE_ANALYTICS_SRC) {
       adobeAnalytics.pushErrorEvent(404);
     }
-  }, []);
+  }, [loaderData?.ADOBE_ANALYTICS_SRC]);
 
   return (
     <html lang={currentLanguage}>
@@ -368,25 +376,25 @@ export function UnilingualNotFound({ actionData, error, loaderData, params }: Ro
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
         <Links />
-        {globalThis.__appEnvironment.ADOBE_ANALYTICS_SRC && (
-          <>
-            <script //
-              nonce={nonce}
-              src={globalThis.__appEnvironment.ADOBE_ANALYTICS_JQUERY_SRC}
-              suppressHydrationWarning={true}
-            />
-            <script //
-              nonce={nonce}
-              src={globalThis.__appEnvironment.ADOBE_ANALYTICS_SRC}
-              suppressHydrationWarning={true}
-            />
-          </>
-        )}
         <script //
           nonce={loaderData?.nonce}
           src={`/api/client-env?v=${loaderData?.clientEnvRevision}`}
           suppressHydrationWarning={true}
         />
+        {loaderData.ADOBE_ANALYTICS_SRC && (
+          <>
+            <script //
+              nonce={nonce}
+              src={loaderData.ADOBE_ANALYTICS_JQUERY_SRC}
+              suppressHydrationWarning={true}
+            />
+            <script //
+              nonce={nonce}
+              src={loaderData.ADOBE_ANALYTICS_SRC}
+              suppressHydrationWarning={true}
+            />
+          </>
+        )}
       </head>
       <body>
         <header className="border-b-[3px] border-slate-700 print:hidden">
