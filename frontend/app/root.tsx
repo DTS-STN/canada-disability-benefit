@@ -7,7 +7,7 @@ import { config as fontAwesomeConfig } from '@fortawesome/fontawesome-svg-core';
 
 import type { Route } from './+types/root';
 
-import { clientEnvironment } from '~/.server/environment';
+import { clientEnvironment, serverEnvironment } from '~/.server/environment';
 import {
   BilingualErrorBoundary,
   BilingualNotFound,
@@ -59,6 +59,8 @@ export function loader({ context }: Route.LoaderArgs) {
   return {
     nonce: context.nonce,
     clientEnvRevision: clientEnvironment.revision,
+    ADOBE_ANALYTICS_SRC: serverEnvironment.ADOBE_ANALYTICS_SRC,
+    ADOBE_ANALYTICS_JQUERY_SRC: serverEnvironment.ADOBE_ANALYTICS_JQUERY_SRC,
   };
 }
 
@@ -67,14 +69,14 @@ export default function App({ loaderData }: Route.ComponentProps) {
   const { nonce } = useContext(NonceContext);
 
   useEffect(() => {
-    if (globalThis.__appEnvironment.ADOBE_ANALYTICS_SRC) {
+    if (loaderData.ADOBE_ANALYTICS_SRC) {
       const urlParams = new URLSearchParams(location.search);
       const sort = urlParams.get('sort');
       if (isNotAuthOrDropdownRequest(sort)) {
         adobeAnalytics.pushPageviewEvent(new URL(location.pathname, origin));
       }
     }
-  }, []);
+  }, [loaderData.ADOBE_ANALYTICS_SRC]);
 
   const englishTitle = 'My Canada Disability Benefit letters';
   const frenchTitle = 'Mes lettres de la Prestation canadienne pour les personnes handicapées';
@@ -97,25 +99,25 @@ export default function App({ loaderData }: Route.ComponentProps) {
         <meta name="gcaaterms.sitename" content={dcSiteNameBilingual} />
         <Meta />
         <Links />
-        {globalThis.__appEnvironment.ADOBE_ANALYTICS_SRC && (
-          <>
-            <script //
-              nonce={nonce}
-              src={globalThis.__appEnvironment.ADOBE_ANALYTICS_JQUERY_SRC}
-              suppressHydrationWarning={true}
-            />
-            <script //
-              nonce={nonce}
-              src={globalThis.__appEnvironment.ADOBE_ANALYTICS_SRC}
-              suppressHydrationWarning={true}
-            />
-          </>
-        )}
         <script //
           nonce={nonce}
           src={`/api/client-env?v=${loaderData.clientEnvRevision}`}
           suppressHydrationWarning={true}
         />
+        {loaderData.ADOBE_ANALYTICS_SRC && (
+          <>
+            <script //
+              nonce={nonce}
+              src={loaderData.ADOBE_ANALYTICS_JQUERY_SRC}
+              suppressHydrationWarning={true}
+            />
+            <script //
+              nonce={nonce}
+              src={loaderData.ADOBE_ANALYTICS_SRC}
+              suppressHydrationWarning={true}
+            />
+          </>
+        )}
       </head>
       <body vocab="http://schema.org/" typeof="WebPage">
         <Outlet />

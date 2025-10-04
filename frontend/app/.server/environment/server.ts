@@ -10,12 +10,14 @@ import { session, defaults as sessionDefaults } from '~/.server/environment/sess
 import { telemetry, defaults as telemetryDefaults } from '~/.server/environment/telemetry';
 import { LogFactory } from '~/.server/logging';
 import { stringToIntegerSchema } from '~/.server/validation/string-to-integer-schema';
+import { validUrlSchema } from '~/validation/valid-url-schema';
 
 const log = LogFactory.getLogger(import.meta.url);
 
 export type Server = Readonly<v.InferOutput<typeof server>>;
 
 export const defaults = {
+  ADOBE_ANALYTICS_JQUERY_SRC: 'https://code.jquery.com/jquery-3.7.1.min.js',
   NODE_ENV: 'development',
   PORT: '3000',
   ...authenticationDefaults,
@@ -44,6 +46,8 @@ export const server = v.pipe(
     ...telemetry.entries,
     NODE_ENV: v.optional(v.picklist(['production', 'development', 'test']), defaults.NODE_ENV),
     PORT: v.optional(v.pipe(stringToIntegerSchema(), v.minValue(0)), defaults.PORT),
+    ADOBE_ANALYTICS_SRC: v.optional(validUrlSchema()),
+    ADOBE_ANALYTICS_JQUERY_SRC: v.optional(validUrlSchema(), defaults.ADOBE_ANALYTICS_JQUERY_SRC),
   }),
   v.rawCheck(({ dataset }) => {
     if (dataset.typed) {
