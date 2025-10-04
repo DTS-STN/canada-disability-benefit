@@ -381,7 +381,7 @@ export function UnilingualNotFound({ actionData, error, params }: Route.ErrorBou
           src={`/api/client-env?v=${loaderData?.clientEnvRevision}`}
           suppressHydrationWarning={true}
         />
-        {loaderData.ADOBE_ANALYTICS_SRC && (
+        {loaderData?.ADOBE_ANALYTICS_SRC && (
           <>
             <script //
               nonce={nonce}

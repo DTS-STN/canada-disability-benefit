@@ -874,51 +874,150 @@ exports[`error-boundaries > UnilingualErrorBoundary > should correctly render th
 
 exports[`error-boundaries > UnilingualNotFound > should correctly render the unilingual 404 when it catches a 404 error > expected html 1 1`] = `
 <html>
-  <head />
+  <head>
+    <meta
+      charset="utf-8"
+    />
+    <meta
+      content="width=device-width, initial-scale=1"
+      name="viewport"
+    />
+    <script
+      src="/api/client-env?v=undefined"
+    />
+  </head>
   <body>
     <div>
-      <h2>
-        Unexpected Application Error!
-      </h2>
-      <h3
-        style="font-style: italic;"
+      <header
+        class="border-b-[3px] border-slate-700 print:hidden"
       >
-        Cannot read properties of undefined (reading 'ADOBE_ANALYTICS_SRC')
-      </h3>
-      <pre
-        style="padding: 0.5rem; background-color: rgba(200, 200, 200, 0.5);"
+        <div
+          id="wb-bnr"
+        >
+          <div
+            class="container flex items-center justify-between gap-6 py-2.5 sm:py-3.5"
+          >
+            <a
+              href="https://canada.ca/"
+            >
+              <img
+                alt="gcweb:header.govt-of-canada.text"
+                class="h-8 w-auto"
+                decoding="async"
+                height="28"
+                src="https://www.canada.ca/etc/designs/canada/wet-boew/assets/sig-blk-en.svg"
+                width="300"
+              />
+            </a>
+          </div>
+        </div>
+      </header>
+      <main
+        class="container"
       >
-        TypeError: Cannot read properties of undefined (reading 'ADOBE_ANALYTICS_SRC')
-    at UnilingualNotFound (/home/lei/canada-disability-benefit/frontend/app/components/error-boundaries.tsx:384:21)
-    at Object.react-stack-bottom-frame (/home/lei/canada-disability-benefit/frontend/node_modules/react-dom/cjs/react-dom-client.development.js:23863:20)
-    at renderWithHooks (/home/lei/canada-disability-benefit/frontend/node_modules/react-dom/cjs/react-dom-client.development.js:5529:22)
-    at updateFunctionComponent (/home/lei/canada-disability-benefit/frontend/node_modules/react-dom/cjs/react-dom-client.development.js:8897:19)
-    at beginWork (/home/lei/canada-disability-benefit/frontend/node_modules/react-dom/cjs/react-dom-client.development.js:10522:18)
-    at runWithFiberInDEV (/home/lei/canada-disability-benefit/frontend/node_modules/react-dom/cjs/react-dom-client.development.js:1522:13)
-    at performUnitOfWork (/home/lei/canada-disability-benefit/frontend/node_modules/react-dom/cjs/react-dom-client.development.js:15140:22)
-    at workLoopSync (/home/lei/canada-disability-benefit/frontend/node_modules/react-dom/cjs/react-dom-client.development.js:14956:41)
-    at renderRootSync (/home/lei/canada-disability-benefit/frontend/node_modules/react-dom/cjs/react-dom-client.development.js:14936:11)
-    at performWorkOnRoot (/home/lei/canada-disability-benefit/frontend/node_modules/react-dom/cjs/react-dom-client.development.js:14462:44)
-      </pre>
-      <p>
-        💿 Hey developer 👋
-      </p>
-      <p>
-        You can provide a way better UX than this when your app throws errors by providing your own 
-        <code
-          style="padding: 2px 4px; background-color: rgba(200, 200, 200, 0.5);"
+        <div
+          class="mt-10 mb-8"
         >
-          ErrorBoundary
-        </code>
-         or
-         
-        <code
-          style="padding: 2px 4px; background-color: rgba(200, 200, 200, 0.5);"
+          <h1
+            class="font-lato text-3xl font-bold focus-visible:ring-3 after:mt-2 after:block after:h-1.5 after:w-18 after:bg-red-700 my-8"
+            id="wb-cont"
+            tabindex="-1"
+          >
+            <span>
+              gcweb:not-found.page-title
+            </span>
+            <small
+              class="block text-2xl font-normal text-neutral-500"
+            >
+              gcweb:not-found.page-subtitle
+            </small>
+          </h1>
+        </div>
+        <p
+          class="mb-8 text-lg text-gray-500"
         >
-          errorElement
-        </code>
-         prop on your route.
-      </p>
+          gcweb:not-found.page-message
+        </p>
+      </main>
+      <footer
+        class="mt-8 bg-stone-50 print:hidden"
+        id="wb-info"
+        tabindex="-1"
+      >
+        <div>
+          <div
+            class="bg-gray-700 text-white"
+          >
+            <section
+              class="container py-6"
+            >
+              <h2
+                class="mb-4"
+              >
+                gcweb:footer.service-canada
+              </h2>
+              <div
+                class="grid gap-x-4 gap-y-2 text-sm sm:grid-cols-3"
+              >
+                <a
+                  class="hover:underline"
+                  data-discover="true"
+                  href="/{"key":"gcweb:app.contact-us.href","options":{"baseUri":"https://msca.example.com/"}}"
+                  property="item"
+                  typeof="WebPage"
+                >
+                  <span
+                    property="name"
+                  >
+                    gcweb:app.contact-us
+                  </span>
+                </a>
+              </div>
+            </section>
+          </div>
+        </div>
+        <div
+          class="container flex items-center justify-between gap-6 py-2.5 sm:py-3.5"
+        >
+          <h2
+            class="sr-only"
+          >
+            gcweb:footer.about-site
+          </h2>
+          <div
+            class="flex flex-col items-start gap-2 text-sm leading-6 sm:flex-row sm:items-center sm:gap-4"
+          >
+            <a
+              class="text-slate-700 hover:underline"
+              data-discover="true"
+              data-gc-analytics-navigation="Footer:Footer:gcweb:footer.terms-conditions.text"
+              href="/{"key":"gcweb:footer.terms-conditions.href","options":{}}"
+            >
+              gcweb:footer.terms-conditions.text
+            </a>
+            <div
+              class="hidden size-0 rounded-full border-[3px] border-slate-700 sm:block"
+            />
+            <a
+              class="text-slate-700 hover:underline"
+              data-discover="true"
+              data-gc-analytics-navigation="Footer:Footer:gcweb:footer.privacy.text"
+              href="/{"key":"gcweb:footer.privacy.href","options":{}}"
+            >
+              gcweb:footer.privacy.text
+            </a>
+          </div>
+          <div>
+            <img
+              alt="gcweb:footer.gc-symbol"
+              class="h-10 w-auto"
+              height="71"
+              src="https://www.canada.ca/etc/designs/canada/wet-boew/assets/wmms-blk.svg"
+              width="300"
+            />
+          </div>
+        </div>
+      </footer>
     </div>
   </body>
 </html>
