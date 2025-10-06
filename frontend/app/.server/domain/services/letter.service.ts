@@ -65,8 +65,7 @@ export class DefaultLetterService implements LetterService {
       by: (letterDto) => letterDto.date,
     });
 
-    // TODO: Bump down to trace
-    this.log.debug('Returning letters [%j] for clientId [%s]', sortedLetterDtos, sin);
+    this.log.trace('Returning letters [%j] for clientId [%s]', sortedLetterDtos, sin);
     return sortedLetterDtos;
   }
 
