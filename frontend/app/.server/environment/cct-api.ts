@@ -18,7 +18,7 @@ export const defaults = {
   HEALTH_PLACEHOLDER_REQUEST_VALUE: 'CDB_HEALTH_CHECK',
   INTEROP_API_SUBSCRIPTION_KEY: '',
   ENABLE_MOCK_LETTER_SERVICE: isProduction ? 'false' : 'true',
-  CCT_LETTER_FILTER: '.*invitation.*',
+  CCT_LETTER_FILTER: '.*',
 } as const;
 
 export const cctApi = v.object({
