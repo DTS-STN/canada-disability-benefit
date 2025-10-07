@@ -86,11 +86,40 @@ export function security(environment: ServerEnvironment): RequestHandler {
     /* intentionally left blank */
   ];
 
+  const adobeAnalyticsCSP = {
+    connectSrc: 'https://*.demdex.net https://cm.everesttech.net https://assets.adobedtm.com https://*.omtrdc.net',
+    frameSrc: 'https://*.demdex.net',
+    imgSrc: 'https://*.demdex.net https://cm.everesttech.net https://assets.adobedtm.com https://*.omtrdc.net',
+    scriptSrc: 'https://code.jquery.com https://*.demdex.net https://cm.everesttech.net https://assets.adobedtm.com',
+  } as const;
+
   return (request, response, next) => {
     if (shouldIgnore(ignorePatterns, request.path)) {
       log.trace('Skipping adding security headers to response: [%s]', request.path);
       return next();
     }
+
+    response.locals.nonce = randomUUID();
+    log.trace('Adding nonce [%s] to response', response.locals.nonce);
+
+    const { NODE_ENV } = serverEnvironment;
+    const isDevelopment = NODE_ENV === 'development';
+
+    const contentSecurityPolicy = [
+      `base-uri 'none'`,
+      `default-src 'none'`,
+      `connect-src 'self' ${adobeAnalyticsCSP.connectSrc}` + (isDevelopment ? ' ws://localhost:3001' : ''),
+      `font-src 'self' fonts.gstatic.com use.fontawesome.com www.canada.ca`,
+      `form-action 'self'`,
+      `frame-ancestors 'self'`,
+      `frame-src 'self' ${adobeAnalyticsCSP.frameSrc}`,
+      `img-src 'self' data: www.canada.ca ${adobeAnalyticsCSP.imgSrc} https://purecatamphetamine.github.io`,
+      `object-src data:`,
+      `script-src 'self' 'unsafe-inline' ${adobeAnalyticsCSP.scriptSrc} ${response.locals.nonce}`,
+      // NOTE: unsafe-inline is required by Radix Primitives 💩
+      // see https://github.com/radix-ui/primitives/discussions/3130
+      `style-src 'self' 'unsafe-inline' fonts.googleapis.com use.fontawesome.com www.canada.ca`,
+    ].join('; ');
 
     const permissionsPolicy = [
       'camera=()',
@@ -106,6 +135,7 @@ export function security(environment: ServerEnvironment): RequestHandler {
     log.trace('Adding security headers to response');
     response.setHeader('Permissions-Policy', permissionsPolicy);
     response.setHeader('Cross-Origin-Opener-Policy', 'same-origin');
+    response.setHeader('Content-Security-Policy', contentSecurityPolicy);
     response.setHeader('Cross-Origin-Resource-Policy', 'same-origin');
     response.setHeader('Referrer-Policy', 'strict-origin-when-cross-origin');
     response.setHeader('Server', 'webserver');
