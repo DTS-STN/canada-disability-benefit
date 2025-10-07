@@ -21,6 +21,7 @@ import * as adobeAnalytics from '~/utils/adobe-analytics.client';
 import { HttpStatusCodes } from '~/utils/http-status-codes';
 
 // see: https://docs.fontawesome.com/web/dig-deeper/security#content-security-policy
+// test
 fontAwesomeConfig.autoAddCss = false;
 
 export const handle = {
