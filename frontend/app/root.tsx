@@ -14,7 +14,6 @@ import {
   UnilingualErrorBoundary,
   UnilingualNotFound,
 } from '~/components/error-boundaries';
-import { NonceContext } from '~/components/nonce-context';
 import { useLanguage } from '~/hooks/use-language';
 import indexStyleSheet from '~/index.css?url';
 import tailwindStyleSheet from '~/tailwind.css?url';
@@ -66,7 +65,6 @@ export function loader({ context }: Route.LoaderArgs) {
 
 export default function App({ loaderData }: Route.ComponentProps) {
   const { currentLanguage } = useLanguage();
-  const { nonce } = useContext(NonceContext);
 
   useEffect(() => {
     if (loaderData.ADOBE_ANALYTICS_SRC) {
@@ -100,19 +98,19 @@ export default function App({ loaderData }: Route.ComponentProps) {
         <Meta />
         <Links />
         <script //
-          nonce={nonce}
+          nonce={loaderData.nonce}
           src={`/api/client-env?v=${loaderData.clientEnvRevision}`}
           suppressHydrationWarning={true}
         />
         {loaderData.ADOBE_ANALYTICS_SRC && (
           <>
             <script //
-              nonce={nonce}
+              nonce={loaderData.nonce}
               src={loaderData.ADOBE_ANALYTICS_JQUERY_SRC}
               suppressHydrationWarning={true}
             />
             <script //
-              nonce={nonce}
+              nonce={loaderData.nonce}
               src={loaderData.ADOBE_ANALYTICS_SRC}
               suppressHydrationWarning={true}
             />
@@ -121,8 +119,8 @@ export default function App({ loaderData }: Route.ComponentProps) {
       </head>
       <body vocab="http://schema.org/" typeof="WebPage">
         <Outlet />
-        <ScrollRestoration nonce={nonce} />
-        <Scripts nonce={nonce} />
+        <ScrollRestoration nonce={loaderData.nonce} />
+        <Scripts nonce={loaderData.nonce} />
       </body>
     </html>
   );

@@ -12,9 +12,7 @@ import { PassThrough } from 'node:stream';
 import { I18nextProvider } from 'react-i18next';
 
 import { LogFactory } from '~/.server/logging';
-import { generateContentSecurityPolicy } from '~/.server/utils/csp.utils';
 import { createCounter, handleSpanException } from '~/.server/utils/telemetry-utils';
-import { NonceProvider } from '~/components/nonce-context';
 import { isAppError } from '~/errors/app-error';
 import { initI18next } from '~/i18n-config.server';
 import { HttpStatusCodes } from '~/utils/http-status-codes';
@@ -49,15 +47,12 @@ export default async function handleRequest(
 
     const { pipe, abort } = renderToPipeableStream(
       <I18nextProvider i18n={i18n}>
-        <NonceProvider nonce={`nonce-${nonce}`}>
-          <ServerRouter context={routerContext} url={request.url} nonce={`nonce-${nonce}`} />
-        </NonceProvider>
+        <ServerRouter context={routerContext} url={request.url} nonce={loadContext.nonce} />
       </I18nextProvider>,
       {
         [readyOption]() {
           shellRendered = true;
           responseHeaders.set('Content-Type', 'text/html');
-          responseHeaders.set('Content-Security-Policy', generateContentSecurityPolicy(`nonce-${nonce}`));
 
           const body = new PassThrough();
           const stream = createReadableStreamFromReadable(body);

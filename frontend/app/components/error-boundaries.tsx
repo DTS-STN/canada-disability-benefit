@@ -9,12 +9,18 @@ import { Footer } from './footer';
 
 import { AppLink } from '~/components/links';
 import { UnorderedList } from '~/components/lists';
-import { NonceContext } from '~/components/nonce-context';
 import { PageTitle } from '~/components/page-title';
 import { isAppError } from '~/errors/app-error';
 import { useLanguage } from '~/hooks/use-language';
 import * as adobeAnalytics from '~/utils/adobe-analytics.client';
 import { HttpStatusCodes } from '~/utils/http-status-codes';
+
+
+const englishTitle = 'My Canada Disability Benefit letters';
+const frenchTitle = 'Mes lettres de la Prestation canadienne pour les personnes handicapées';
+const englishCreator = 'Employment and Social Development Canada';
+const frenchCreator = 'Emploi et Développement social Canada';
+const dcSiteNameBilingual = 'ESDC-EDSC_MSCA-MDSC_CDBLetters-LettresPCPH';
 
 /**
  * A bilingual error boundary that renders appropriate error messages in both languages.
@@ -29,7 +35,6 @@ export function BilingualErrorBoundary({ actionData, error, params }: Route.Erro
   const { i18n } = useTranslation(['gcweb']);
   const en = i18n.getFixedT('en');
   const fr = i18n.getFixedT('fr');
-  const { nonce } = useContext(NonceContext);
 
   const loaderData = useRouteLoaderData('root');
 
@@ -45,6 +50,11 @@ export function BilingualErrorBoundary({ actionData, error, params }: Route.Erro
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
+        <meta name="dcterms.title" content={englishTitle + '-' + frenchTitle} />
+        <meta name="dcterms.language" content="eng-fra" />
+        <meta name="dcterms.creator" content={englishCreator + '-' + frenchCreator} />
+        <meta name="dcterms.accessRights" content="1" />
+        <meta name="gcaaterms.sitename" content={dcSiteNameBilingual} />
         <Links />
         <script //
           nonce={loaderData?.nonce}
@@ -54,12 +64,12 @@ export function BilingualErrorBoundary({ actionData, error, params }: Route.Erro
         {loaderData?.ADOBE_ANALYTICS_SRC && (
           <>
             <script //
-              nonce={nonce}
+              nonce={loaderData?.nonce}
               src={loaderData.ADOBE_ANALYTICS_JQUERY_SRC}
               suppressHydrationWarning={true}
             />
             <script //
-              nonce={nonce}
+              nonce={loaderData?.nonce}
               src={loaderData.ADOBE_ANALYTICS_SRC}
               suppressHydrationWarning={true}
             />
@@ -167,7 +177,6 @@ export function BilingualNotFound({ actionData, error, params }: Route.ErrorBoun
   const { i18n } = useTranslation(['gcweb']);
   const en = i18n.getFixedT('en');
   const fr = i18n.getFixedT('fr');
-  const { nonce } = useContext(NonceContext);
 
   const loaderData = useRouteLoaderData('root');
 
@@ -183,6 +192,11 @@ export function BilingualNotFound({ actionData, error, params }: Route.ErrorBoun
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
+        <meta name="dcterms.title" content={englishTitle + '-' + frenchTitle} />
+        <meta name="dcterms.language" content="eng-fra" />
+        <meta name="dcterms.creator" content={englishCreator + '-' + frenchCreator} />
+        <meta name="dcterms.accessRights" content="1" />
+        <meta name="gcaaterms.sitename" content={dcSiteNameBilingual} />
         <Links />
         <script //
           nonce={loaderData?.nonce}
@@ -192,12 +206,12 @@ export function BilingualNotFound({ actionData, error, params }: Route.ErrorBoun
         {loaderData?.ADOBE_ANALYTICS_SRC && (
           <>
             <script //
-              nonce={nonce}
+              nonce={loaderData?.nonce}
               src={loaderData.ADOBE_ANALYTICS_JQUERY_SRC}
               suppressHydrationWarning={true}
             />
             <script //
-              nonce={nonce}
+              nonce={loaderData?.nonce}
               src={loaderData.ADOBE_ANALYTICS_SRC}
               suppressHydrationWarning={true}
             />
@@ -261,7 +275,9 @@ export function BilingualNotFound({ actionData, error, params }: Route.ErrorBoun
 export function UnilingualErrorBoundary({ actionData, error, params }: Route.ErrorBoundaryProps) {
   const { currentLanguage } = useLanguage();
   const { t } = useTranslation(['gcweb']);
-  const { nonce } = useContext(NonceContext);
+  const dcTermsTitle = currentLanguage === 'en' ? englishTitle : frenchTitle;
+  const dcTermsLanguage = currentLanguage === 'en' ? 'eng' : 'fra';
+  const dcTermsCreator = currentLanguage === 'en' ? englishCreator : frenchCreator;
 
   const loaderData = useRouteLoaderData('root');
 
@@ -277,6 +293,11 @@ export function UnilingualErrorBoundary({ actionData, error, params }: Route.Err
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
+        <meta name="dcterms.title" content={dcTermsTitle} />
+        <meta name="dcterms.language" content={dcTermsLanguage} />
+        <meta name="dcterms.creator" content={dcTermsCreator} />
+        <meta name="dcterms.accessRights" content="1" />
+        <meta name="gcaaterms.sitename" content={dcSiteNameBilingual} />
         <Links />
         <script //
           nonce={loaderData?.nonce}
@@ -286,12 +307,12 @@ export function UnilingualErrorBoundary({ actionData, error, params }: Route.Err
         {loaderData?.ADOBE_ANALYTICS_SRC && (
           <>
             <script //
-              nonce={nonce}
+              nonce={loaderData?.nonce}
               src={loaderData.ADOBE_ANALYTICS_JQUERY_SRC}
               suppressHydrationWarning={true}
             />
             <script //
-              nonce={nonce}
+              nonce={loaderData?.nonce}
               src={loaderData.ADOBE_ANALYTICS_SRC}
               suppressHydrationWarning={true}
             />
@@ -359,7 +380,10 @@ export function UnilingualErrorBoundary({ actionData, error, params }: Route.Err
 export function UnilingualNotFound({ actionData, error, params }: Route.ErrorBoundaryProps) {
   const { currentLanguage } = useLanguage();
   const { t } = useTranslation(['gcweb']);
-  const { nonce } = useContext(NonceContext);
+  const dcTermsTitle = currentLanguage === 'en' ? englishTitle : frenchTitle;
+  const dcTermsLanguage = currentLanguage === 'en' ? 'eng' : 'fra';
+  const dcTermsCreator = currentLanguage === 'en' ? englishCreator : frenchCreator;
+
 
   const loaderData = useRouteLoaderData('root');
 
@@ -374,6 +398,11 @@ export function UnilingualNotFound({ actionData, error, params }: Route.ErrorBou
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="dcterms.title" content={dcTermsTitle} />
+        <meta name="dcterms.language" content={dcTermsLanguage} />
+        <meta name="dcterms.creator" content={dcTermsCreator} />
+        <meta name="dcterms.accessRights" content="1" />
+        <meta name="gcaaterms.sitename" content={dcSiteNameBilingual} />
         <Meta />
         <Links />
         <script //
@@ -384,12 +413,12 @@ export function UnilingualNotFound({ actionData, error, params }: Route.ErrorBou
         {loaderData?.ADOBE_ANALYTICS_SRC && (
           <>
             <script //
-              nonce={nonce}
+              nonce={loaderData?.nonce}
               src={loaderData.ADOBE_ANALYTICS_JQUERY_SRC}
               suppressHydrationWarning={true}
             />
             <script //
-              nonce={nonce}
+              nonce={loaderData?.nonce}
               src={loaderData.ADOBE_ANALYTICS_SRC}
               suppressHydrationWarning={true}
             />
