@@ -14,7 +14,7 @@ export const defaults = {
   BUILD_VERSION: '0.0.0-000000-00000000',
   I18NEXT_DEBUG: 'false',
   SESSION_TIMEOUT_PROMPT_SECONDS: (5 * 60).toString(),
-  SESSION_TIMEOUT_SECONDS: (15 * 60).toString(),
+  SESSION_TIMEOUT_SECONDS: (19 * 60).toString(),
   MSCA_BASE_URL: 'http://localhost:3000',
   ECAS_BASE_URL: 'http://localhost:3000',
 } as const;
