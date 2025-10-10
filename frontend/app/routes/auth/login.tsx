@@ -4,8 +4,11 @@ import type { Route } from './+types/login';
 
 import { getRaoidcClient } from '~/.server/auth/raoidc-client';
 import { serverEnvironment } from '~/.server/environment';
+import { LogFactory } from '~/.server/logging';
 import { withSpan } from '~/.server/utils/telemetry-utils';
 import { HttpStatusCodes } from '~/utils/http-status-codes';
+
+const log = LogFactory.getLogger(import.meta.url);
 
 /**
  * Allows errors to be handled by root.tsx
@@ -32,6 +35,7 @@ function handleLogin({ context, params, request }: Route.LoaderArgs): Promise<Re
 
     if (returnTo && !returnTo.startsWith('/')) {
       span.addEvent('returnto.invalid');
+      log.debug('HTTP [%s]: Invalid returnto.', HttpStatusCodes.BAD_REQUEST);
       return Response.json('Invalid returnto path', { status: HttpStatusCodes.BAD_REQUEST });
     }
 

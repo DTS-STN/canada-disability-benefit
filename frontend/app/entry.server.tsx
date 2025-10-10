@@ -65,6 +65,8 @@ export default async function handleRequest(
           pipe(body);
         },
         onShellError(error) {
+          // TODO: Maybe not needed. Need to test
+          log.warn('Warning: Shell error occured while rendering the react element.');
           reject(error);
         },
         onError(error) {
@@ -73,7 +75,7 @@ export default async function handleRequest(
           // errors encountered during initial shell rendering since they'll
           // reject and get logged in handleDocumentRequest.
           if (shellRendered) {
-            log.error('Error while rendering react element', error);
+            log.error('Error while rendering the react element.', error);
           }
         },
         nonce: loadContext.nonce,

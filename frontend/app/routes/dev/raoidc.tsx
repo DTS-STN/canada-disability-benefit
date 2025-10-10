@@ -111,6 +111,7 @@ export async function action(actionArgs: Route.ActionArgs): Promise<Response> {
     }
 
     default: {
+      log.debug('OIDC endpoint ${endpoint} not found');
       throw Response.json(`OIDC endpoint ${endpoint} not found`, { status: HttpStatusCodes.NOT_FOUND });
     }
   }
@@ -137,7 +138,7 @@ export async function action(actionArgs: Route.ActionArgs): Promise<Response> {
  */
 export async function loader(loaderArgs: Route.LoaderArgs): Promise<Response> {
   if (!serverEnvironment.AUTH_ENABLE_STUB_LOGIN) {
-    log.warn('Attempted GET to mock RAOIDC provider when AUTH_ENABLE_STUB_LOGIN=false; returning 404');
+    log.debug('Attempted GET to mock RAOIDC provider when AUTH_ENABLE_STUB_LOGIN=false; returning 404');
     throw Response.json(null, { status: HttpStatusCodes.NOT_FOUND });
   }
 
@@ -165,6 +166,7 @@ export async function loader(loaderArgs: Route.LoaderArgs): Promise<Response> {
     }
 
     default: {
+      log.debug('Error: OIDC endpoint not found: [%s]', endpoint);
       throw Response.json(`OIDC endpoint ${endpoint} not found`, { status: HttpStatusCodes.NOT_FOUND });
     }
   }
@@ -204,22 +206,27 @@ async function handleAuthorizeRequest(loaderArgs: Route.LoaderArgs): Promise<Res
   //
 
   if (clientId !== serverEnvironment.AUTH_RAOIDC_CLIENT_ID) {
+    log.debug('HTTP [%s]: Invalid client id.', HttpStatusCodes.BAD_REQUEST);
     return Response.json({ error: 'invalid_client_id' }, { status: HttpStatusCodes.BAD_REQUEST });
   }
 
   if (!nonce) {
+    log.debug('HTTP [%s]: Invalid nonce.', HttpStatusCodes.BAD_REQUEST);
     return Response.json({ error: 'invalid_nonce' }, { status: HttpStatusCodes.BAD_REQUEST });
   }
 
   if (redirectUri && !allowedRedirectUris.includes(redirectUri)) {
+    log.debug('HTTP [%s]: Invalid redirect uri.', HttpStatusCodes.BAD_REQUEST);
     return Response.json({ error: 'invalid_redirect_uri' }, { status: HttpStatusCodes.BAD_REQUEST });
   }
 
   if (!scope) {
+    log.debug('HTTP [%s]: Invalid scope.', HttpStatusCodes.BAD_REQUEST);
     return Response.json({ error: 'invalid_scope' }, { status: HttpStatusCodes.BAD_REQUEST });
   }
 
   if (!state) {
+    log.debug('HTTP [%s]: Invalid state.', HttpStatusCodes.BAD_REQUEST);
     return Response.json({ error: 'invalid_state' }, { status: HttpStatusCodes.BAD_REQUEST });
   }
 
@@ -253,7 +260,7 @@ async function handleAuthorizeRequest(loaderArgs: Route.LoaderArgs): Promise<Res
  */
 function handleMetadataRequest(loaderArgs: Route.LoaderArgs): Response {
   const baseUrl = new URL('/auth/raoidc', new URL(loaderArgs.request.url).origin).toString();
-
+  log.debug(' [%s]/auth/raoidc', new URL(loaderArgs.request.url).origin).toString();
   return Response.json({
     authorization_endpoint: `${baseUrl}/authorize`,
     claims_supported: ['aud', 'email', 'exp', 'iat', 'iss', 'name', 'sub'],
@@ -328,26 +335,32 @@ async function handleTokenRequest(actionArgs: Route.ActionArgs): Promise<Respons
   //
 
   if (clientAssertionType !== 'urn:ietf:params:oauth:client-assertion-type:jwt-bearer') {
+    log.debug('HTTP [%s]: Invalid client assertion type.', HttpStatusCodes.BAD_REQUEST);
     return Response.json({ error: 'invalid_client_assertion_type' }, { status: HttpStatusCodes.BAD_REQUEST });
   }
 
   if (clientId !== serverEnvironment.AUTH_RAOIDC_CLIENT_ID) {
+    log.debug('HTTP [%s]: Invalid client.', HttpStatusCodes.BAD_REQUEST);
     return Response.json({ error: 'invalid_client' }, { status: HttpStatusCodes.BAD_REQUEST });
   }
 
   if (!clientAssertion) {
+    log.debug('HTTP [%s]: Invalid client assertion.', HttpStatusCodes.BAD_REQUEST);
     return Response.json({ error: 'invalid_client_assertion' }, { status: HttpStatusCodes.BAD_REQUEST });
   }
 
   if (!authCode) {
+    log.debug('HTTP [%s]: Invalid code.', HttpStatusCodes.BAD_REQUEST);
     return Response.json({ error: 'invalid_code' }, { status: HttpStatusCodes.BAD_REQUEST });
   }
 
   if (grantType !== 'authorization_code') {
+    log.debug('HTTP [%s]: Invalid grant type.', HttpStatusCodes.BAD_REQUEST);
     return Response.json({ error: 'invalid_grant_type' }, { status: HttpStatusCodes.BAD_REQUEST });
   }
 
   if (redirectUri && !allowedRedirectUris.includes(redirectUri)) {
+    log.debug('HTTP [%s]: Invalid redirect uri.', HttpStatusCodes.BAD_REQUEST);
     return Response.json({ error: 'invalid_redirect_uri' }, { status: HttpStatusCodes.BAD_REQUEST });
   }
 
@@ -359,9 +372,11 @@ async function handleTokenRequest(actionArgs: Route.ActionArgs): Promise<Respons
   setTimeout(() => tokenCache.delete(authCode), 30_000);
 
   if (!tokenSet) {
+    log.debug('HTTP [%s]: Invalid auth code.', HttpStatusCodes.BAD_REQUEST);
     return Response.json({ error: 'invalid_auth_code' }, { status: HttpStatusCodes.BAD_REQUEST });
   }
 
+  log.debug('Setting access token.');
   return Response.json({
     token_type: 'Bearer',
     access_token: tokenSet.accessToken,
@@ -375,6 +390,7 @@ async function handleTokenRequest(actionArgs: Route.ActionArgs): Promise<Respons
  * @returns A `Response` object that always contains `true`.
  */
 function handleValidateSession(loaderArgs: Route.LoaderArgs): Response {
+  log.debug('Valid session.');
   return Response.json(true);
 }
 
@@ -400,6 +416,7 @@ async function handleUserinfoRequest(loaderArgs: Route.LoaderArgs): Promise<Resp
   const locale = searchParams.get('locale') ?? 'en-CA';
   const sin = searchParams.get('sin') ?? '00000000';
 
+  log.debug('Generating user info token.');
   return Response.json({
     userinfo_token: await generateUserinfoToken(birthdate, locale, sin),
   });

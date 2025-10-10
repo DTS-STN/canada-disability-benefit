@@ -9,6 +9,7 @@ import * as v from 'valibot';
 import type { Route } from './+types/letters';
 
 import { getLetterService } from '~/.server/domain/services/letter.service';
+import { LogFactory } from '~/.server/logging';
 import { requireAuth } from '~/.server/utils/auth-utils';
 import { ButtonLink } from '~/components/button-link';
 import { InputSelect } from '~/components/input-select';
@@ -26,6 +27,8 @@ export const handle = {
 
 const orderEnumSchema = v.picklist(['asc', 'desc']);
 
+const log = LogFactory.getLogger(import.meta.url);
+
 export async function loader({ context, params, request }: Route.LoaderArgs) {
   const { userinfoTokenClaims } = await requireAuth(context.session, request);
   const { t } = await getTranslation(request, handle.i18nNamespace);
@@ -36,6 +39,7 @@ export async function loader({ context, params, request }: Route.LoaderArgs) {
   const sortOrder = v.parse(v.fallback(orderEnumSchema, 'desc'), sortParam);
 
   if (!userinfoTokenClaims.sin) {
+    log.warn('Error: User Info Token sin not defined');
     throw new AppError('No SIN found in userinfo token', ErrorCodes.MISSING_SIN);
   }
   const name = userinfoTokenClaims.sin;

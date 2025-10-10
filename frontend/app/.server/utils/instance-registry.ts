@@ -6,11 +6,15 @@
  * and retrieve these instances, and it supports the use of factory
  * functions for creating instances on demand.
  */
+import { LogFactory } from '../logging';
+
 import { AppError } from '~/errors/app-error';
 import { ErrorCodes } from '~/errors/error-codes';
 
 export const instanceNames = ['raoidcClient', 'redisClient'] as const;
 export type InstanceName = (typeof instanceNames)[number];
+
+const log = LogFactory.getLogger(import.meta.url);
 
 /**
  * Retrieves a singleton instance. If the instance does not exist, it is created using the provided factory function.
@@ -22,6 +26,7 @@ export function singleton<T>(instanceName: InstanceName, factory?: () => T): T {
 
   if (!globalThis.__instanceRegistry.has(instanceName)) {
     if (!factory) {
+      log.error('Instance [%s] not found and factory not provided', instanceName);
       throw new AppError(`Instance [${instanceName}] not found and factory not provided`, ErrorCodes.NO_FACTORY_PROVIDED);
     }
 

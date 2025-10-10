@@ -143,6 +143,7 @@ export function ErrorBoundary(props: Route.ErrorBoundaryProps) {
 }
 
 function isNotFoundError(error: Route.ErrorBoundaryProps['error']) {
+  console.error('HTTP [%s]: This page does not exist', HttpStatusCodes.NOT_FOUND);
   return isRouteErrorResponse(error) && error.status === HttpStatusCodes.NOT_FOUND;
 }
 

@@ -39,6 +39,7 @@ export async function requireAuth(session: AppSession, request: Request): Promis
     log.debug('RAOIDC session has expired; redirecting to login page');
     throw redirect(`/auth/login?returnto=${pathname}${search}`);
   }
+  log.debug('Session authentication authorized');
 
   return session.authState;
 }

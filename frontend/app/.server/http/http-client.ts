@@ -175,6 +175,7 @@ export class DefaultHttpClient implements HttpClient {
         countHttpStatus(metricPrefix, 500);
       }
 
+      this.log.debug('Executing instumented fetch failed: [%s]', error);
       throw error;
     }
   }
@@ -196,6 +197,7 @@ export class DefaultHttpClient implements HttpClient {
     metricPrefix,
     retryConditions,
   }: FetchRetryOptions): Promise<Response> {
+    this.log.debug('Retrying mechanism');
     const response = await fetchFn(input, init);
 
     // Check if the response status is configured to be retried
@@ -211,6 +213,7 @@ export class DefaultHttpClient implements HttpClient {
     // Retry on this status regardless of body content
     if (conditions.length === 0) {
       countHttpStatus(metricPrefix, response.status);
+      this.log.debug('App Error: Retryable response thrown with http status: [%s]', response.status);
       throw new AppError(
         `Retryable response thrown with http status: [${response.status} ${response.statusText}]; response body: [${body}]`,
         ErrorCodes.XAPI_RETRY_NO_CONDITIONS,
@@ -223,6 +226,7 @@ export class DefaultHttpClient implements HttpClient {
     );
     if (matchedCondition) {
       countHttpStatus(metricPrefix, response.status);
+      this.log.debug('App Error: Retryable response thrown with http status: [%s]', response.status);
       throw new AppError(
         `Retryable response thrown with http status: [${response.status} ${response.statusText}]; matched condition: [${matchedCondition}]; response body: [${body}]`,
         ErrorCodes.XAPI_RETRY_CONDITION_MATCHED,

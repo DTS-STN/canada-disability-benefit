@@ -4,8 +4,11 @@ import type { Route } from './+types/callback';
 
 import { getRaoidcClient } from '~/.server/auth/raoidc-client';
 import { serverEnvironment } from '~/.server/environment';
+import { LogFactory } from '~/.server/logging';
 import { withSpan } from '~/.server/utils/telemetry-utils';
 import { HttpStatusCodes } from '~/utils/http-status-codes';
+
+const log = LogFactory.getLogger(import.meta.url);
 
 /**
  * Allows errors to be handled by root.tsx
@@ -30,6 +33,7 @@ function handleCallback({ context, params, request }: Route.LoaderArgs): Promise
 
     if (session.loginState === undefined) {
       span.addEvent('login_state.invalid');
+      log.debug('HTTP [%s]: Invalid login state.', HttpStatusCodes.BAD_REQUEST);
       return Response.json({ message: 'Invalid login state' }, { status: HttpStatusCodes.BAD_REQUEST });
     }
 
