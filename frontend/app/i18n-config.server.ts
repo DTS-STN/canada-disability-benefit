@@ -2,6 +2,8 @@ import type { i18n, KeyPrefix, Namespace, TFunction } from 'i18next';
 import { createInstance } from 'i18next';
 import { initReactI18next } from 'react-i18next';
 
+import { LogFactory } from './.server/logging';
+
 import { serverEnvironment } from '~/.server/environment';
 import type { I18nResources } from '~/.server/locales';
 import { i18nResources } from '~/.server/locales';
@@ -18,6 +20,9 @@ import { getLanguage } from '~/utils/i18n-utils';
  * @returns A translation function for the given language and namespace.
  * @throws {AppError} If no language is found in the `languageOrRequest`.
  */
+
+const log = LogFactory.getLogger(import.meta.url);
+
 export async function getFixedT<NS extends Namespace, TKPrefix extends KeyPrefix<NS> = undefined>(
   languageOrRequest: Language | Request,
   namespace: NS,
@@ -30,6 +35,7 @@ export async function getFixedT<NS extends Namespace, TKPrefix extends KeyPrefix
     : languageOrRequest;
 
   if (language === undefined) {
+    log.debug('Error: Language is not defined');
     throw new AppError('No language found in request', ErrorCodes.NO_LANGUAGE_FOUND);
   }
 
@@ -55,9 +61,11 @@ export async function getTranslation<NS extends Namespace, TKPrefix extends KeyP
   const lang = getLanguage(languageOrRequest);
 
   if (lang === undefined) {
+    log.debug('Error: Language is not defined');
     throw new AppError('No language found in request', ErrorCodes.NO_LANGUAGE_FOUND);
   }
 
+  log.trace('Returning translation to the [%s] language', keyPrefix);
   return { lang, t: await getFixedT(languageOrRequest, namespace, keyPrefix) };
 }
 

@@ -35,6 +35,8 @@ export function globalErrorHandler(): ErrorRequestHandler {
       if (dispatchError) {
         log.error('Unexpected error while dispatching error page... this is bad!', dispatchError);
         response.status(HttpStatusCodes.INTERNAL_SERVER_ERROR).send('Internal Server Error');
+      } else if (response.statusCode === HttpStatusCodes.FORBIDDEN) {
+        log.trace('Warning: Forbidden access with current handlers.');
       }
     });
   };

@@ -13,6 +13,7 @@ import { HttpStatusCodes } from '~/utils/http-status-codes';
  * Actual rendering of the 404 page content should be handled in a global error boundary.
  */
 export function loader(args: Route.LoaderArgs) {
+  console.error('Returning [%s]: Not Found', HttpStatusCodes.NOT_FOUND);
   throw new Response('Not found', { status: HttpStatusCodes.NOT_FOUND });
 }
 

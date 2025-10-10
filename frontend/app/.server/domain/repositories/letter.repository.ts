@@ -85,6 +85,7 @@ export class DefaultLetterRepository implements LetterRepository {
     this.serverConfig = serverConfig;
     this.httpClient = httpClient;
     this.baseUrl = `${this.serverConfig.CCT_API_BASE_URI}/client-correspondence/letter-retrieval/cct/v1`;
+    this.log.trace('LetterRepository initialized');
   }
 
   async findLettersBySin(sin: string, userId: string): Promise<readonly LetterEntity[]> {
@@ -177,6 +178,7 @@ export class DefaultLetterRepository implements LetterRepository {
   }
 
   async checkHealth(): Promise<void> {
+    this.log.debug('Running healthcheck for /MSCA-CDB');
     await this.findLettersBySin(this.serverConfig.HEALTH_PLACEHOLDER_REQUEST_VALUE, 'MSCA-CDB');
   }
 }
@@ -224,6 +226,7 @@ export class MockLetterRepository implements LetterRepository {
   }
 
   async checkHealth(): Promise<void> {
+    this.log.debug('Running health-check');
     return await Promise.resolve();
   }
 }
