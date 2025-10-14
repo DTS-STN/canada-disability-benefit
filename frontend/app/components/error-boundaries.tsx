@@ -15,8 +15,8 @@ import { useLanguage } from '~/hooks/use-language';
 import * as adobeAnalytics from '~/utils/adobe-analytics.client';
 import { HttpStatusCodes } from '~/utils/http-status-codes';
 
-const englishTitle = 'My Canada Disability Benefit letters';
-const frenchTitle = 'Mes lettres de la Prestation canadienne pour les personnes handicapées';
+const englishTitle = 'My Canada Disability Benefit letters - Error';
+const frenchTitle = 'Mes lettres de la Prestation canadienne pour les personnes handicapées - Erreur';
 const englishCreator = 'Employment and Social Development Canada';
 const frenchCreator = 'Emploi et Développement social Canada';
 const dcSiteNameBilingual = 'ESDC-EDSC_MSCA-MDSC_CDBLetters-LettresPCPH';

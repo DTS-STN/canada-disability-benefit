@@ -13,7 +13,7 @@ exports[`error-boundaries > BilingualErrorBoundary > should correctly render the
       name="viewport"
     />
     <meta
-      content="My Canada Disability Benefit letters-Mes lettres de la Prestation canadienne pour les personnes handicapées"
+      content="My Canada Disability Benefit letters - Error-Mes lettres de la Prestation canadienne pour les personnes handicapées - Erreur"
       name="dcterms.title"
     />
     <meta
@@ -221,7 +221,7 @@ exports[`error-boundaries > BilingualErrorBoundary > should correctly render the
       name="viewport"
     />
     <meta
-      content="My Canada Disability Benefit letters-Mes lettres de la Prestation canadienne pour les personnes handicapées"
+      content="My Canada Disability Benefit letters - Error-Mes lettres de la Prestation canadienne pour les personnes handicapées - Erreur"
       name="dcterms.title"
     />
     <meta
@@ -430,7 +430,7 @@ exports[`error-boundaries > BilingualNotFound > should correctly render the bili
       name="viewport"
     />
     <meta
-      content="My Canada Disability Benefit letters-Mes lettres de la Prestation canadienne pour les personnes handicapées"
+      content="My Canada Disability Benefit letters - Error-Mes lettres de la Prestation canadienne pour les personnes handicapées - Erreur"
       name="dcterms.title"
     />
     <meta
@@ -629,7 +629,7 @@ exports[`error-boundaries > UnilingualErrorBoundary > should correctly render th
       name="viewport"
     />
     <meta
-      content="My Canada Disability Benefit letters"
+      content="My Canada Disability Benefit letters - Error"
       name="dcterms.title"
     />
     <meta
@@ -802,7 +802,7 @@ exports[`error-boundaries > UnilingualErrorBoundary > should correctly render th
       name="viewport"
     />
     <meta
-      content="My Canada Disability Benefit letters"
+      content="My Canada Disability Benefit letters - Error"
       name="dcterms.title"
     />
     <meta
@@ -983,7 +983,7 @@ exports[`error-boundaries > UnilingualNotFound > should correctly render the uni
       name="viewport"
     />
     <meta
-      content="Mes lettres de la Prestation canadienne pour les personnes handicapées"
+      content="Mes lettres de la Prestation canadienne pour les personnes handicapées - Erreur"
       name="dcterms.title"
     />
     <meta
