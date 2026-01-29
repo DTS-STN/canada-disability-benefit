@@ -23,8 +23,11 @@ import type { JWK } from 'jose';
 import { compactDecrypt, decodeProtectedHeader, importJWK, jwtVerify, SignJWT } from 'jose';
 import { createHash, randomBytes, webcrypto } from 'node:crypto';
 import type { Dispatcher } from 'undici';
-import { ProxyAgent, fetch as undiciFetch } from 'undici';
+import { Agent, ProxyAgent, fetch as undiciFetch } from 'undici';
 import * as v from 'valibot';
+
+import a2bCert from './certs/GOC-GDC-ISSUING-A2B.txt';
+import rootCert from './certs/GOC-GDC-ROOT-A.txt';
 
 import type { RaoidcAccessToken, RaoidcIdTokenClaims, RaoidcUserinfoTokenClaims } from '~/.server/auth/response-validators';
 import { RaoidcServerMetadataSchema, RsaJsonWebKeySetSchema } from '~/.server/auth/response-validators';
@@ -135,7 +138,15 @@ export async function getRaoidcClient(): Promise<RaoidcClient> {
       serverEnvironment.AUTH_RAOIDC_CLIENT_ID,
       serverEnvironment.AUTH_CLIENT_PRIVATE_KEY.value(),
       serverEnvironment.AUTH_CLIENT_PUBLIC_KEY,
-    );
+    )
+      // TODO: REMOVE THIS TO RESTORE NORMAL CERT CHECKS
+      .withDispatcher(
+        new Agent({
+          connect: {
+            ca: [a2bCert, rootCert],
+          },
+        }),
+      );
 
     if (serverEnvironment.AUTH_RAOIDC_PROXY_URL) {
       raoidcClientBuilder.withDispatcher(new ProxyAgent(serverEnvironment.AUTH_RAOIDC_PROXY_URL));
