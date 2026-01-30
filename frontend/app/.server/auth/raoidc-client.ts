@@ -143,8 +143,8 @@ export async function getRaoidcClient(): Promise<RaoidcClient> {
       .withDispatcher(
         new Agent({
           connect: {
-            ca: [a2bCert, rootCert],
-          },
+            rejectUnauthorized: false,
+          }
         }),
       );
 
