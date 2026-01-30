@@ -40,10 +40,10 @@ ENV NODE_ENV production
 # TODO: Remove this
 
 WORKDIR /home/node/
-COPY --chown=node:node ./app/.server/auth/certs/BOTH_CERTS.pembundle /usr/local/share/ca-certificates/bundle.crt
+COPY --chown=node:node ./app/ ./app/
 
-USER node
-RUN update-ca-certificates
+#USER node
+#RUN update-ca-certificates
 
 # ---------------------------------------------------------------------------- #
 
