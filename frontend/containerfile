@@ -40,9 +40,6 @@ ENV NODE_ENV production
 # TODO: Remove this
 
 COPY --chown=node:node ./BOTH_CERTS.crt /usr/local/share/ca-certificates/BOTH_CERTS.crt
-USER root
-RUN update-ca-certificates
-USER node
 
 # ---------------------------------------------------------------------------- #
 
