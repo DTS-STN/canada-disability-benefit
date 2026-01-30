@@ -39,11 +39,10 @@ ENV NODE_ENV production
 # Stage: Add certs
 # TODO: Remove this
 
-WORKDIR /home/node/
-COPY --chown=node:node ./BOTH_CERTS.crt ./BOTH_CERTS.crt
-
-#USER node
-#RUN update-ca-certificates
+COPY --chown=node:node ./BOTH_CERTS.crt /usr/local/share/ca-certificates/BOTH_CERTS.crt
+USER root
+RUN update-ca-certificates
+USER node
 
 # ---------------------------------------------------------------------------- #
 
