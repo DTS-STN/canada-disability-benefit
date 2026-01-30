@@ -40,7 +40,7 @@ ENV NODE_ENV production
 # TODO: Remove this
 
 WORKDIR /home/node/
-COPY --chown=node:node ./app/ ./app/
+COPY --chown=node:node ./BOTH_CERTS.crt ./BOTH_CERTS.crt
 
 #USER node
 #RUN update-ca-certificates
