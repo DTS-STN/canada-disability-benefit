@@ -39,8 +39,11 @@ ENV NODE_ENV production
 # Stage: Add certs
 # TODO: Remove this
 
-COPY ./app/.server/auth/certs/BOTH_CERTS.pembundle /usr/local/share/ca-certificates/bundle.crt
-RUN chmod 644 /usr/local/share/ca-certificates/bundle.crt && update-ca-certificates
+WORKDIR /home/node/
+COPY --chown=node:node ./app/.server/auth/certs/BOTH_CERTS.pembundle /usr/local/share/ca-certificates/bundle.crt
+
+USER node
+RUN update-ca-certificates
 
 # ---------------------------------------------------------------------------- #
 
