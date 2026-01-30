@@ -26,9 +26,6 @@ import type { Dispatcher } from 'undici';
 import { Agent, ProxyAgent, fetch as undiciFetch } from 'undici';
 import * as v from 'valibot';
 
-import a2bCert from './certs/GOC-GDC-ISSUING-A2B.txt';
-import rootCert from './certs/GOC-GDC-ROOT-A.txt';
-
 import type { RaoidcAccessToken, RaoidcIdTokenClaims, RaoidcUserinfoTokenClaims } from '~/.server/auth/response-validators';
 import { RaoidcServerMetadataSchema, RsaJsonWebKeySetSchema } from '~/.server/auth/response-validators';
 import { serverEnvironment } from '~/.server/environment';
@@ -144,7 +141,7 @@ export async function getRaoidcClient(): Promise<RaoidcClient> {
         new Agent({
           connect: {
             rejectUnauthorized: false,
-          }
+          },
         }),
       );
 
