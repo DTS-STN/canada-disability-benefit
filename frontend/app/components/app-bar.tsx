@@ -79,7 +79,7 @@ function UserButton({ className, name }: UserButtonProps): JSX.Element {
         {SHOW_INBOX_MENU && (
           <MenuItem
             to={t('gcweb:app.inbox.href', { baseUri: MSCA_BASE_URL })}
-            className="text-deep-blue-dark hover:text-blue-hover flex justify-between text-base focus:bg-white"
+            className="text-md flex justify-between text-black hover:bg-zinc-100 hover:text-black focus:bg-zinc-100 active:bg-zinc-100"
           >
             {t('gcweb:app.inbox')}
           </MenuItem>
