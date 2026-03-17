@@ -4,12 +4,7 @@ import { faChevronDown, faRightFromBracket, faUser } from '@fortawesome/free-sol
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useTranslation } from 'react-i18next';
 
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuLabel,
-  DropdownMenuTrigger,
-} from '~/components/dropdown-menu';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuLabel, DropdownMenuTrigger } from '~/components/dropdown-menu';
 import { AppLink } from '~/components/links';
 import { MenuItem } from '~/components/menu';
 import { useLanguage } from '~/hooks/use-language';
