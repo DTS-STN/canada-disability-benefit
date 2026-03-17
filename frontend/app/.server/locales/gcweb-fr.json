@@ -10,7 +10,9 @@
     "contact-us.href": "{{baseUri}}/fr/contactez-nous",
     "title": "Mon dossier Service Canada",
     "menu-dashboard": "Mon tableau de bord",
-    "menu-dashboard.href": "{{baseUri}}/fr/mon-tableau-de-bord"
+    "menu-dashboard.href": "{{baseUri}}/fr/mon-tableau-de-bord",
+    "inbox": "Boîte de réception",
+    "inbox.href": "{{baseUri}}/fr/boite-de-reception"
   },
   "breadcrumbs": {
     "dashboard": "Mon tableau de bord"

@@ -17,6 +17,7 @@ export const defaults = {
   SESSION_TIMEOUT_SECONDS: (19 * 60).toString(),
   MSCA_BASE_URL: 'http://localhost:3000',
   ECAS_BASE_URL: 'http://localhost:3000',
+  SHOW_INBOX_MENU: 'true',
 } as const;
 
 /**
@@ -35,4 +36,5 @@ export const client = v.object({
   isProduction: v.boolean(),
   MSCA_BASE_URL: v.optional(v.string(), defaults.MSCA_BASE_URL),
   ECAS_BASE_URL: v.optional(v.string(), defaults.ECAS_BASE_URL),
+  SHOW_INBOX_MENU: v.optional(stringToBooleanSchema(), defaults.SHOW_INBOX_MENU),
 });
