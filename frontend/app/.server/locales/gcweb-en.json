@@ -10,7 +10,9 @@
     "contact-us.href": "{{baseUri}}/en/contact-us",
     "title": "My Service Canada Account",
     "menu-dashboard": "My dashboard",
-    "menu-dashboard.href": "{{baseUri}}/en/my-dashboard"
+    "menu-dashboard.href": "{{baseUri}}/en/my-dashboard",
+    "inbox": "Inbox",
+    "inbox.href": "{{baseUri}}/en/inbox"
   },
   "breadcrumbs": {
     "dashboard": "My dashboard"

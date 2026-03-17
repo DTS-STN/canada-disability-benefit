@@ -4,7 +4,12 @@ import { faChevronDown, faRightFromBracket, faUser } from '@fortawesome/free-sol
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useTranslation } from 'react-i18next';
 
-import { DropdownMenu, DropdownMenuContent, DropdownMenuLabel, DropdownMenuTrigger } from '~/components/dropdown-menu';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuLabel,
+  DropdownMenuTrigger,
+} from '~/components/dropdown-menu';
 import { AppLink } from '~/components/links';
 import { MenuItem } from '~/components/menu';
 import { useLanguage } from '~/hooks/use-language';
@@ -42,7 +47,7 @@ type UserButtonProps = {
 function UserButton({ className, name }: UserButtonProps): JSX.Element {
   const { t } = useTranslation(['gcweb']);
   const { currentLanguage } = useLanguage();
-  const { MSCA_BASE_URL } = globalThis.__appEnvironment;
+  const { MSCA_BASE_URL, SHOW_INBOX_MENU } = globalThis.__appEnvironment;
 
   return (
     <DropdownMenu>
@@ -76,6 +81,14 @@ function UserButton({ className, name }: UserButtonProps): JSX.Element {
         >
           {t('gcweb:app.profile')}
         </MenuItem>
+        {SHOW_INBOX_MENU && (
+          <MenuItem
+            to={t('gcweb:app.inbox.href', { baseUri: MSCA_BASE_URL })}
+            className="text-deep-blue-dark hover:text-blue-hover flex justify-between text-base focus:bg-white"
+          >
+            {t('gcweb:app.inbox')}
+          </MenuItem>
+        )}
         <MenuItem
           to={t('gcweb:app.security-settings.href', { baseUri: MSCA_BASE_URL })}
           className="text-md flex justify-between text-black hover:bg-zinc-100 hover:text-black focus:bg-zinc-100 active:bg-zinc-100"
