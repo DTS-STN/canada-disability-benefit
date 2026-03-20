@@ -12,7 +12,6 @@ import {
 } from '~/components/error-boundaries';
 import { AppError } from '~/errors/app-error';
 import { ErrorCodes } from '~/errors/error-codes';
-import { getFixedT } from '~/i18n-config.server';
 import { HttpStatusCodes } from '~/utils/http-status-codes';
 
 vi.mock('~/utils/adobe-analytics.client');
