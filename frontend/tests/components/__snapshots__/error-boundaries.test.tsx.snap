@@ -90,7 +90,7 @@ exports[`error-boundaries > BilingualErrorBoundary > should correctly render the
                 <small
                   class="block text-2xl font-normal text-neutral-500"
                 >
-                  {"key":"gcweb:server-error.page-subtitle","options":{"statusCode":500}}
+                  gcweb:server-error.page-subtitle
                 </small>
               </h1>
             </div>
@@ -118,7 +118,7 @@ exports[`error-boundaries > BilingualErrorBoundary > should correctly render the
                 <small
                   class="block text-2xl font-normal text-neutral-500"
                 >
-                  {"key":"gcweb:server-error.page-subtitle","options":{"statusCode":500}}
+                  gcweb:server-error.page-subtitle
                 </small>
               </h1>
             </div>
@@ -159,9 +159,8 @@ exports[`error-boundaries > BilingualErrorBoundary > should correctly render the
           >
             <a
               class="text-slate-700 hover:underline"
-              data-discover="true"
               data-gc-analytics-navigation="Footer:Footer:gcweb:footer.terms-conditions.text"
-              href="/{"key":"gcweb:footer.terms-conditions.href","options":{}}"
+              href="gcweb:footer.terms-conditions.href"
             >
               gcweb:footer.terms-conditions.text
             </a>
@@ -170,9 +169,8 @@ exports[`error-boundaries > BilingualErrorBoundary > should correctly render the
             />
             <a
               class="text-slate-700 hover:underline"
-              data-discover="true"
               data-gc-analytics-navigation="Footer:Footer:gcweb:footer.privacy.text"
-              href="/{"key":"gcweb:footer.privacy.href","options":{}}"
+              href="gcweb:footer.privacy.href"
             >
               gcweb:footer.privacy.text
             </a>
@@ -294,7 +292,7 @@ exports[`error-boundaries > BilingualErrorBoundary > should correctly render the
                 <small
                   class="block text-2xl font-normal text-neutral-500"
                 >
-                  {"key":"gcweb:server-error.page-subtitle","options":{"statusCode":500}}
+                  gcweb:server-error.page-subtitle
                 </small>
               </h1>
             </div>
@@ -306,12 +304,8 @@ exports[`error-boundaries > BilingualErrorBoundary > should correctly render the
             <ul
               class="list-disc space-y-1 pl-7 text-gray-800"
             >
-              <li>
-                {"key":"gcweb:server-error.error-code","options":{"values":{"errorCode":"UNC-0000"}}}
-              </li>
-              <li>
-                {"key":"gcweb:server-error.correlation-id","options":{"values":{"correlationId":"XX-000000"}}}
-              </li>
+              <li />
+              <li />
             </ul>
           </div>
           <div
@@ -332,7 +326,7 @@ exports[`error-boundaries > BilingualErrorBoundary > should correctly render the
                 <small
                   class="block text-2xl font-normal text-neutral-500"
                 >
-                  {"key":"gcweb:server-error.page-subtitle","options":{"statusCode":500}}
+                  gcweb:server-error.page-subtitle
                 </small>
               </h1>
             </div>
@@ -344,12 +338,8 @@ exports[`error-boundaries > BilingualErrorBoundary > should correctly render the
             <ul
               class="list-disc space-y-1 pl-7 text-gray-800"
             >
-              <li>
-                {"key":"gcweb:server-error.error-code","options":{"values":{"errorCode":"UNC-0000"}}}
-              </li>
-              <li>
-                {"key":"gcweb:server-error.correlation-id","options":{"values":{"correlationId":"XX-000000"}}}
-              </li>
+              <li />
+              <li />
             </ul>
           </div>
         </div>
@@ -383,9 +373,8 @@ exports[`error-boundaries > BilingualErrorBoundary > should correctly render the
           >
             <a
               class="text-slate-700 hover:underline"
-              data-discover="true"
               data-gc-analytics-navigation="Footer:Footer:gcweb:footer.terms-conditions.text"
-              href="/{"key":"gcweb:footer.terms-conditions.href","options":{}}"
+              href="gcweb:footer.terms-conditions.href"
             >
               gcweb:footer.terms-conditions.text
             </a>
@@ -394,9 +383,8 @@ exports[`error-boundaries > BilingualErrorBoundary > should correctly render the
             />
             <a
               class="text-slate-700 hover:underline"
-              data-discover="true"
               data-gc-analytics-navigation="Footer:Footer:gcweb:footer.privacy.text"
-              href="/{"key":"gcweb:footer.privacy.href","options":{}}"
+              href="gcweb:footer.privacy.href"
             >
               gcweb:footer.privacy.text
             </a>
@@ -582,9 +570,8 @@ exports[`error-boundaries > BilingualNotFound > should correctly render the bili
           >
             <a
               class="text-slate-700 hover:underline"
-              data-discover="true"
               data-gc-analytics-navigation="Footer:Footer:gcweb:footer.terms-conditions.text"
-              href="/{"key":"gcweb:footer.terms-conditions.href","options":{}}"
+              href="gcweb:footer.terms-conditions.href"
             >
               gcweb:footer.terms-conditions.text
             </a>
@@ -593,9 +580,8 @@ exports[`error-boundaries > BilingualNotFound > should correctly render the bili
             />
             <a
               class="text-slate-700 hover:underline"
-              data-discover="true"
               data-gc-analytics-navigation="Footer:Footer:gcweb:footer.privacy.text"
-              href="/{"key":"gcweb:footer.privacy.href","options":{}}"
+              href="gcweb:footer.privacy.href"
             >
               gcweb:footer.privacy.text
             </a>
@@ -695,7 +681,7 @@ exports[`error-boundaries > UnilingualErrorBoundary > should correctly render th
             <small
               class="block text-2xl font-normal text-neutral-500"
             >
-              {"key":"gcweb:server-error.page-subtitle","options":{"statusCode":500}}
+              gcweb:server-error.page-subtitle
             </small>
           </h1>
         </div>
@@ -727,8 +713,7 @@ exports[`error-boundaries > UnilingualErrorBoundary > should correctly render th
               >
                 <a
                   class="hover:underline"
-                  data-discover="true"
-                  href="/en/{"key":"gcweb:app.contact-us.href","options":{"baseUri":"https://msca.example.com/"}}"
+                  href="gcweb:app.contact-us.href"
                   property="item"
                   typeof="WebPage"
                 >
@@ -755,9 +740,8 @@ exports[`error-boundaries > UnilingualErrorBoundary > should correctly render th
           >
             <a
               class="text-slate-700 hover:underline"
-              data-discover="true"
               data-gc-analytics-navigation="Footer:Footer:gcweb:footer.terms-conditions.text"
-              href="/en/{"key":"gcweb:footer.terms-conditions.href","options":{}}"
+              href="gcweb:footer.terms-conditions.href"
             >
               gcweb:footer.terms-conditions.text
             </a>
@@ -766,9 +750,8 @@ exports[`error-boundaries > UnilingualErrorBoundary > should correctly render th
             />
             <a
               class="text-slate-700 hover:underline"
-              data-discover="true"
               data-gc-analytics-navigation="Footer:Footer:gcweb:footer.privacy.text"
-              href="/en/{"key":"gcweb:footer.privacy.href","options":{}}"
+              href="gcweb:footer.privacy.href"
             >
               gcweb:footer.privacy.text
             </a>
@@ -868,7 +851,7 @@ exports[`error-boundaries > UnilingualErrorBoundary > should correctly render th
             <small
               class="block text-2xl font-normal text-neutral-500"
             >
-              {"key":"gcweb:server-error.page-subtitle","options":{"statusCode":500}}
+              gcweb:server-error.page-subtitle
             </small>
           </h1>
         </div>
@@ -880,12 +863,8 @@ exports[`error-boundaries > UnilingualErrorBoundary > should correctly render th
         <ul
           class="list-disc space-y-1 pl-7 text-gray-800"
         >
-          <li>
-            {"key":"gcweb:server-error.error-code","options":{"values":{"errorCode":"UNC-0000"}}}
-          </li>
-          <li>
-            {"key":"gcweb:server-error.correlation-id","options":{"values":{"correlationId":"XX-000000"}}}
-          </li>
+          <li />
+          <li />
         </ul>
       </main>
       <footer
@@ -910,8 +889,7 @@ exports[`error-boundaries > UnilingualErrorBoundary > should correctly render th
               >
                 <a
                   class="hover:underline"
-                  data-discover="true"
-                  href="/en/{"key":"gcweb:app.contact-us.href","options":{"baseUri":"https://msca.example.com/"}}"
+                  href="gcweb:app.contact-us.href"
                   property="item"
                   typeof="WebPage"
                 >
@@ -938,9 +916,8 @@ exports[`error-boundaries > UnilingualErrorBoundary > should correctly render th
           >
             <a
               class="text-slate-700 hover:underline"
-              data-discover="true"
               data-gc-analytics-navigation="Footer:Footer:gcweb:footer.terms-conditions.text"
-              href="/en/{"key":"gcweb:footer.terms-conditions.href","options":{}}"
+              href="gcweb:footer.terms-conditions.href"
             >
               gcweb:footer.terms-conditions.text
             </a>
@@ -949,9 +926,8 @@ exports[`error-boundaries > UnilingualErrorBoundary > should correctly render th
             />
             <a
               class="text-slate-700 hover:underline"
-              data-discover="true"
               data-gc-analytics-navigation="Footer:Footer:gcweb:footer.privacy.text"
-              href="/en/{"key":"gcweb:footer.privacy.href","options":{}}"
+              href="gcweb:footer.privacy.href"
             >
               gcweb:footer.privacy.text
             </a>
@@ -1081,8 +1057,7 @@ exports[`error-boundaries > UnilingualNotFound > should correctly render the uni
               >
                 <a
                   class="hover:underline"
-                  data-discover="true"
-                  href="/{"key":"gcweb:app.contact-us.href","options":{"baseUri":"https://msca.example.com/"}}"
+                  href="gcweb:app.contact-us.href"
                   property="item"
                   typeof="WebPage"
                 >
@@ -1109,9 +1084,8 @@ exports[`error-boundaries > UnilingualNotFound > should correctly render the uni
           >
             <a
               class="text-slate-700 hover:underline"
-              data-discover="true"
               data-gc-analytics-navigation="Footer:Footer:gcweb:footer.terms-conditions.text"
-              href="/{"key":"gcweb:footer.terms-conditions.href","options":{}}"
+              href="gcweb:footer.terms-conditions.href"
             >
               gcweb:footer.terms-conditions.text
             </a>
@@ -1120,9 +1094,8 @@ exports[`error-boundaries > UnilingualNotFound > should correctly render the uni
             />
             <a
               class="text-slate-700 hover:underline"
-              data-discover="true"
               data-gc-analytics-navigation="Footer:Footer:gcweb:footer.privacy.text"
-              href="/{"key":"gcweb:footer.privacy.href","options":{}}"
+              href="gcweb:footer.privacy.href"
             >
               gcweb:footer.privacy.text
             </a>

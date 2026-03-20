@@ -1,7 +1,7 @@
 import { createRoutesStub } from 'react-router';
 
 import { render } from '@testing-library/react';
-import { describe, expect, it, vi } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { mock } from 'vitest-mock-extended';
 
 import {
@@ -15,6 +15,22 @@ import { ErrorCodes } from '~/errors/error-codes';
 import { HttpStatusCodes } from '~/utils/http-status-codes';
 
 vi.mock('~/utils/adobe-analytics.client');
+
+beforeEach(() => {
+  // Mock t function to return key
+  // TODO: Find some way to actually use real translations
+  vi.mock('react-i18next', () => ({
+    useTranslation: () => ({
+      t: (key: string) => key,
+      i18n: {
+        getFixedT: () => (key: string) => key,
+        changeLanguage: vi.fn(),
+        language: 'fr',
+      },
+    }),
+    Trans: ({ children }: { children: string }) => children,
+  }));
+});
 
 describe('error-boundaries', () => {
   globalThis.__appEnvironment = mock({

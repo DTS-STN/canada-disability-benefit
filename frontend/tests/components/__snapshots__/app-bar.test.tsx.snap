@@ -17,8 +17,7 @@ exports[`AppBar > should correctly render an AppBar with a MenuItem when the fil
         >
           <a
             class="hover:underline"
-            data-discover="true"
-            href="/fr/{"key":"gcweb:app.menu-dashboard.href","options":{"baseUri":"https://msca.example.com/"}}"
+            href="gcweb:app.menu-dashboard.href"
           >
             gcweb:app.title
           </a>
@@ -49,8 +48,7 @@ exports[`AppBar > should correctly render an AppBar with a MenuItem when the to 
         >
           <a
             class="hover:underline"
-            data-discover="true"
-            href="/fr/{"key":"gcweb:app.menu-dashboard.href","options":{"baseUri":"https://msca.example.com/"}}"
+            href="gcweb:app.menu-dashboard.href"
           >
             gcweb:app.title
           </a>
@@ -81,8 +79,7 @@ exports[`AppBar > should render render an AppBar with a name provided > expected
         >
           <a
             class="hover:underline"
-            data-discover="true"
-            href="/fr/{"key":"gcweb:app.menu-dashboard.href","options":{"baseUri":"https://msca.example.com/"}}"
+            href="gcweb:app.menu-dashboard.href"
           >
             gcweb:app.title
           </a>
@@ -113,8 +110,7 @@ exports[`AppBar > should render render an AppBar with a profile item provided > 
         >
           <a
             class="hover:underline"
-            data-discover="true"
-            href="/fr/{"key":"gcweb:app.menu-dashboard.href","options":{"baseUri":"https://msca.example.com/"}}"
+            href="gcweb:app.menu-dashboard.href"
           >
             gcweb:app.title
           </a>

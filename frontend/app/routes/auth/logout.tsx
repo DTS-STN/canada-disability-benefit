@@ -16,8 +16,8 @@ export default function Logout() {
   return <></>;
 }
 
-export function loader({ context, params, request }: Route.LoaderArgs) {
-  return handleLogout({ context, params, request });
+export function loader({ context, params, unstable_pattern, request }: Route.LoaderArgs) {
+  return handleLogout({ context, params, unstable_pattern, request });
 }
 
 function handleLogout({ context, params, request }: Route.LoaderArgs): Promise<Response> {
