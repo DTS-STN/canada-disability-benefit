@@ -52,7 +52,7 @@ export async function loader({ context, params, request }: Route.LoaderArgs) {
 }
 
 export function meta({ data }: Route.MetaArgs) {
-  return [{ title: data?.documentTitle }];
+  return [{ title: data.documentTitle }];
 }
 
 export default function LettersIndex({ loaderData, params }: Route.ComponentProps) {
