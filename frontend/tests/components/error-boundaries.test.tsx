@@ -28,6 +28,7 @@ beforeEach(() => {
         language: 'fr',
       },
     }),
+    Trans: ({ children }: { children: string }) => children,
   }));
 });
 
