@@ -7,7 +7,6 @@
     "node": ">=22.0",
     "npm": ">=10.0"
   },
-  "packageManager": "npm@10.11.0",
   "scripts": {
     "build": "npm run build:application && npm run build:server",
     "build:application": "react-router build",
