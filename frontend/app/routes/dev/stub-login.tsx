@@ -20,14 +20,14 @@ export function meta() {
   return [{ title: 'Stub login' }];
 }
 
-export function loader({ context, params, request }: Route.LoaderArgs): Promise<Response> | undefined {
+export function loader({ context, params, unstable_pattern, request }: Route.LoaderArgs): Promise<Response> | undefined {
   if (!serverEnvironment.AUTH_ENABLE_STUB_LOGIN) {
     log.warn('Attempted GET to stub-login when AUTH_ENABLE_STUB_LOGIN=false; returning 404');
     throw Response.json(null, { status: HttpStatusCodes.NOT_FOUND });
   }
 
   const searchParams = new URL(request.url).searchParams;
-  if (searchParams.get('sin')) return loginLoader({ context, params, request });
+  if (searchParams.get('sin')) return loginLoader({ context, params, unstable_pattern, request });
 }
 
 export default function StubLogin() {

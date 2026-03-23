@@ -20,8 +20,8 @@ export default function Login() {
 /**
  * Handles RAOIDC authentication login.
  */
-export async function loader({ context, params, request }: Route.LoaderArgs): Promise<Response> {
-  return handleLogin({ context, params, request });
+export async function loader({ context, params, unstable_pattern, request }: Route.LoaderArgs): Promise<Response> {
+  return handleLogin({ context, params, unstable_pattern, request });
 }
 
 function handleLogin({ context, params, request }: Route.LoaderArgs): Promise<Response> {

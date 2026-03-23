@@ -1,10 +1,24 @@
 import { createRoutesStub } from 'react-router';
 
 import { render } from '@testing-library/react';
-import { describe, expect, it } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { mock } from 'vitest-mock-extended';
 
 import { AppBar } from '~/components/app-bar';
+
+beforeEach(() => {
+  // Mock t function to return key
+  // TODO: Find some way to actually use real translations
+  vi.mock('react-i18next', () => ({
+    useTranslation: () => ({
+      t: (key: string) => key,
+      i18n: {
+        changeLanguage: vi.fn(),
+        language: 'fr',
+      },
+    }),
+  }));
+});
 
 describe('AppBar', () => {
   it('should correctly render an AppBar with a MenuItem when the file property is provided', () => {

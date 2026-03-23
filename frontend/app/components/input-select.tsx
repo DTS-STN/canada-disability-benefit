@@ -11,11 +11,10 @@ const inputDisabledClassName =
   'disabled:bg-gray-100 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-70';
 const inputErrorClassName = 'border-red-500 focus:border-red-500 focus:ring-red-500';
 
-export interface InputSelectProps
-  extends OmitStrict<
-    ComponentProps<'select'>,
-    'aria-describedby' | 'aria-errormessage' | 'aria-invalid' | 'aria-labelledby' | 'aria-required'
-  > {
+export interface InputSelectProps extends OmitStrict<
+  ComponentProps<'select'>,
+  'aria-describedby' | 'aria-errormessage' | 'aria-invalid' | 'aria-labelledby' | 'aria-required'
+> {
   errorMessage?: string;
   helpMessage?: ReactNode;
   id: string;
