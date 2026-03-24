@@ -124,7 +124,7 @@ exports[`AppBar > should render render an AppBar with a profile item provided > 
           aria-haspopup="menu"
           class="flex h-full flex-nowrap space-x-2 bg-slate-200 px-2 text-sm text-slate-700 hover:bg-neutral-300 hover:underline focus:bg-neutral-300 focus:ring-2 focus:ring-black focus:ring-offset-2 focus:outline-hidden aria-expanded:bg-neutral-300 aria-expanded:text-slate-700 sm:space-x-4 sm:px-4"
           data-state="closed"
-          id="radix-«r0»"
+          id="radix-_r_0_"
           type="button"
         >
           <div
