@@ -1,6 +1,7 @@
 import { Form } from 'react-router';
 
 import type { Route } from './+types/stub-login';
+import type { Route as LoginRoute } from '../auth/+types/login';
 
 import { serverEnvironment } from '~/.server/environment';
 import { LogFactory } from '~/.server/logging';
@@ -20,14 +21,15 @@ export function meta() {
   return [{ title: 'Stub login' }];
 }
 
-export function loader({ context, params, unstable_pattern, request }: Route.LoaderArgs): Promise<Response> | undefined {
+export function loader(routeLoaderArgs: Route.LoaderArgs): Promise<Response> | undefined {
   if (!serverEnvironment.AUTH_ENABLE_STUB_LOGIN) {
     log.warn('Attempted GET to stub-login when AUTH_ENABLE_STUB_LOGIN=false; returning 404');
     throw Response.json(null, { status: HttpStatusCodes.NOT_FOUND });
   }
 
+  const { request } = routeLoaderArgs;
   const searchParams = new URL(request.url).searchParams;
-  if (searchParams.get('sin')) return loginLoader({ context, params, unstable_pattern, request });
+  if (searchParams.get('sin')) return loginLoader(routeLoaderArgs as unknown as LoginRoute.LoaderArgs);
 }
 
 export default function StubLogin() {
