@@ -1,7 +1,7 @@
 import { Form } from 'react-router';
 
-import type { Route } from './+types/stub-login';
 import type { Route as LoginRoute } from '../auth/+types/login';
+import type { Route } from './+types/stub-login';
 
 import { serverEnvironment } from '~/.server/environment';
 import { LogFactory } from '~/.server/logging';
