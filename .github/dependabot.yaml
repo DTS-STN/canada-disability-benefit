@@ -13,6 +13,7 @@ updates:
           - 'react-router'
           - '@react-router/*'
           - '@opentelemetry/*'
+          - '@fortawesome/*'
       prod-minor-versions:
         dependency-type: production
         update-types: [minor, patch]
@@ -21,6 +22,7 @@ updates:
           - 'react-router'
           - '@react-router/*'
           - '@opentelemetry/*'
+          - '@fortawesome/*'
       # OpenTelemetry needs all of its dependencies (prod+dev updated together)
       opentelemetry-versions:
         update-types: [minor, patch]
@@ -32,6 +34,11 @@ updates:
         patterns:
           - 'react-router'
           - '@react-router/*'
+      # Font Awesome needs all of its dependencies (prod+dev updated together)
+      font-awesome-versions:
+        update-types: [minor, patch]
+        patterns:
+          - '@fortawesome/*'
 
   # Enable version updates for Docker
   - package-ecosystem: 'docker'
