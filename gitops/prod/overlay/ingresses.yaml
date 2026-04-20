@@ -6,6 +6,10 @@ metadata:
     app.kubernetes.io/name: frontend
 spec:
   ingressClassName: nginx
+  tls:
+    - hosts:
+      - service.canada.ca
+      secretName: servicecanadaca
   rules:
     - host: mdscpcph-mscacdb.service.canada.ca
       http:
