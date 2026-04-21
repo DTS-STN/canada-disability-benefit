@@ -8,8 +8,8 @@ spec:
   ingressClassName: nginx
   tls:
     - hosts:
-      - service.canada.ca
-      secretName: servicecanadaca
+      - mdscpcph-mscacdb.service.canada.ca
+      secretName: wildcardservicecanadaca
   rules:
     - host: mdscpcph-mscacdb.service.canada.ca
       http:
