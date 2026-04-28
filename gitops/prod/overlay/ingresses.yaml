@@ -32,6 +32,10 @@ metadata:
     app.kubernetes.io/name: frontend
 spec:
   ingressClassName: nginx
+  tls:
+    - hosts:
+      - canada-disability-benefit-portal.prod-dp-internal.dts-stn.com
+      secretName: proddpinternaldtsstncom
   rules:
     - host: canada-disability-benefit-portal.prod-dp-internal.dts-stn.com
       http:
