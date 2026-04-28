@@ -6,6 +6,10 @@ metadata:
     app.kubernetes.io/name: frontend
 spec:
   ingressClassName: nginx
+  tls:
+    - hosts:
+      - cdb-int.dev-dp-internal.dts-stn.com
+      secretName: devdpinternaldtsstncom
   rules:
     - host: cdb-int.dev-dp-internal.dts-stn.com
       http:
