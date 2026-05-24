@@ -16,55 +16,70 @@ export function Footer({ bilingual }: FooterProps) {
     <footer id="wb-info" tabIndex={-1} className="mt-8 bg-stone-50 print:hidden">
       <div>
         {!bilingual && (
-          <div className="bg-gray-700 text-white">
-            <section className="container py-6">
-              <h2 className="mb-4">{t('gcweb:footer.service-canada')}</h2>
+          <div className="bg-blue-primary">
+            <section className="container py-4">
+              <h2 className="mb-4 text-[26px] text-white md:text-[29px] md:leading-[1.23]">
+                {t('gcweb:footer.service-canada')}
+              </h2>
               <div className="grid gap-x-4 gap-y-2 text-sm sm:grid-cols-3">
                 <AppLink
                   to={t('gcweb:app.contact-us.href', { baseUri: MSCA_BASE_URL })}
                   property="item"
                   typeof="WebPage"
-                  className="hover:underline"
+                  className="text-white hover:underline"
                 >
-                  <span property="name">{t('gcweb:app.contact-us')}</span>
+                  <span property="name" className="text-white">
+                    {t('gcweb:app.contact-us')}
+                  </span>
                 </AppLink>
               </div>
             </section>
           </div>
         )}
       </div>
-      <div className="container flex items-center justify-between gap-6 py-2.5 sm:py-3.5">
+      <div className="container flex justify-between">
         {bilingual ? (
-          <h2 className="sr-only">
+          <h2 className="sr-only md:text-[39px] md:leading-[1.23]">
             <span lang="en">{en('gcweb:footer.about-site')}</span> / <span lang="fr">{fr('gcweb:footer.about-site')}</span>
           </h2>
         ) : (
-          <h2 className="sr-only">{t('gcweb:footer.about-site')}</h2>
+          <h2 className="sr-only md:text-[39px] md:leading-[1.23]">{t('gcweb:footer.about-site')}</h2>
         )}
-        <div className="flex flex-col items-start gap-2 text-sm leading-6 sm:flex-row sm:items-center sm:gap-4">
-          <AppLink
-            className="text-slate-700 hover:underline"
-            to={t('gcweb:footer.terms-conditions.href', { baseUri: ECAS_BASE_URL })}
-            data-gc-analytics-navigation={`Footer:Footer:${t('gcweb:footer.terms-conditions.text')}`}
-          >
-            {t('gcweb:footer.terms-conditions.text')}
-          </AppLink>
-          <div className="hidden size-0 rounded-full border-[3px] border-slate-700 sm:block"></div>
-          <AppLink
-            className="text-slate-700 hover:underline"
-            to={t('gcweb:footer.privacy.href', { baseUri: ECAS_BASE_URL })}
-            data-gc-analytics-navigation={`Footer:Footer:${t('gcweb:footer.privacy.text')}`}
-          >
-            {t('gcweb:footer.privacy.text')}
-          </AppLink>
+        <div className="md:flow-row flex items-center">
+          <ul className="flex list-none flex-col pt-4 text-sm whitespace-nowrap md:flex-row">
+            <li className="mb-4.25 list-inside list-none pr-4">
+              <AppLink
+                className="text-deep-blue-dark hover:underline"
+                to={t('gcweb:footer.terms-conditions.href', { baseUri: ECAS_BASE_URL })}
+                data-gc-analytics-navigation={`Footer:Footer:${t('gcweb:footer.terms-conditions.text')}`}
+              >
+                {t('gcweb:footer.terms-conditions.text')}
+              </AppLink>
+            </li>
+            <li className="mb-4.25 list-inside list-none pr-4 md:list-disc">
+              <AppLink
+                className="text-deep-blue-dark hover:underline"
+                to={t('gcweb:footer.privacy.href', { baseUri: ECAS_BASE_URL })}
+                data-gc-analytics-navigation={`Footer:Footer:${t('gcweb:footer.privacy.text')}`}
+              >
+                {t('gcweb:footer.privacy.text')}
+              </AppLink>
+            </li>
+            {/* <li className="float-left cursor-pointer sm:hidden">
+              <a id="top_btn" href="#top" className="inline-flex items-center">
+                {t('gcweb:footer.top-of-page')}
+                <FontAwesomeIcon icon={faChevronUp} className="pl-2 sm:hidden" />
+              </a>
+            </li> */}
+          </ul>
         </div>
-        <div>
+        <div className="mr-1.25 flex min-h-24 shrink-0 items-end md:items-center">
           <img
             src="https://www.canada.ca/etc/designs/canada/wet-boew/assets/wmms-blk.svg"
             alt={bilingual ? `${en('gcweb:footer.gc-symbol')} / ${fr('gcweb:footer.gc-symbol')}` : t('gcweb:footer.gc-symbol')}
             width={300}
             height={71}
-            className="h-10 w-auto"
+            className="my-3.75 h-6.25 w-26.25 md:h-10 md:w-41"
           />
         </div>
       </div>

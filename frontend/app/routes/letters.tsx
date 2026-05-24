@@ -89,7 +89,7 @@ export default function LettersIndex({ loaderData, params }: Route.ComponentProp
   return (
     <>
       <div className="mb-8">
-        <PageTitle className="after:w-14">{t('app:letters.page-title')}</PageTitle>
+        <PageTitle>{t('app:letters.page-title')}</PageTitle>
       </div>
       {letters.length === 0 ? (
         <>

@@ -31,7 +31,7 @@
       "href": "{{baseUri}}/TC.aspx?mode=ReadOnly&lang=fra#privacy",
       "text": "Confidentialité"
     },
-    "service-canada": "Service Canada",
+    "service-canada": "Mon dossier Service Canada",
     "terms-conditions": {
       "href": "{{baseUri}}/TC.aspx?mode=ReadOnly&lang=fra#terms",
       "text": "Avis"

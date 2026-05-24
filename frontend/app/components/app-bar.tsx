@@ -19,11 +19,14 @@ export function AppBar({ name }: AppBarProps): JSX.Element {
   const { MSCA_BASE_URL } = globalThis.__appEnvironment;
 
   return (
-    <div className="bg-slate-700">
+    <div className="sm:bg-blue-primary sm:h-15">
       <div className="align-center container mx-auto flex flex-wrap justify-between">
-        <div className="align-center flex">
-          <span id="menu-label" className="my-auto py-2 text-white sm:text-2xl">
-            <AppLink to={t('gcweb:app.menu-dashboard.href', { baseUri: MSCA_BASE_URL })} className="hover:underline">
+        <div className="bg-blue-primary align-center flex h-15 w-full sm:w-auto">
+          <span id="menu-label" className="my-auto px-3 md:px-1">
+            <AppLink
+              to={t('gcweb:app.menu-dashboard.href', { baseUri: MSCA_BASE_URL })}
+              className="font-lato my-auto px-3 text-[19px] font-bold text-white hover:underline md:px-1 md:text-2xl"
+            >
               {t('gcweb:app.title')}
             </AppLink>
           </span>
@@ -48,7 +51,7 @@ function UserButton({ className, name }: UserButtonProps): JSX.Element {
     <DropdownMenu>
       <DropdownMenuTrigger
         className={cn(
-          'flex h-full flex-nowrap space-x-2 bg-slate-200 px-2 text-sm text-slate-700 hover:bg-neutral-300 hover:underline focus:bg-neutral-300 focus:ring-2 focus:ring-black focus:ring-offset-2 focus:outline-hidden aria-expanded:bg-neutral-300 aria-expanded:text-slate-700 sm:space-x-4 sm:px-4',
+          'bg-bright-blue-pale text-blue-primary flex h-full w-full flex-nowrap space-x-2 px-4 hover:bg-neutral-300 focus:rounded-md focus:bg-neutral-300 focus:ring-2 focus:ring-black focus:ring-offset-2 focus:outline-hidden aria-expanded:bg-neutral-300 aria-expanded:text-slate-700 sm:space-x-4',
           className,
         )}
       >
