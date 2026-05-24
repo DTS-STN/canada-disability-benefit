@@ -3,6 +3,8 @@ import type { ComponentProps, JSX, MouseEvent } from 'react';
 import type { Params, Path } from 'react-router';
 import { generatePath, Link } from 'react-router';
 
+import { faArrowUpRightFromSquare } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useTranslation } from 'react-i18next';
 
 import { AppError } from '~/errors/app-error';
@@ -179,7 +181,7 @@ export function InlineLink({
   newTabIndicator,
   ...props
 }: InlineLinkProps): JSX.Element {
-  const baseClassName = cn('text-slate-700 underline hover:text-blue-700 focus:text-blue-700');
+  const baseClassName = cn('text-blue-default underline hover:text-blue-700 focus:text-blue-700');
 
   if (file) {
     return (
@@ -228,8 +230,11 @@ function NewTabIndicator({ className, ...props }: OmitStrict<ComponentProps<'spa
   const { t } = useTranslation('gcweb');
   // Following whitespace is important to ensure the content's text is seperated for the screen-reader text
   return (
-    <span className={cn('sr-only', className)} {...props}>
-      {` (${t('screen-reader.new-tab')})`}
-    </span>
+    <>
+      <FontAwesomeIcon icon={faArrowUpRightFromSquare} className="mt-0.5 ml-1.5 inline pt-1" />
+      <span className={cn('sr-only', className)} {...props}>
+        {` (${t('screen-reader.new-tab')})`}
+      </span>
+    </>
   );
 }

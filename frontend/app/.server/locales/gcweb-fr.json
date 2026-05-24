@@ -48,7 +48,8 @@
   },
   "language": "Français",
   "language-switcher": {
-    "alt-lang": "English"
+    "alt-lang": "English",
+    "alt-lang-abbr": "EN"
   },
   "nav": {
     "skip-to-about": "Passer à «\u00a0À propos de ce site\u00a0»",

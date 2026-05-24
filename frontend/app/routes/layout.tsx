@@ -50,10 +50,10 @@ export default function Layout({ loaderData }: Route.ComponentProps) {
       <header className="print:hidden">
         <SkipNavigationLinks />
         <div id="wb-bnr">
-          <div className="container flex items-center justify-between gap-6 py-2.5 sm:py-3.5">
+          <div className="container flex items-center justify-between gap-6 py-2.5 sm:py-4.5">
             <AppLink to="https://canada.ca/">
               <img
-                className="h-8 w-auto"
+                className="max-h-4.75 max-w-51.5 md:max-h-8.5 md:max-w-90"
                 src={`https://www.canada.ca/etc/designs/canada/wet-boew/assets/sig-blk-${currentLanguage}.svg`}
                 alt={t('gcweb:header.govt-of-canada.text')}
                 width="300"
@@ -65,7 +65,8 @@ export default function Layout({ loaderData }: Route.ComponentProps) {
                 /<span lang={t('gcweb:header.other-lang')}>{t('gcweb:header.govt-of-canada.other-lang-text')}</span>
               </span>
             </AppLink>
-            <LanguageSwitcher>{t('gcweb:language-switcher.alt-lang')}</LanguageSwitcher>
+            <LanguageSwitcher className="hidden sm:inline">{t('gcweb:language-switcher.alt-lang')}</LanguageSwitcher>
+            <LanguageSwitcher className="inline sm:hidden">{t('gcweb:language-switcher.alt-lang-abbr')}</LanguageSwitcher>
           </div>
         </div>
         <AppBar name={t('gcweb:app.account')} />

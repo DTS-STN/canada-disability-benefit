@@ -48,7 +48,8 @@
   },
   "language": "English",
   "language-switcher": {
-    "alt-lang": "Français"
+    "alt-lang": "Français",
+    "alt-lang-abbr": "FR"
   },
   "nav": {
     "skip-to-about": "Skip to About this site",
