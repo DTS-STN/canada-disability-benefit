@@ -91,7 +91,12 @@ export function DialogTitle({ className, ...props }: DialogTitleProps) {
 }
 
 export function DialogDescription({ className, ...props }: DialogDescriptionProps) {
-  return <DialogPrimitive.Description className={cn('text-sm text-neutral-500', className)} {...props} />;
+  return (
+    <DialogPrimitive.Description
+      className={cn('md:text-regular-size text-mobile-size text-neutral-500', className)}
+      {...props}
+    />
+  );
 }
 
 export { Dialog, DialogPortal, DialogTrigger, DialogClose };

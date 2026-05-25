@@ -1,9 +1,9 @@
 {
   "app": {
     "account": "Account",
-    "logout": "Logout",
-    "profile": "Profile",
-    "profile.href": "{{baseUri}}/en/profile",
+    "logout": "Sign Out",
+    "profile": "Profile and preferences",
+    "profile.href": "{{baseUri}}/en/profile-and-preferences",
     "security-settings": "Security Settings",
     "security-settings.href": "{{baseUri}}/en/security-settings",
     "contact-us": "Contact Us",
@@ -31,11 +31,12 @@
       "href": "{{baseUri}}/TC.aspx?mode=ReadOnly&lang=eng#privacy",
       "text": "Privacy"
     },
-    "service-canada": "Service Canada",
+    "service-canada": "My Service Canada Account",
     "terms-conditions": {
       "href": "{{baseUri}}/TC.aspx?mode=ReadOnly&lang=eng#terms",
       "text": "Terms and conditions"
-    }
+    },
+    "top-of-page": "Top of Page"
   },
   "header": {
     "govt-of-canada.text": "Government of Canada",
@@ -48,7 +49,8 @@
   },
   "language": "English",
   "language-switcher": {
-    "alt-lang": "Français"
+    "alt-lang": "Français",
+    "alt-lang-abbr": "FR"
   },
   "nav": {
     "skip-to-about": "Skip to About this site",
@@ -76,9 +78,12 @@
     "page-title": "We're having a problem with that page"
   },
   "session-timeout": {
-    "continue-session": "Continue session",
-    "description": "Your session will expire automatically in {{timeRemaining}}. Select \"Continue Session\" to extend your session.",
-    "end-session": "End session now",
-    "header": "Session timeout warning"
+    "continue-session": "Stay signed in",
+    "intro": "You have not been active for a while so we will sign you out to keep your information secure.",
+    "remaining-time": "You will be signed out in {{minutes}}",
+    "time-unit-minutes": " minutes and {{seconds}}",
+    "time-unit-seconds": " seconds.",
+    "end-session": "Sign out",
+    "header": "Stay signed in?"
   }
 }

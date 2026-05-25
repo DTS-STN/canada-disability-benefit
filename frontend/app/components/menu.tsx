@@ -15,7 +15,7 @@ export function MenuItem({ children, className, ...props }: MenuItemProps) {
     <DropdownMenuItem
       asChild
       className={cn(
-        'text-md cursor-pointer px-3 py-2 text-white hover:bg-slate-300 hover:text-white focus:bg-slate-600 active:bg-slate-800',
+        'text-md ring-blue-hover focus:ring-blue-hover active:ring-blue-hover cursor-pointer px-3 py-2 text-white ring-offset-2 hover:bg-slate-300 hover:text-white focus:bg-slate-600 focus:ring-2 active:bg-slate-800 active:ring-2',
         className,
       )}
     >

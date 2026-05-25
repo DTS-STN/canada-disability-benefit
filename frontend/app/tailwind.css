@@ -28,6 +28,35 @@
   */
   --font-lato: Lato, sans-serif;
   --font-sans: 'Noto Sans', sans-serif;
+
+  --text-mobile-size: 18px;
+  --text-regular-size: 20px;
+
+  /*Customizing your color*/
+  --color-gray-30a: #eaebed;
+  --color-gray-60: #bbbfc5;
+  --color-gray-50a: #cfd1d5;
+  --color-gray-darker: #333333;
+  --color-gray-border: #d6d9dd;
+  --color-gray-to-black-text: #43474e;
+  --color-gray-lighter: #545671;
+
+  --color-blue-default: #2b4380;
+  --color-blue-hover: #0535d2;
+  --color-blue-primary: #26374a;
+  --color-blue-pressed: #16446c;
+  --color-bright-blue-pale: #ebf2fc;
+  --color-brighter-blue-light: #dbe5f2;
+  --color-brighter-blue-dark: #269abc;
+  --color-deep-blue-60d: #295376;
+  --color-deep-blue-60f: #0e62c9;
+  --color-deep-blue-dark: #284162;
+  --color-deep-blue-focus: #1c578a;
+
+  --color-green-darker: #03662a;
+  --color-green-50a: #278400;
+  --color-orange-dark: #ee7100;
+  --color-red-50b: #d3080c;
 }
 
 /*
@@ -54,6 +83,61 @@
   ::backdrop,
   ::file-selector-button {
     border-color: var(--color-gray-200, currentColor);
+  }
+}
+
+/*
+    Heading sizes: Default is mobile sizes
+*/
+@layer base {
+  h1 {
+    color: var(--color-gray-darker, currentColor);
+    font-display: Lato, sans-serif;
+    font-weight: bold;
+    font-family: var(--font-lato);
+    font-size: 37px;
+    line-height: 1.19; /* 44px / 37px = 1.19 */
+  }
+  h2 {
+    color: var(--color-gray-darker, currentColor);
+    font-weight: bold;
+    font-family: var(--font-lato);
+    font-size: 35px;
+    line-height: 1.25; /* 44px / 35px = 1.25 */
+  }
+  h3 {
+    color: var(--color-gray-darker, currentColor);
+    font-weight: bold;
+    font-family: var(--font-lato);
+    font-size: 26px;
+    line-height: 1.23; /* 32px / 26px = 1.23 */
+  }
+  h4 {
+    color: var(--color-gray-darker, currentColor);
+    font-weight: bold;
+    font-family: var(--font-lato);
+    font-size: 24px;
+    line-height: 1.33; /* 32px / 24px = 1.33 */
+  }
+  h5 {
+    color: var(--color-gray-darker, currentColor);
+    font-weight: bold;
+    font-family: var(--font-lato);
+    font-size: 22px;
+    line-height: 1.27; /* 28px / 22px = 1.27 */
+  }
+  p {
+    color: var(--color-gray-darker, currentColor);
+    font-size: 18px;
+    line-height: 1.55; /* 28px / 18px = 1.55 */
+    font-family: var(--font-sans);
+    font-weight: regular;
+  }
+  a {
+    color: var(--color-blue-default, currentColor);
+    font-size: 18px;
+    line-height: 1.55; /* 28px / 18px = 1.55 */
+    font-family: var(--font-sans);
   }
 }
 
@@ -157,7 +241,7 @@
     flex-shrink: 0;
     height: 1rem;
     width: 1rem;
-    color: oklch(0.546 0.245 262.881);
+    color: #fff;
     background-color: #fff;
     border-color: oklch(0.551 0.027 264.364);
     border-width: 1px;
@@ -171,7 +255,7 @@
   }
   [type='checkbox']:focus,
   [type='radio']:focus {
-    outline: 2px solid transparent;
+    outline: 1px solid var(--color-gray-darker);
     outline-offset: 2px;
     --tw-ring-inset: var(--tw-empty, /*!*/ /*!*/);
     --tw-ring-offset-width: 2px;
@@ -183,7 +267,7 @@
   }
   [type='checkbox']:checked,
   [type='radio']:checked {
-    border-color: transparent !important;
+    border-color: var(--color-gray-darker, currentColor) !important;
     background-color: currentColor !important;
     background-size: 0.55em 0.55em;
     background-position: center;
@@ -196,8 +280,8 @@
     print-color-adjust: exact;
   }
   [type='radio']:checked {
-    background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3ccircle cx='8' cy='8' r='3'/%3e%3c/svg%3e");
-    background-size: 1em 1em;
+    background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='black' xmlns='http://www.w3.org/2000/svg'%3e%3ccircle cx='8' cy='8' r='3'/%3e%3c/svg%3e");
+    background-size: 2em 2em;
   }
   [type='checkbox']:indeterminate {
     background-image: url("data:image/svg+xml,%3csvg aria-hidden='true' xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 16 12'%3e %3cpath stroke='white' stroke-linecap='round' stroke-linejoin='round' stroke-width='3' d='M0.5 6h14'/%3e %3c/svg%3e");

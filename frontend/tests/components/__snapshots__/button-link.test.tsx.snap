@@ -3,8 +3,9 @@
 exports[`ButtonLink > should render a ButtonLink with custom styles > expected html 1`] = `
 <div>
   <a
-    class="font-lato inline-flex items-center justify-center rounded-sm border align-middle no-underline outline-offset-4 px-3 py-2 text-sm border-slate-700 bg-slate-700 hover:bg-sky-800 focus:bg-sky-800 text-red-500"
+    class="inline-flex items-center justify-center border align-middle font-sans no-underline outline-offset-4 md:px-[15px] px-[12px] py-2.5 bg-blue-primary hover:bg-deep-blue-focus active:bg-blue-pressed rounded focus:ring focus:ring-offset-4 focus:ring-bg-deep-blue-focus text-red-500"
     data-discover="true"
+    data-gc-analytics-customclick="mscaPlaceholder"
     href="/fr/lettres"
   >
     Test ButtonLink
@@ -15,8 +16,9 @@ exports[`ButtonLink > should render a ButtonLink with custom styles > expected h
 exports[`ButtonLink > should render a ButtonLink with default styles > expected html 1`] = `
 <div>
   <a
-    class="font-lato inline-flex items-center justify-center rounded-sm border align-middle no-underline outline-offset-4 px-5 py-2.5 text-sm border-gray-300 bg-gray-200 text-slate-700 hover:bg-neutral-300 focus:bg-neutral-300"
+    class="inline-flex items-center justify-center rounded-sm border align-middle font-sans no-underline outline-offset-4 md:px-[15px] px-[15px] py-2.5 border-gray-300 bg-gray-200 text-slate-700 hover:bg-neutral-300 focus:bg-neutral-300"
     data-discover="true"
+    data-gc-analytics-customclick="mscaPlaceholder"
     href="/fr/lettres"
   >
     Test ButtonLink
@@ -28,7 +30,8 @@ exports[`ButtonLink > should render a disabled ButtonLink correctly > expected h
 <div>
   <a
     aria-disabled="true"
-    class="font-lato inline-flex items-center justify-center border align-middle no-underline outline-offset-4 px-5 py-2.5 text-sm border-gray-300 bg-gray-200 text-slate-700 hover:bg-neutral-300 focus:bg-neutral-300 pointer-events-none cursor-not-allowed opacity-70 rounded-full"
+    class="inline-flex items-center justify-center border align-middle font-sans no-underline outline-offset-4 md:px-[15px] px-[15px] py-2.5 border-gray-300 bg-gray-200 text-slate-700 hover:bg-neutral-300 focus:bg-neutral-300 pointer-events-none cursor-not-allowed opacity-70 rounded-full"
+    data-gc-analytics-customclick="mscaPlaceholder"
     role="link"
   >
     Test ButtonLink
@@ -39,8 +42,9 @@ exports[`ButtonLink > should render a disabled ButtonLink correctly > expected h
 exports[`ButtonLink > should render a pill ButtonLink correctly > expected html 1`] = `
 <div>
   <a
-    class="font-lato inline-flex items-center justify-center border align-middle no-underline outline-offset-4 px-5 py-2.5 text-sm border-gray-300 bg-gray-200 text-slate-700 hover:bg-neutral-300 focus:bg-neutral-300 rounded-full"
+    class="inline-flex items-center justify-center border align-middle font-sans no-underline outline-offset-4 md:px-[15px] px-[15px] py-2.5 border-gray-300 bg-gray-200 text-slate-700 hover:bg-neutral-300 focus:bg-neutral-300 rounded-full"
     data-discover="true"
+    data-gc-analytics-customclick="mscaPlaceholder"
     href="/fr/lettres"
   >
     Test ButtonLink

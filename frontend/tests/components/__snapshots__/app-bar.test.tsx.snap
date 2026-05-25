@@ -3,20 +3,20 @@
 exports[`AppBar > should correctly render an AppBar with a MenuItem when the file property is provided > expected html 1`] = `
 <div>
   <div
-    class="bg-slate-700"
+    class="sm:bg-blue-primary sm:h-15"
   >
     <div
-      class="align-center container mx-auto flex flex-wrap justify-between"
+      class="align-center mx-auto flex flex-wrap justify-between sm:container sm:flex-nowrap"
     >
       <div
-        class="align-center flex"
+        class="bg-blue-primary order-1 flex h-15 w-full sm:w-auto"
       >
         <span
-          class="my-auto py-2 text-white sm:text-2xl"
+          class="my-auto px-3 md:px-1"
           id="menu-label"
         >
           <a
-            class="hover:underline"
+            class="font-lato my-auto px-3 text-[19px] font-bold text-white hover:underline md:px-1 md:text-2xl"
             href="gcweb:app.menu-dashboard.href"
           >
             gcweb:app.title
@@ -24,7 +24,7 @@ exports[`AppBar > should correctly render an AppBar with a MenuItem when the fil
         </span>
       </div>
       <div
-        class="flex items-center space-x-4 text-right"
+        class="ring-blue-hover items-left order-2 flex w-full text-right text-2xl ring-offset-2 focus:ring-2 focus:outline-none sm:order-3 sm:w-65 lg:order-3"
       />
     </div>
   </div>
@@ -34,20 +34,20 @@ exports[`AppBar > should correctly render an AppBar with a MenuItem when the fil
 exports[`AppBar > should correctly render an AppBar with a MenuItem when the to property is provided > expected html 1`] = `
 <div>
   <div
-    class="bg-slate-700"
+    class="sm:bg-blue-primary sm:h-15"
   >
     <div
-      class="align-center container mx-auto flex flex-wrap justify-between"
+      class="align-center mx-auto flex flex-wrap justify-between sm:container sm:flex-nowrap"
     >
       <div
-        class="align-center flex"
+        class="bg-blue-primary order-1 flex h-15 w-full sm:w-auto"
       >
         <span
-          class="my-auto py-2 text-white sm:text-2xl"
+          class="my-auto px-3 md:px-1"
           id="menu-label"
         >
           <a
-            class="hover:underline"
+            class="font-lato my-auto px-3 text-[19px] font-bold text-white hover:underline md:px-1 md:text-2xl"
             href="gcweb:app.menu-dashboard.href"
           >
             gcweb:app.title
@@ -55,7 +55,7 @@ exports[`AppBar > should correctly render an AppBar with a MenuItem when the to 
         </span>
       </div>
       <div
-        class="flex items-center space-x-4 text-right"
+        class="ring-blue-hover items-left order-2 flex w-full text-right text-2xl ring-offset-2 focus:ring-2 focus:outline-none sm:order-3 sm:w-65 lg:order-3"
       />
     </div>
   </div>
@@ -65,20 +65,20 @@ exports[`AppBar > should correctly render an AppBar with a MenuItem when the to 
 exports[`AppBar > should render render an AppBar with a name provided > expected html 1`] = `
 <div>
   <div
-    class="bg-slate-700"
+    class="sm:bg-blue-primary sm:h-15"
   >
     <div
-      class="align-center container mx-auto flex flex-wrap justify-between"
+      class="align-center mx-auto flex flex-wrap justify-between sm:container sm:flex-nowrap"
     >
       <div
-        class="align-center flex"
+        class="bg-blue-primary order-1 flex h-15 w-full sm:w-auto"
       >
         <span
-          class="my-auto py-2 text-white sm:text-2xl"
+          class="my-auto px-3 md:px-1"
           id="menu-label"
         >
           <a
-            class="hover:underline"
+            class="font-lato my-auto px-3 text-[19px] font-bold text-white hover:underline md:px-1 md:text-2xl"
             href="gcweb:app.menu-dashboard.href"
           >
             gcweb:app.title
@@ -86,7 +86,7 @@ exports[`AppBar > should render render an AppBar with a name provided > expected
         </span>
       </div>
       <div
-        class="flex items-center space-x-4 text-right"
+        class="ring-blue-hover items-left order-2 flex w-full text-right text-2xl ring-offset-2 focus:ring-2 focus:outline-none sm:order-3 sm:w-65 lg:order-3"
       />
     </div>
   </div>
@@ -96,20 +96,20 @@ exports[`AppBar > should render render an AppBar with a name provided > expected
 exports[`AppBar > should render render an AppBar with a profile item provided > expected html 1`] = `
 <div>
   <div
-    class="bg-slate-700"
+    class="sm:bg-blue-primary sm:h-15"
   >
     <div
-      class="align-center container mx-auto flex flex-wrap justify-between"
+      class="align-center mx-auto flex flex-wrap justify-between sm:container sm:flex-nowrap"
     >
       <div
-        class="align-center flex"
+        class="bg-blue-primary order-1 flex h-15 w-full sm:w-auto"
       >
         <span
-          class="my-auto py-2 text-white sm:text-2xl"
+          class="my-auto px-3 md:px-1"
           id="menu-label"
         >
           <a
-            class="hover:underline"
+            class="font-lato my-auto px-3 text-[19px] font-bold text-white hover:underline md:px-1 md:text-2xl"
             href="gcweb:app.menu-dashboard.href"
           >
             gcweb:app.title
@@ -117,40 +117,38 @@ exports[`AppBar > should render render an AppBar with a profile item provided > 
         </span>
       </div>
       <div
-        class="flex items-center space-x-4 text-right"
+        class="ring-blue-hover items-left order-2 flex w-full text-right text-2xl ring-offset-2 focus:ring-2 focus:outline-none sm:order-3 sm:w-65 lg:order-3"
       >
         <button
           aria-expanded="false"
           aria-haspopup="menu"
-          class="flex h-full flex-nowrap space-x-2 bg-slate-200 px-2 text-sm text-slate-700 hover:bg-neutral-300 hover:underline focus:bg-neutral-300 focus:ring-2 focus:ring-black focus:ring-offset-2 focus:outline-hidden aria-expanded:bg-neutral-300 aria-expanded:text-slate-700 sm:space-x-4 sm:px-4"
+          class="bg-bright-blue-pale text-blue-primary flex h-full w-full flex-nowrap space-x-2 px-4 hover:bg-neutral-300 focus:rounded-md focus:bg-neutral-300 focus:ring-offset-2 focus:outline-hidden aria-expanded:bg-neutral-300 aria-expanded:text-slate-700 sm:space-x-4 ring-blue-hover focus:ring-blue-hover active:ring-blue-hover ring-offset-2 focus:ring-2 active:ring-2"
           data-state="closed"
           id="radix-_r_0_"
           type="button"
         >
           <div
-            class="text-md my-auto flex flex-nowrap items-center space-x-2 py-2"
+            class="my-auto flex flex-nowrap items-center space-x-2 py-2 text-base"
           >
-            <div
-              class="flex h-8 w-8 items-center justify-center rounded-full bg-slate-700"
+            <span
+              class="flex items-center"
             >
               <svg
-                aria-hidden="true"
-                class="svg-inline--fa fa-user size-5 text-slate-200"
-                data-icon="user"
-                data-prefix="fas"
-                focusable="false"
-                role="img"
-                viewBox="0 0 448 512"
+                class="mr-4"
+                fill="none"
+                height="35"
+                viewBox="0 0 35 36"
+                width="35"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
-                  d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512l388.6 0c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304l-91.4 0z"
-                  fill="currentColor"
+                  d="M17.5 0.499756C7.84 0.499756 0 8.33976 0 17.9998C0 27.6598 7.84 35.4998 17.5 35.4998C27.16 35.4998 35 27.6598 35 17.9998C35 8.33976 27.16 0.499756 17.5 0.499756ZM17.5 7.49976C20.8775 7.49976 23.625 10.2473 23.625 13.6248C23.625 17.0023 20.8775 19.7498 17.5 19.7498C14.1225 19.7498 11.375 17.0023 11.375 13.6248C11.375 10.2473 14.1225 7.49976 17.5 7.49976ZM17.5 31.9998C13.9475 31.9998 9.7475 30.5648 6.755 26.9598C9.7125 24.6498 13.44 23.2498 17.5 23.2498C21.56 23.2498 25.2875 24.6498 28.245 26.9598C25.2525 30.5648 21.0525 31.9998 17.5 31.9998Z"
+                  fill="#26374A"
                 />
               </svg>
-            </div>
+            </span>
             <span
-              class="text-md hidden py-2 font-bold sm:block"
+              class="ring-blue-hover ml-2 py-2 font-sans text-base font-bold"
               id="menu-label"
             >
               Test User
@@ -158,7 +156,7 @@ exports[`AppBar > should render render an AppBar with a profile item provided > 
           </div>
           <svg
             aria-hidden="true"
-            class="svg-inline--fa fa-chevron-down my-auto size-4"
+            class="svg-inline--fa fa-chevron-down my-auto ml-auto size-4"
             data-icon="chevron-down"
             data-prefix="fas"
             focusable="false"

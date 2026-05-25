@@ -72,7 +72,7 @@ export default function LettersIndex({ loaderData, params }: Route.ComponentProp
   const canadadisabilitybenefit = (
     <InlineLink
       to={t('app:letters.canada-disability-benefit.href')}
-      className="external-link"
+      className="text-mobile-size md:text-regular-size pb-2 md:leading-[1.6]"
       newTabIndicator
       target="_blank"
     />
@@ -80,7 +80,7 @@ export default function LettersIndex({ loaderData, params }: Route.ComponentProp
   const canadadisabilitybenefitcontact = (
     <InlineLink
       to={t('app:letters.canada-disability-benefit-contact.href')}
-      className="external-link"
+      className="text-mobile-size md:text-regular-size pb-2 md:leading-[1.6]"
       newTabIndicator
       target="_blank"
     />
@@ -88,90 +88,94 @@ export default function LettersIndex({ loaderData, params }: Route.ComponentProp
 
   return (
     <>
-      <div className="mb-8">
-        <PageTitle className="after:w-14">{t('app:letters.page-title')}</PageTitle>
-      </div>
-      {letters.length === 0 ? (
-        <>
-          <div className="space-y-4">
-            <p className="font-bold">{t('app:letters.no-letter')}</p>
-            <p>
-              <Trans
-                ns={handle.i18nNamespace}
-                i18nKey="app:letters.service-eligible"
-                components={{ canadadisabilitybenefit }}
+      <div className="max-w-186">
+        <div className="mb-8">
+          <PageTitle>{t('app:letters.page-title')}</PageTitle>
+        </div>
+        {letters.length === 0 ? (
+          <>
+            <div className="space-y-4">
+              <p className="text-mobile-size md:text-regular-size pb-2 font-bold md:leading-[1.6]">
+                {t('app:letters.no-letter')}
+              </p>
+              <p>
+                <Trans
+                  ns={handle.i18nNamespace}
+                  i18nKey="app:letters.service-eligible"
+                  components={{ canadadisabilitybenefit }}
+                />
+              </p>
+              <p>
+                <Trans
+                  ns={handle.i18nNamespace}
+                  i18nKey="app:letters.application-status"
+                  components={{ canadadisabilitybenefitcontact }}
+                />
+              </p>
+            </div>
+          </>
+        ) : (
+          <>
+            <div className="my-6">
+              <InputSelect
+                className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4"
+                id="sort-order"
+                value={sortOrder}
+                onChange={handleOnSortOrderChange}
+                label={t('app:letters.filter')}
+                name="sortOrder"
+                options={[
+                  { value: 'desc', children: t('app:letters.newest') },
+                  { value: 'asc', children: t('app:letters.oldest') },
+                ]}
               />
-            </p>
-            <p>
-              <Trans
-                ns={handle.i18nNamespace}
-                i18nKey="app:letters.application-status"
-                components={{ canadadisabilitybenefitcontact }}
-              />
-            </p>
-          </div>
-        </>
-      ) : (
-        <>
-          <div className="my-6">
-            <InputSelect
-              className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4"
-              id="sort-order"
-              value={sortOrder}
-              onChange={handleOnSortOrderChange}
-              label={t('app:letters.filter')}
-              name="sortOrder"
-              options={[
-                { value: 'desc', children: t('app:letters.newest') },
-                { value: 'asc', children: t('app:letters.oldest') },
-              ]}
-            />
-          </div>
+            </div>
 
-          <ul className="divide-y border-y">
-            {letters.map((letter) => {
-              const parts = letter.letterTypeId.split(/\s*(-|\u2013|\u2014)\s*/);
+            <ul className="divide-y-2 divide-gray-300 border-y-2 border-gray-300">
+              {letters.map((letter) => {
+                const parts = letter.letterTypeId.split(/\s*(-|\u2013|\u2014)\s*/);
 
-              const frenchLetterName = parts[0] ? parts[0].trim() : '';
-              const englishLetterName = parts[2] ? parts[2].trim() : letter.letterTypeId;
-              const letterName = currentLanguage === 'en' ? englishLetterName : frenchLetterName;
-              const gcAnalyticsCustomClickValue = `ESDC-EDSC:CDB Letters Click:${letterName}`;
-              const date = new Date(letter.date);
-              const dateLanguage = currentLanguage + '-CA';
-              const formattedDate = date.toLocaleString(dateLanguage, {
-                dateStyle: 'long',
-              });
+                const frenchLetterName = parts[0] ? parts[0].trim() : '';
+                const englishLetterName = parts[2] ? parts[2].trim() : letter.letterTypeId;
+                const letterName = currentLanguage === 'en' ? englishLetterName : frenchLetterName;
+                const gcAnalyticsCustomClickValue = `ESDC-EDSC:CDB Letters Click:${letterName}`;
+                const date = new Date(letter.date);
+                const dateLanguage = currentLanguage + '-CA';
+                const formattedDate = date.toLocaleString(dateLanguage, {
+                  dateStyle: 'long',
+                });
 
-              return (
-                <li key={letter.id} className="px-4 py-4 sm:py-6">
-                  <InlineLink
-                    reloadDocument
-                    file="routes/$id.download.ts"
-                    params={{ ...params, id: letter.id }}
-                    className="external-link"
-                    newTabIndicator
-                    target="_blank"
-                    data-gc-analytics-customclick={gcAnalyticsCustomClickValue}
-                  >
-                    {letterName} {t('app:letters.file-type')}
-                  </InlineLink>
-                  <p className="mt-1 text-sm text-gray-500">{t('app:letters.date', { date: formattedDate })}</p>
-                </li>
-              );
-            })}
-          </ul>
-        </>
-      )}
+                return (
+                  <li key={letter.id} className="px-4 py-4 sm:py-6">
+                    <InlineLink
+                      reloadDocument
+                      file="routes/$id.download.ts"
+                      params={{ ...params, id: letter.id }}
+                      className="text-blue-default hover:text-blue-hover focus:outline-blue-hover font-lato rounded-sm align-top text-2xl/8 underline focus:outline-1"
+                      newTabIndicator={true}
+                      target="_blank"
+                      data-gc-analytics-customclick={gcAnalyticsCustomClickValue}
+                    >
+                      {letterName} {t('app:letters.file-type')}
+                    </InlineLink>
+                    <p className="mt-1 align-top text-[#43474e]">{t('app:letters.date', { date: formattedDate })}</p>
+                  </li>
+                );
+              })}
+            </ul>
+          </>
+        )}
 
-      <div className="my-6 flex flex-wrap items-center gap-3">
-        <ButtonLink
-          id="back-button"
-          to={t('gcweb:app.menu-dashboard.href', { baseUri: MSCA_BASE_URL })}
-          variant="alternative"
-          className="border-2 border-slate-600"
-        >
-          {t('app:letters.button.back')}
-        </ButtonLink>
+        <div className="my-6 flex flex-wrap items-center gap-3">
+          <ButtonLink
+            id="back-button"
+            to={t('gcweb:app.menu-dashboard.href', { baseUri: MSCA_BASE_URL })}
+            variant="primary"
+            className="border-2 border-slate-600"
+          >
+            {t('app:letters.button.back')}
+          </ButtonLink>
+        </div>
       </div>
     </>
   );
