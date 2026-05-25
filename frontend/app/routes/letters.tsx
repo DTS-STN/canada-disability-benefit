@@ -170,7 +170,7 @@ export default function LettersIndex({ loaderData, params }: Route.ComponentProp
           <ButtonLink
             id="back-button"
             to={t('gcweb:app.menu-dashboard.href', { baseUri: MSCA_BASE_URL })}
-            variant="alternative"
+            variant="primary"
             className="border-2 border-slate-600"
           >
             {t('app:letters.button.back')}

@@ -105,7 +105,7 @@ export function BilingualErrorBoundary({ actionData, error, params }: Route.Erro
                   })}
                 </small>
               </PageTitle>
-              <p className="mb-8 text-lg text-gray-500">{en('gcweb:server-error.page-message')}</p>
+              <p className="mb-8 md:text-[20px] md:leading-[1.6]">{en('gcweb:server-error.page-message')}</p>
               {isAppError(error) && (
                 <UnorderedList className="text-gray-800">
                   <li>
@@ -138,7 +138,7 @@ export function BilingualErrorBoundary({ actionData, error, params }: Route.Erro
                   })}
                 </small>
               </PageTitle>
-              <p className="mb-8 text-lg text-gray-500">{fr('gcweb:server-error.page-message')}</p>
+              <p className="mb-8 md:text-[20px] md:leading-[1.6]">{fr('gcweb:server-error.page-message')}</p>
               {isAppError(error) && (
                 <UnorderedList className="text-gray-800">
                   <li>
@@ -244,14 +244,14 @@ export function BilingualNotFound({ actionData, error, params }: Route.ErrorBoun
                 <span>{en('gcweb:not-found.page-title')}</span>
                 <small className="block text-2xl font-normal text-neutral-500">{en('gcweb:not-found.page-subtitle')}</small>
               </PageTitle>
-              <p className="mb-8 text-lg text-gray-500">{en('gcweb:not-found.page-message')}</p>
+              <p className="mb-8 md:text-[20px] md:leading-[1.6]">{en('gcweb:not-found.page-message')}</p>
             </div>
             <div id="french" lang="fr">
               <PageTitle className="my-8">
                 <span>{fr('gcweb:not-found.page-title')}</span>
                 <small className="block text-2xl font-normal text-neutral-500">{fr('gcweb:not-found.page-subtitle')}</small>
               </PageTitle>
-              <p className="mb-8 text-lg text-gray-500">{fr('gcweb:not-found.page-message')}</p>
+              <p className="mb-8 md:text-[20px] md:leading-[1.6]">{fr('gcweb:not-found.page-message')}</p>
             </div>
           </div>
         </main>
@@ -346,7 +346,7 @@ export function UnilingualErrorBoundary({ actionData, error, params }: Route.Err
               })}
             </small>
           </PageTitle>
-          <p className="mb-8 text-lg text-gray-500">{t('gcweb:server-error.page-message')}</p>
+          <p className="mb-8 md:text-[20px] md:leading-[1.6]">{t('gcweb:server-error.page-message')}</p>
           {isAppError(error) && (
             <UnorderedList className="text-gray-800">
               <li>
@@ -445,7 +445,7 @@ export function UnilingualNotFound({ actionData, error, params }: Route.ErrorBou
             <span>{t('gcweb:not-found.page-title')}</span>
             <small className="block text-2xl font-normal text-neutral-500">{t('gcweb:not-found.page-subtitle')}</small>
           </PageTitle>
-          <p className="mb-8 text-lg text-gray-500">{t('gcweb:not-found.page-message')}</p>
+          <p className="mb-8 md:text-[20px] md:leading-[1.6]">{t('gcweb:not-found.page-message')}</p>
         </main>
         <Footer bilingual={false} />
         <Scripts nonce={loaderData?.nonce} />

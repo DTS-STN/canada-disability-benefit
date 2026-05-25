@@ -59,7 +59,7 @@ export function InputField({
         {label}
       </InputLabel>
       {errorMessage && (
-        <p>
+        <p className="md:text-[20px] md:leading-[1.6]">
           <InputError id={ids.error}>{errorMessage}</InputError>
         </p>
       )}
