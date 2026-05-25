@@ -231,7 +231,7 @@ function NewTabIndicator({ className, ...props }: OmitStrict<ComponentProps<'spa
   // Following whitespace is important to ensure the content's text is seperated for the screen-reader text
   return (
     <>
-      <FontAwesomeIcon icon={faArrowUpRightFromSquare} className="mt-0.5 ml-1.5 inline pt-1" />
+      <FontAwesomeIcon icon={faArrowUpRightFromSquare} className="-mt-1.5 ml-1.5 inline pt-0.5" />
       <span className={cn('sr-only', className)} {...props}>
         {` (${t('screen-reader.new-tab')})`}
       </span>

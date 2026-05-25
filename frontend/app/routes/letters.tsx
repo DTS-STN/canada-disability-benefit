@@ -72,7 +72,7 @@ export default function LettersIndex({ loaderData, params }: Route.ComponentProp
   const canadadisabilitybenefit = (
     <InlineLink
       to={t('app:letters.canada-disability-benefit.href')}
-      className="text-mobile-size md:text-regular-size inline-flex flex-wrap pb-2 md:leading-[1.6]"
+      className="text-mobile-size md:text-regular-size pb-2 md:leading-[1.6]"
       newTabIndicator
       target="_blank"
     />
@@ -80,7 +80,7 @@ export default function LettersIndex({ loaderData, params }: Route.ComponentProp
   const canadadisabilitybenefitcontact = (
     <InlineLink
       to={t('app:letters.canada-disability-benefit-contact.href')}
-      className="text-mobile-size md:text-regular-size inline-flex pb-2 md:leading-[1.6]"
+      className="text-mobile-size md:text-regular-size pb-2 md:leading-[1.6]"
       newTabIndicator
       target="_blank"
     />
@@ -151,7 +151,7 @@ export default function LettersIndex({ loaderData, params }: Route.ComponentProp
                       reloadDocument
                       file="routes/$id.download.ts"
                       params={{ ...params, id: letter.id }}
-                      className="text-blue-default hover:text-blue-hover focus:outline-blue-hover font-lato flex flex-wrap rounded-sm align-top text-2xl/8 underline focus:outline-1"
+                      className="text-blue-default hover:text-blue-hover focus:outline-blue-hover font-lato rounded-sm align-top text-2xl/8 underline focus:outline-1"
                       newTabIndicator={true}
                       target="_blank"
                       data-gc-analytics-customclick={gcAnalyticsCustomClickValue}
