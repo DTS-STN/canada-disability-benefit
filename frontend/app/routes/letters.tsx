@@ -92,7 +92,7 @@ export default function LettersIndex({ loaderData, params }: Route.ComponentProp
         <div className="mb-8">
           <PageTitle>{t('app:letters.page-title')}</PageTitle>
         </div>
-        {true ? (
+        {letters.length === 0 ? (
           <>
             <div className="space-y-4">
               <p className="text-mobile-size md:text-regular-size pb-2 font-bold md:leading-[1.6]">
