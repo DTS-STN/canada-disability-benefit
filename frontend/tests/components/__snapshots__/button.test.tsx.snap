@@ -3,7 +3,7 @@
 exports[`Button > should apply the correct styles for different sizes > expected html 1`] = `
 <div>
   <button
-    class="font-lato inline-flex items-center justify-center rounded border align-middle outline-offset-4 px-3 py-2 text-sm border-gray-300 bg-gray-200 text-slate-700 hover:bg-neutral-300 focus:bg-neutral-300 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-70"
+    class="ml-1 inline-flex items-center justify-center rounded border align-middle font-sans text-lg/7 font-medium outline-offset-4 sm:text-xl/8 md:ml-2 px-[12px] py-2.5 border-gray-300 bg-gray-200 text-slate-700 hover:bg-neutral-300 focus:bg-neutral-300 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-70"
   >
     Test Button
   </button>
@@ -13,7 +13,7 @@ exports[`Button > should apply the correct styles for different sizes > expected
 exports[`Button > should apply the correct styles for different variants > expected html 1`] = `
 <div>
   <button
-    class="font-lato inline-flex items-center justify-center rounded border align-middle outline-offset-4 px-5 py-2.5 text-sm border-slate-700 bg-slate-700 text-white hover:bg-sky-800 focus:bg-sky-800 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-70"
+    class="ml-1 inline-flex items-center justify-center border align-middle font-sans text-lg/7 font-medium outline-offset-4 sm:text-xl/8 md:ml-2 px-[15px] py-2.5 text-white bg-blue-primary hover:bg-deep-blue-focus active:bg-blue-pressed rounded focus:ring focus:ring-offset-4 focus:ring-bg-deep-blue-focus disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-70"
   >
     Test Button
   </button>
@@ -23,7 +23,7 @@ exports[`Button > should apply the correct styles for different variants > expec
 exports[`Button > should render a button with default styles > expected html 1`] = `
 <div>
   <button
-    class="font-lato inline-flex items-center justify-center rounded border align-middle outline-offset-4 px-5 py-2.5 text-sm border-gray-300 bg-gray-200 text-slate-700 hover:bg-neutral-300 focus:bg-neutral-300 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-70"
+    class="ml-1 inline-flex items-center justify-center rounded border align-middle font-sans text-lg/7 font-medium outline-offset-4 sm:text-xl/8 md:ml-2 px-[15px] py-2.5 border-gray-300 bg-gray-200 text-slate-700 hover:bg-neutral-300 focus:bg-neutral-300 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-70"
   >
     Test Button
   </button>
@@ -33,7 +33,7 @@ exports[`Button > should render a button with default styles > expected html 1`]
 exports[`Button > should render a disabled Button correctly > expected html 1`] = `
 <div>
   <button
-    class="font-lato inline-flex items-center justify-center border align-middle outline-offset-4 px-5 py-2.5 text-sm border-gray-300 bg-gray-200 text-slate-700 hover:bg-neutral-300 focus:bg-neutral-300 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-70 rounded-full"
+    class="ml-1 inline-flex items-center justify-center border align-middle font-sans text-lg/7 font-medium outline-offset-4 sm:text-xl/8 md:ml-2 px-[15px] py-2.5 border-gray-300 bg-gray-200 text-slate-700 hover:bg-neutral-300 focus:bg-neutral-300 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-70 rounded-full"
     disabled=""
   >
     Test Button
@@ -44,7 +44,7 @@ exports[`Button > should render a disabled Button correctly > expected html 1`] 
 exports[`Button > should render a pill Button correctly > expected html 1`] = `
 <div>
   <button
-    class="font-lato inline-flex items-center justify-center border align-middle outline-offset-4 px-5 py-2.5 text-sm border-gray-300 bg-gray-200 text-slate-700 hover:bg-neutral-300 focus:bg-neutral-300 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-70 rounded-full"
+    class="ml-1 inline-flex items-center justify-center border align-middle font-sans text-lg/7 font-medium outline-offset-4 sm:text-xl/8 md:ml-2 px-[15px] py-2.5 border-gray-300 bg-gray-200 text-slate-700 hover:bg-neutral-300 focus:bg-neutral-300 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-70 rounded-full"
   >
     Test Button
   </button>

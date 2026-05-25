@@ -63,7 +63,7 @@ exports[`InputSelect > should render input select component with error message >
       </span>
     </label>
     <p
-      class="mb-2"
+      class="mb-2 md:text-[20px] md:leading-[1.6]"
     >
       <span
         class="inline-block max-w-prose border-l-2 border-red-600 bg-red-50 px-3 py-1"

@@ -46,7 +46,9 @@ exports[`InputField > should render input field with error message > expected ht
         label test
       </span>
     </label>
-    <p>
+    <p
+      class="md:text-[20px] md:leading-[1.6]"
+    >
       <span
         class="inline-block max-w-prose border-l-2 border-red-600 bg-red-50 px-3 py-1"
         data-testid="input-error-test-id"

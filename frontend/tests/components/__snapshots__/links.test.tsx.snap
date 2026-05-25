@@ -91,7 +91,7 @@ exports[`links > AppLink > should throw an error if no language is available > e
 exports[`links > InlineLink > should correctly render an InlineLink when the file property is provided > expected html 1`] = `
 <div>
   <a
-    class="text-slate-700 underline hover:text-blue-700 focus:text-blue-700"
+    class="text-blue-default underline hover:text-blue-700 focus:text-blue-700"
     data-discover="true"
     href="/fr/lettres"
   >
@@ -103,7 +103,7 @@ exports[`links > InlineLink > should correctly render an InlineLink when the fil
 exports[`links > InlineLink > should correctly render an InlineLink when the to property is provided > expected html 1`] = `
 <div>
   <a
-    class="text-slate-700 underline hover:text-blue-700 focus:text-blue-700"
+    class="text-blue-default underline hover:text-blue-700 focus:text-blue-700"
     href="https://example.com/"
   >
     This is a test

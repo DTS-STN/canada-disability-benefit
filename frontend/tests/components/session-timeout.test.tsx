@@ -84,15 +84,25 @@ describe('SessionTimeout', () => {
     vi.useFakeTimers({ shouldAdvanceTime: true });
 
     setup();
-
-    expect(screen.queryByText('{"key":"gcweb:session-timeout.description","options":{"timeRemaining":"0:50"}}')).not.toBeNull();
+    expect(screen.queryByText('gcweb:session-timeout.intro')).not.toBeNull();
+    // Need to use regex for multiple lines dynamic text
+    expect(screen.queryByText(/gcweb:session-timeout.remaining-time/)).not.toBeNull();
+    expect(screen.getByText(/0/)).not.toBeNull();
+    expect(screen.queryByText(/gcweb:session-timeout.time-unit-minutes/)).not.toBeNull();
+    expect(screen.getByText(/50/)).not.toBeNull();
+    expect(screen.queryByText(/gcweb:session-timeout.time-unit-seconds/)).not.toBeNull();
 
     act(() => {
       mockGetRemainingTime.mockReturnValue(49000);
       vi.advanceTimersByTime(1000);
     });
 
-    expect(screen.queryByText('{"key":"gcweb:session-timeout.description","options":{"timeRemaining":"0:49"}}')).not.toBeNull();
+    // Need to use regex for multiple lines dynamic text
+    expect(screen.queryByText(/gcweb:session-timeout.remaining-time/)).not.toBeNull();
+    expect(screen.getByText(/0/)).not.toBeNull();
+    expect(screen.queryByText(/gcweb:session-timeout.time-unit-minutes/)).not.toBeNull();
+    expect(screen.getByText(/49/)).not.toBeNull();
+    expect(screen.queryByText(/gcweb:session-timeout.time-unit-seconds/)).not.toBeNull();
 
     vi.useRealTimers();
   });
