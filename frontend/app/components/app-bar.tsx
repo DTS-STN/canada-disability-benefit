@@ -1,17 +1,13 @@
 import { useState } from 'react';
 import type { JSX } from 'react';
 
-import { faChevronDown, faChevronUp, faRightFromBracket, faUser } from '@fortawesome/free-solid-svg-icons';
+import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useTranslation } from 'react-i18next';
 
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from '~/components/dropdown-menu';
+import { getIcon } from './material-icon';
+
+import { DropdownMenu, DropdownMenuContent, DropdownMenuSeparator, DropdownMenuTrigger } from '~/components/dropdown-menu';
 import { AppLink } from '~/components/links';
 import { MenuItem } from '~/components/menu';
 import { useLanguage } from '~/hooks/use-language';
@@ -27,8 +23,8 @@ export function AppBar({ name }: AppBarProps): JSX.Element {
 
   return (
     <div className="sm:bg-blue-primary sm:h-15">
-      <div className="align-center container mx-auto flex flex-wrap justify-between">
-        <div className="bg-blue-primary align-center flex h-15 w-full sm:w-auto">
+      <div className="align-center mx-auto flex flex-wrap justify-between sm:container sm:flex-nowrap">
+        <div className="bg-blue-primary order-1 flex h-15 w-full sm:w-auto">
           <span id="menu-label" className="my-auto px-3 md:px-1">
             <AppLink
               to={t('gcweb:app.menu-dashboard.href', { baseUri: MSCA_BASE_URL })}
@@ -85,8 +81,7 @@ function UserButton({ className, name }: UserButtonProps): JSX.Element {
         </div>
         <FontAwesomeIcon icon={open ? faChevronUp : faChevronDown} className="my-auto ml-auto size-4" />
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" className="w-64">
-        <UserName name={name} />
+      <DropdownMenuContent align="start" sideOffset={0} className="w-(--radix-dropdown-menu-trigger-width) focus:outline-none">
         <MenuItem
           to={t('gcweb:app.menu-dashboard.href', { baseUri: MSCA_BASE_URL })}
           className="text-deep-blue-dark hover:text-blue-hover flex justify-between text-base focus:bg-white"
@@ -113,13 +108,6 @@ function UserButton({ className, name }: UserButtonProps): JSX.Element {
           </>
         )}
         <MenuItem
-          to={t('gcweb:app.security-settings.href', { baseUri: MSCA_BASE_URL })}
-          className="text-deep-blue-dark hover:text-blue-hover flex justify-between text-base focus:bg-white"
-        >
-          {t('gcweb:app.security-settings')}
-        </MenuItem>
-        <DropdownMenuSeparator />
-        <MenuItem
           to={t('gcweb:app.contact-us.href', { baseUri: MSCA_BASE_URL })}
           className="text-deep-blue-dark hover:text-blue-hover flex justify-between text-base focus:bg-white"
         >
@@ -128,29 +116,12 @@ function UserButton({ className, name }: UserButtonProps): JSX.Element {
         <DropdownMenuSeparator />
         <MenuItem
           to={`/auth/logout?lang=${currentLanguage}`}
-          className="text-deep-blue-dark hover:text-blue-hover flex justify-between text-base focus:bg-white"
+          className="text-deep-blue-dark hover:text-blue-hover flex text-base focus:bg-white"
         >
+          {getIcon('logout')}
           {t('gcweb:app.logout')}
-          <FontAwesomeIcon icon={faRightFromBracket} className="my-auto size-8" />
         </MenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
-  );
-}
-
-type UserNameProps = {
-  name?: string;
-};
-
-function UserName({ name }: UserNameProps): JSX.Element {
-  return (
-    <>
-      {name !== undefined && (
-        <DropdownMenuLabel className="text-md flex items-center border-b-2 border-slate-600 px-3 py-2 text-gray-300 sm:hidden">
-          <FontAwesomeIcon icon={faUser} className="mr-2 size-4" />
-          {name}
-        </DropdownMenuLabel>
-      )}
-    </>
   );
 }

@@ -1,9 +1,9 @@
 {
   "app": {
     "account": "Account",
-    "logout": "Logout",
-    "profile": "Profile",
-    "profile.href": "{{baseUri}}/en/profile",
+    "logout": "Sign Out",
+    "profile": "Profile and preferences",
+    "profile.href": "{{baseUri}}/en/profile-and-preferences",
     "security-settings": "Security Settings",
     "security-settings.href": "{{baseUri}}/en/security-settings",
     "contact-us": "Contact Us",
@@ -35,7 +35,8 @@
     "terms-conditions": {
       "href": "{{baseUri}}/TC.aspx?mode=ReadOnly&lang=eng#terms",
       "text": "Terms and conditions"
-    }
+    },
+    "top-of-page": "Top of Page"
   },
   "header": {
     "govt-of-canada.text": "Government of Canada",

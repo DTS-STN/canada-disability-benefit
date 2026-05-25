@@ -1,9 +1,9 @@
 {
   "app": {
     "account": "Compte",
-    "logout": "Déconnexion",
-    "profile": "Profil",
-    "profile.href": "{{baseUri}}/fr/profil",
+    "logout": "Se déconnecter",
+    "profile": "Profil et préférences",
+    "profile.href": "{{baseUri}}/fr/profil-et-preferences",
     "security-settings": "Paramètres de sécurité",
     "security-settings.href": "{{baseUri}}/fr/parametres-securite",
     "contact-us": "Contactez-nous",
@@ -35,7 +35,8 @@
     "terms-conditions": {
       "href": "{{baseUri}}/TC.aspx?mode=ReadOnly&lang=fra#terms",
       "text": "Avis"
-    }
+    },
+    "top-of-page": "Haut de la page"
   },
   "header": {
     "govt-of-canada.text": "Gouvernement du Canada",

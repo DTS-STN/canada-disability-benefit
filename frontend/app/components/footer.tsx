@@ -1,3 +1,5 @@
+import { faChevronUp } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useTranslation } from 'react-i18next';
 
 import { AppLink } from './links';
@@ -65,12 +67,12 @@ export function Footer({ bilingual }: FooterProps) {
                 {t('gcweb:footer.privacy.text')}
               </AppLink>
             </li>
-            {/* <li className="float-left cursor-pointer sm:hidden">
+            <li className="float-left cursor-pointer sm:hidden">
               <a id="top_btn" href="#top" className="inline-flex items-center">
                 {t('gcweb:footer.top-of-page')}
                 <FontAwesomeIcon icon={faChevronUp} className="pl-2 sm:hidden" />
               </a>
-            </li> */}
+            </li>
           </ul>
         </div>
         <div className="mr-1.25 flex min-h-24 shrink-0 items-end md:items-center">
