@@ -72,7 +72,7 @@ export default function LettersIndex({ loaderData, params }: Route.ComponentProp
   const canadadisabilitybenefit = (
     <InlineLink
       to={t('app:letters.canada-disability-benefit.href')}
-      className="external-link"
+      className="text-mobile-size md:text-regular-size inline-flex flex-wrap pb-2 md:leading-[1.6]"
       newTabIndicator
       target="_blank"
     />
@@ -80,7 +80,7 @@ export default function LettersIndex({ loaderData, params }: Route.ComponentProp
   const canadadisabilitybenefitcontact = (
     <InlineLink
       to={t('app:letters.canada-disability-benefit-contact.href')}
-      className="external-link"
+      className="text-mobile-size md:text-regular-size inline-flex pb-2 md:leading-[1.6]"
       newTabIndicator
       target="_blank"
     />
@@ -92,10 +92,12 @@ export default function LettersIndex({ loaderData, params }: Route.ComponentProp
         <div className="mb-8">
           <PageTitle>{t('app:letters.page-title')}</PageTitle>
         </div>
-        {letters.length === 0 ? (
+        {true ? (
           <>
             <div className="space-y-4">
-              <p className="font-bold">{t('app:letters.no-letter')}</p>
+              <p className="text-mobile-size md:text-regular-size pb-2 font-bold md:leading-[1.6]">
+                {t('app:letters.no-letter')}
+              </p>
               <p>
                 <Trans
                   ns={handle.i18nNamespace}

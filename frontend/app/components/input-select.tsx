@@ -38,7 +38,7 @@ export function InputSelect(props: InputSelectProps) {
         {label}
       </InputLabel>
       {errorMessage && (
-        <p className="mb-2">
+        <p className="mb-2 md:text-[20px] md:leading-[1.6]">
           <InputError id={inputErrorId}>{errorMessage}</InputError>
         </p>
       )}

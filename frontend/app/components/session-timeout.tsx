@@ -6,6 +6,8 @@ import { useTranslation } from 'react-i18next';
 import type { IIdleTimerProps } from 'react-idle-timer';
 import { useIdleTimer } from 'react-idle-timer';
 
+import { getIcon } from './material-icon';
+
 import { Button } from '~/components/button';
 import { Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle } from '~/components/dialog';
 
@@ -29,7 +31,8 @@ export interface SessionTimeoutProps extends Required<Pick<IIdleTimerProps, 'pro
  */
 export function SessionTimeout({ promptBeforeIdle, timeout, onSessionEnd, onSessionExtend }: SessionTimeoutProps) {
   const { t } = useTranslation(['gcweb']);
-  const [timeRemaining, setTimeRemaining] = useState('');
+  const [minutes, setMinutesRemaining] = useState('');
+  const [seconds, setSecondsRemaining] = useState('');
 
   const { activate, isPrompted, getRemainingTime } = useIdleTimer({
     // Disable default event listeners; The IdleTimer should only activate during route navigation and form
@@ -67,10 +70,10 @@ export function SessionTimeout({ promptBeforeIdle, timeout, onSessionEnd, onSess
   useEffect(() => {
     const updateRemainingTime = () => {
       const remainingTime = getRemainingTime();
-      const minutes = Math.floor(remainingTime / 60_000);
-      const seconds = Math.floor((remainingTime % 60_000) / 1_000);
-      const formattedTime = `${minutes}:${seconds.toString().padStart(2, '0')}`;
-      setTimeRemaining(formattedTime);
+      const minutes = Math.floor(remainingTime / 60_000).toLocaleString();
+      const seconds = Math.floor((remainingTime % 60_000) / 1_000).toLocaleString();
+      setMinutesRemaining(minutes);
+      setSecondsRemaining(seconds);
     };
 
     const interval = setInterval(updateRemainingTime, 1000);
@@ -93,9 +96,21 @@ export function SessionTimeout({ promptBeforeIdle, timeout, onSessionEnd, onSess
     <Dialog open={isPrompted()} onOpenChange={(open) => !open && extendSession()}>
       <DialogContent aria-describedby={undefined} className="sm:max-w-md">
         <DialogHeader>
-          <DialogTitle>{t('gcweb:session-timeout.header')}</DialogTitle>
+          <DialogTitle> {t('gcweb:session-timeout.header')}</DialogTitle>
         </DialogHeader>
-        {t('gcweb:session-timeout.description', { timeRemaining })}
+
+        <div className="grid grid-cols-6">
+          <div className="col-span-1">{getIcon('warning')} </div>
+          <div className="col-span-5">
+            <p className="md:text-[20px] md:leading-[1.6]">{t('gcweb:session-timeout.intro')}</p>
+            <p className="md:text-[20px] md:leading-[1.6]">
+              {t('gcweb:session-timeout.remaining-time', { minutes })}
+              {t('gcweb:session-timeout.time-unit-minutes', { seconds })}
+              {t('gcweb:session-timeout.time-unit-seconds')}
+            </p>
+          </div>
+        </div>
+
         <DialogFooter>
           <Button id="end-session-button" variant="default" size="sm" onClick={endSession}>
             {t('gcweb:session-timeout.end-session')}

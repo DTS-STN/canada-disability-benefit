@@ -77,9 +77,12 @@
     "page-title": "We're having a problem with that page"
   },
   "session-timeout": {
-    "continue-session": "Continue session",
-    "description": "Your session will expire automatically in {{timeRemaining}}. Select \"Continue Session\" to extend your session.",
-    "end-session": "End session now",
-    "header": "Session timeout warning"
+    "continue-session": "Stay signed in",
+    "intro": "You have not been active for a while so we will sign you out to keep your information secure.",
+    "remaining-time": "You will be signed out in {{minutes}}",
+    "time-unit-minutes": " minutes and {{seconds}}",
+    "time-unit-seconds": " seconds.",
+    "end-session": "Sign out",
+    "header": "Stay signed in?"
   }
 }

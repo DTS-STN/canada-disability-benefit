@@ -77,9 +77,12 @@
     "page-title": "Nous éprouvons des difficultés avec cette page"
   },
   "session-timeout": {
-    "continue-session": "Continuer la session",
-    "description": "Votre session expirera automatiquement dans {{timeRemaining}}. Sélectionnez «\u00a0Continuer la session\u00a0» pour prolonger votre session.",
-    "end-session": "Mettre fin à la session",
-    "header": "Avertissement d'expiration de la session"
+    "continue-session": "Rester connecté",
+    "intro": "Vous n'avez pas été actif depuis un certain temps. Nous allons donc vous déconnecter afin de protéger vos renseignements.",
+    "remaining-time": "Vous serez déconnecté dans {{minutes}}",
+    "time-unit-minutes": " minutes et {{seconds}}",
+    "time-unit-seconds": " secondes.",
+    "end-session": "Fermer la session",
+    "header": "Rester connecté?"
   }
 }
